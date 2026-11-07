@@ -15,7 +15,7 @@ export function FoodChain() {
         <p className="text-sm leading-relaxed text-[#3f4651]">
           Five questions, in order. A drought, a ban, an input shock, a closed route, or a war is only a reason to start at one of them. Nothing here is a measured flow or a tonne.
         </p>
-        <div className="mt-4 flex min-w-0 gap-2 overflow-x-auto pb-1" role="group" aria-label="Path from a world price to the shop">
+        <div className="mt-4 flex min-w-0 flex-wrap gap-2" role="group" aria-label="Path from a world price to the shop">
           {steps.map((stage, index) => (
             <div key={stage.id} className="flex shrink-0 items-center gap-2">
               <StageButton stageId={stage.id} label={stage.short} active={stage.id === selectedId} onSelect={setSelectedId} />

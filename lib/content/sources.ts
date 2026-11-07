@@ -239,9 +239,9 @@ export const sources: Source[] = [
     url: "https://www.fao.org/worldfoodsituation/foodpricesindex/en/",
     retrieved: "2026-11-07",
     usedFor:
-      "Nominal monthly index, 2014–2016 = 100, CSV retrieved 7 November 2026. The chart uses those values unchanged, January 2020–October 2026 by default. Five groups: cereals, vegetable oils, dairy, meat, sugar. Newest meat months mix projected and observed prices. Not a consumer price.",
+      "Eight named months from the nominal index, 2014–2016 = 100, copied as a table. Not the monthly file, not a chart, and not rescaled. Newest meat months mix projected and observed prices.",
     rights:
-      "Checked 7 November 2026 against https://www.fao.org/contact-us/terms/en/ and https://www.fao.org/contact-us/terms/db-terms-of-use/en/. The Food Price Index page states no licence. Database terms describe CC BY 4.0 for datasets in corporate statistical databases unless a page says otherwise. Annex 1 lists examples, including FPMA, FAOSTAT and AMIS, and does not name this index file. This edition does not claim CC BY 4.0 for it. Website terms allow other content to be copied for non-commercial products if FAO is acknowledged as source and copyright holder and endorsement is not implied, and they say adaptation rights should be requested. The chart is a preview of the unmodified nominal values. © FAO. Whether that replot is an adaptation is not settled. No endorsement.",
+      "Checked 7 November 2026 at https://www.fao.org/contact-us/terms/en/ and https://www.fao.org/contact-us/terms/db-terms-of-use/en/. The index page states no licence, and Annex 1 of the database terms does not name this file, so it is not labelled CC BY 4.0. Website terms allow other content to be copied for a non-commercial product if FAO is acknowledged as source and copyright holder and endorsement is not implied. They ask permission before an adaptation. This edition copies eight original values in a table and does not replot them. © FAO. No endorsement.",
   },
   {
     id: "eurostat-hicp-food",

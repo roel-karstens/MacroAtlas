@@ -226,7 +226,7 @@ export const topics: Topic[] = [
         kicker: "Observed",
         heading: "Two prices, two axes",
         paragraphs: [
-          "The FAO index below is the nominal commodity file, 2014–2016 = 100, values unchanged. The Eurostat charts are euro-area food prices, 2015 = 100, and Eurostat’s own annual rates. A euro-area index is not a Dutch receipt. The lines are not combined.",
+          "The table is the world commodity index, eight months, 2014–2016 = 100. The charts are euro-area shop prices, 2015 = 100, and the annual rates Eurostat publishes. A euro-area index is not a Dutch receipt. The two are not drawn as one line.",
         ],
         links: [{ href: "/topics/food-agriculture/why-the-grocery-bill-lags", label: "Read why the bill lags" }],
       },
@@ -235,7 +235,7 @@ export const topics: Topic[] = [
         kicker: "Mechanisms",
         heading: "The path is physical, and it is not a flow diagram",
         paragraphs: [
-          "Read any shock in one order: where it is grown, what can be exported, which route and which importers, what can absorb it, then the bill. A drought, an export ban, an energy-cost shock, a closed route, and a war each open a different question. The Black Sea after February 2022 is the worked example, not the frame. No country tonnes are drawn.",
+          "Read any shock in one order: where it is grown, what can be exported, which route and which importers, what can absorb it, then the bill. A drought, an export ban, an energy-cost shock, a closed route, and a war each open a different question. The map under those questions draws the tonnes for wheat, maize, and sunflower. The buttons themselves are not a dataset. The Black Sea corridor of 2022–2023 is the worked example, not the frame.",
         ],
         links: [
           { href: "/topics/energy", label: "Energy" },

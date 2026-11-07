@@ -21,7 +21,7 @@ export const foodStages: FoodStage[] = [
     question: "Where is production concentrated, and in which year?",
     summary:
       "A harvest is tonnes in a place. Concentration matters because a drought or an input shock in a few countries can move a world price even when most countries are unchanged. The year has to be named. A map of production is not a map of what leaves the country.",
-    notThis: "No country tonnes are in this commit. Missing is not zero.",
+    notThis: "The tonnes are on the map below, not on this diagram. A country with no figure is missing, not zero.",
     links: [],
   },
   {

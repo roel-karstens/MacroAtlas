@@ -8,7 +8,9 @@ import { imageById } from "@/lib/content/images";
 import { articlesForTopic } from "@/lib/content/articles";
 import { topicById, topics } from "@/lib/content/topics";
 import { CropAtlas } from "@/components/crop-atlas";
-import { EurostatFoodCharts, FaoPriceChart } from "@/components/food-charts";
+import { FaoExcerptTable } from "@/components/fao-excerpt";
+import { EurostatFoodCharts } from "@/components/food-charts";
+import { FoodNotes } from "@/components/food-notes";
 import { FoodChain } from "@/components/food-chain";
 import { FoodComparison } from "@/components/food-comparison";
 import { FoodLevelSketch } from "@/components/food-level-sketch";
@@ -87,7 +89,7 @@ export default async function TopicPage({ params }: { params: Promise<{ topic: s
             {topic.id === "food-agriculture" && section.id === "observed" ? (
               <div className="mt-6">
                 <FoodComparison />
-                <FaoPriceChart />
+                <FaoExcerptTable />
                 <EurostatFoodCharts />
               </div>
             ) : null}
@@ -132,6 +134,7 @@ export default async function TopicPage({ params }: { params: Promise<{ topic: s
           </section>
         ))}
       </div>
+      {topic.id === "food-agriculture" ? <FoodNotes /> : null}
     </Container>
   );
 }

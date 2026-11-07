@@ -28,6 +28,19 @@ function project(lon: number, lat: number) {
   return { x, y };
 }
 
+function frameBox(frame: "world" | "americas" | "europe-africa" | "asia") {
+  const windows = {
+    world: [-180, 180, 84, -58],
+    americas: [-168, -28, 78, -56],
+    "europe-africa": [-28, 62, 72, -36],
+    asia: [55, 180, 75, -12],
+  } as const;
+  const [west, east, north, south] = windows[frame];
+  const a = project(west, north);
+  const b = project(east, south);
+  return `${a.x} ${a.y} ${Math.max(b.x - a.x, 1)} ${Math.max(b.y - a.y, 1)}`;
+}
+
 function pathFor(rings: number[][][]) {
   return rings
     .map((ring) =>
@@ -57,6 +70,7 @@ export function CropAtlas() {
   const [element, setElement] = useState<CropElement>("production");
   const [year, setYear] = useState(2024);
   const [selectedIso, setSelectedIso] = useState("UKR");
+  const [frame, setFrame] = useState<"world" | "americas" | "europe-africa" | "asia">("world");
   const years = yearsFor(item, element);
   const activeYear = years.includes(year) ? year : years[years.length - 1];
   const rows = sliceRows(item, element, activeYear);
@@ -95,8 +109,20 @@ export function CropAtlas() {
           ? "Crude sunflower oil production in this file stops at 2023. 2024 is not shown because it is absent, not because it is zero."
           : "The year is the one selected. Production and exports are separate series."}
       </p>
-      <div className="mt-4 min-w-0 overflow-x-auto border border-[#e4e6ea]">
-        <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} role="img" aria-label={`World map of ${itemMeta.label} ${elementMeta.label} in ${activeYear}. Equirectangular. Not equal-area.`} className="h-auto min-w-[640px]">
+      <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Map frame">
+        {(
+          [
+            ["world", "Whole world"],
+            ["americas", "Americas"],
+            ["europe-africa", "Europe and Africa"],
+            ["asia", "Asia"],
+          ] as const
+        ).map(([id, label]) => (
+          <Choice key={id} pressed={frame === id} onClick={() => setFrame(id)} label={label} />
+        ))}
+      </div>
+      <div className="mt-3 min-w-0 max-w-full border border-[#e4e6ea]">
+        <svg viewBox={frameBox(frame)} role="img" aria-label={`World map of ${itemMeta.label} ${elementMeta.label} in ${activeYear}. Equirectangular. Not equal-area. The frame buttons move between the whole world, the Americas, Europe and Africa, and Asia.`} className="h-auto w-full">
           <rect width={WIDTH} height={HEIGHT} fill="#f7f8f9" />
           {worldFeatures.map((feature) => {
             const row = byIso.get(feature.iso3);
@@ -108,8 +134,8 @@ export function CropAtlas() {
                 key={feature.iso3}
                 d={pathFor(feature.rings)}
                 fill={fillFor(status, share)}
-                stroke={active ? "#141414" : "#ffffff"}
-                strokeWidth={active ? 1.4 : 0.4}
+                stroke={active ? "#D55E00" : "#ffffff"}
+                strokeWidth={active ? 3.5 : 0.4}
                 onClick={() => setSelectedIso(feature.iso3)}
               >
                 <title>
@@ -124,8 +150,11 @@ export function CropAtlas() {
         <li className="flex items-center gap-2"><span className="inline-block size-3 border border-[#e4e6ea] bg-[#f3f4f6]" /> No figure</li>
         <li className="flex items-center gap-2"><span className="inline-block size-3 border border-[#c5cad3] bg-white" /> Zero</li>
         <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#c6dbef]" /> Under 1% of the country sum</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#6baed6]" /> 1% to under 3%</li>
         <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#2171b5]" /> 3% to under 8%</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#08519c]" /> 8% to under 15%</li>
         <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#08306b]" /> 15% or more</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 border-2 border-[#D55E00] bg-white" /> Selected country</li>
       </ul>
       <p className="mt-2 text-sm leading-relaxed text-[#3f4651]">
         Equirectangular frame from 84°N to 58°S. Area is not true. Natural Earth 1:110m, public domain. Boundaries do not imply endorsement. The join uses ISO_A3_EH, or ADM0_A3 when ISO_A3 is −99, which is how France and Norway match. Small states omitted by this scale stay in the total and in the table.
@@ -162,7 +191,7 @@ export function CropAtlas() {
             </thead>
             <tbody>
               {ranked.map((row) => (
-                <tr key={row.iso3} className="border-b border-[#e4e6ea]">
+                <tr key={row.iso3} data-iso={row.iso3} className={row.iso3 === selectedIso ? "border-b border-[#141414] bg-[#141414] text-white" : "border-b border-[#e4e6ea]"}>
                   <th scope="row" className="px-3 py-2 font-normal">
                     <button type="button" className="min-h-11 text-left underline-offset-4 hover:underline" onClick={() => setSelectedIso(row.iso3)}>
                       {row.area}
@@ -180,25 +209,14 @@ export function CropAtlas() {
       </div>
       <div className="mt-4 max-w-3xl space-y-3 text-sm leading-relaxed text-[#3f4651]">
         <p>
-          Shares use the sum of country figures in this file for this item, measure, and year. Regional aggregates and the duplicate China total are not in the file, so they are not in the denominator. A blank FAO cell stays “No figure”. It is not drawn as zero.
+          Colour is the share of countries in this file. A blank cell is “No figure”, not zero. Ukraine is not the same territory in 2021 as in 2023 or 2024, and this file does not say how FAOSTAT drew that line.
         </p>
-        {russia ? (
-          <p>
-            Russia in this view: flag {russia.flag}{russia.note ? `, ${russia.note}` : ""}. Flag X here is an unofficial or external figure. Flag I is imputed.
-          </p>
+        {russia && russia.flag !== "A" ? (
+          <p>Russia in this view: flag {russia.flag}{russia.note ? `, ${russia.note}` : ""}.</p>
         ) : null}
         {item === "sunflower-oil" && ukraine ? (
-          <p>Ukraine crude sunflower oil in this view: flag {ukraine.flag}{ukraine.note ? `, ${ukraine.note}` : ""}.</p>
+          <p>Ukraine crude sunflower oil: flag {ukraine.flag}{ukraine.note ? `, ${ukraine.note}` : ""}.</p>
         ) : null}
-        <p>
-          Ukraine’s tonnes are not a like-for-like territory from 2021 to 2023 or 2024. This bulk file does not state FAOSTAT’s exact treatment of occupied areas, so a change in the number is not presented as a change on an unchanged map.
-        </p>
-        <p>
-          Historical only. On the UN’s Black Sea Grain Initiative pages, the Joint Coordination Centre is dated 27 July 2022 in Istanbul, while a photo caption on the same site says a signing ceremony on 22 July 2022 and another paragraph says 27 July. This page does not pick a signing day. The pages do say the corridor ran from Odesa, Chornomorsk and Yuzhny/Pivdennyi, and that the Initiative was not renewed after 17 July 2023. They also say that, while it ran, over 32 million metric tons of grain and foodstuffs went to 45 countries. That is a UN total for the corridor, not a FAOSTAT share, and not proof that one exporter replaced another or that the war caused euro-area food inflation. Black Sea shipping in 2026 is not described here.
-        </p>
-        <p>
-          FAO. 2025. FAOSTAT: Crops and livestock products. Accessed 7 November 2026. https://www.fao.org/faostat/en/#data/QCL Licence: CC BY 4.0. FAO. 2026. FAOSTAT: Trade — Crops and livestock products. Accessed 7 November 2026. https://www.fao.org/faostat/en/#data/TCL Licence: CC BY 4.0. This licence is for FAOSTAT. It is not a licence for the Food Price Index.
-        </p>
       </div>
     </div>
   );

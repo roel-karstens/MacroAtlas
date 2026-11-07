@@ -1,22 +1,28 @@
+import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import faoFile from "@/data/food/fao-ffpi-monthly.json";
 import eurostatFile from "@/data/food/eurostat-ea-food.json";
-import { eurostatLevelChange, faoSlice, peakSince } from "@/lib/data/food-public";
+import { faoExcerpt } from "@/lib/data/fao-ffpi-excerpt";
+import { eurostatLevelChange } from "@/lib/data/food-public";
 
 describe("published food series", () => {
-  it("keeps FAO nominal values unmodified through October 2026", () => {
-    expect(faoFile.base).toBe("2014-2016=100");
-    expect(faoFile.points[0]).toMatchObject({ period: "1990-01", ffpi: 64.4 });
-    const oct = faoFile.points.at(-1);
-    expect(oct).toMatchObject({ period: "2026-10", ffpi: 133.9, meat: 125.5, dairy: 117.8, cereals: 116.8, oils: 199.2, sugar: 121.3 });
-    const shown = faoSlice("ffpi", "2020-01");
-    expect(shown[0]).toEqual({ period: "2020-01", value: 102.5 });
-    expect(shown.at(-1)).toEqual({ period: "2026-10", value: 133.9 });
-    expect(peakSince(shown, "2020-01")).toEqual({ period: "2022-03", value: 160.2 });
-    for (const point of shown) {
-      const source = faoFile.points.find((row) => row.period === point.period);
-      expect(point.value).toBe(source?.ffpi);
-    }
+  it("quotes eight FAO months and does not ship the monthly file", () => {
+    expect(existsSync("data/food/fao-ffpi-monthly.json")).toBe(false);
+    expect(faoExcerpt).toHaveLength(8);
+    expect(faoExcerpt.find((row) => row.period === "2020-01")?.ffpi).toBe(102.5);
+    expect(faoExcerpt.find((row) => row.period === "2022-03")).toMatchObject({ ffpi: 160.2, oils: 251.8 });
+    expect(faoExcerpt.find((row) => row.period === "2022-05")?.cereals).toBe(173.5);
+    expect(faoExcerpt.find((row) => row.period === "2022-06")?.dairy).toBe(158.2);
+    expect(faoExcerpt.find((row) => row.period === "2023-09")?.sugar).toBe(162.7);
+    expect(faoExcerpt.find((row) => row.period === "2026-05")?.meat).toBe(131.3);
+    expect(faoExcerpt.find((row) => row.period === "2026-10")).toMatchObject({
+      ffpi: 133.9,
+      meat: 125.5,
+      dairy: 117.8,
+      cereals: 116.8,
+      oils: 199.2,
+      sugar: 121.3,
+    });
+    expect(faoExcerpt.find((row) => row.period === "2025-10")?.ffpi).toBe(126.4);
   });
 
   it("uses euro-area food only, with the API spot checks", () => {
@@ -36,7 +42,6 @@ describe("published food series", () => {
     expect(eurostatFile.allItemsAnnualRate.find((point) => point.period === "2022-10")?.value).toBe(10.6);
     expect(eurostatFile.allItemsAnnualRate.at(-1)).toEqual({ period: "2026-10", value: 4 });
     expect(eurostatFile.geo).toBe("EA");
-    expect(JSON.stringify(eurostatFile.foodIndex)).not.toContain("EU27");
     expect(eurostatFile.geoLabel).toContain("EA20-2023");
   });
 

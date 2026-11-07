@@ -39,6 +39,8 @@ export function LineChart({
   formatX,
   formatY,
   caption,
+  annotations = [],
+  emphasize = false,
 }: {
   title: string;
   unit: string;
@@ -47,6 +49,9 @@ export function LineChart({
   formatX?: (value: number) => string;
   formatY?: (value: number) => string;
   caption: string;
+  annotations?: { x: number; y: number; label: string }[];
+  /** Larger type and a taller frame on small screens. Desktop size stays a full reading chart. */
+  emphasize?: boolean;
 }) {
   const [showTable, setShowTable] = useState(false);
   const tableId = useId();
@@ -71,15 +76,6 @@ export function LineChart({
   const xTickValues = xLabels
     ? [0, Math.round((xLabels.length - 1) / 2), xLabels.length - 1].filter((value, index, all) => all.indexOf(value) === index)
     : ticks(xDomain.min, xDomain.max, 4);
-
-  const xOf = (value: number) => {
-    const span = xDomain.max - xDomain.min || 1;
-    return LEFT + ((value - xDomain.min) / span) * (W - LEFT - RIGHT);
-  };
-  const yOf = (value: number) => {
-    const span = yDomain.max - yDomain.min || 1;
-    return TOP + (1 - (value - yDomain.min) / span) * (H - TOP - BOTTOM);
-  };
 
   const summary = `${title}, ${unit}. ${drawn
     .map((item) => {
@@ -113,42 +109,59 @@ export function LineChart({
           {showTable ? "Hide table" : "Show table"}
         </Button>
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={summary} className="h-auto w-full">
-        {yTicks.map((tick) => (
-          <g key={tick}>
-            <line x1={LEFT} x2={W - RIGHT} y1={yOf(tick)} y2={yOf(tick)} stroke="#e4e6ea" />
-            <text x={LEFT - 8} y={yOf(tick) + 4} textAnchor="end" fontSize="11" fill="#3f4651">
-              {yFormat(tick)}
-            </text>
-          </g>
-        ))}
-        {xTickValues.map((tick) => (
-          <text key={tick} x={xOf(tick)} y={H - 12} textAnchor="middle" fontSize="11" fill="#3f4651">
-            {xFormat(tick)}
-          </text>
-        ))}
-        {drawn.map((item, seriesIndex) => {
-          const d = item.points
-            .map((point, index) => `${index === 0 ? "M" : "L"}${xOf(point.x).toFixed(1)} ${yOf(point.y).toFixed(1)}`)
-            .join(" ");
-          const last = item.points[item.points.length - 1];
-          return (
-            <g key={item.id}>
-              <path
-                d={d}
-                fill="none"
-                stroke={item.color}
-                strokeWidth={2}
-                strokeDasharray={item.pattern === "dashed" ? "7 5" : undefined}
-              />
-              <Marker x={xOf(last.x)} y={yOf(last.y)} kind={item.marker} color={item.color} />
-              <text x={xOf(last.x) + 8} y={yOf(last.y) + seriesIndex * 14 - 6} fontSize="12" fill="#141414">
-                {item.label}
+      {(emphasize
+        ? [
+            { id: "phone", className: "h-auto w-full md:hidden", W: 520, H: 560, LEFT: 92, RIGHT: 28, TOP: 48, BOTTOM: 72, font: 22 },
+            { id: "desk", className: "hidden h-auto w-full md:block", W: 720, H: 360, LEFT: 78, RIGHT: 36, TOP: 36, BOTTOM: 52, font: 15 },
+          ]
+        : [{ id: "one", className: "h-auto w-full", W, H, LEFT, RIGHT, TOP, BOTTOM, font: 11 }]
+      ).map((layout) => {
+        const xOfLayout = (value: number) => {
+          const span = xDomain.max - xDomain.min || 1;
+          return layout.LEFT + ((value - xDomain.min) / span) * (layout.W - layout.LEFT - layout.RIGHT);
+        };
+        const yOfLayout = (value: number) => {
+          const span = yDomain.max - yDomain.min || 1;
+          return layout.TOP + (1 - (value - yDomain.min) / span) * (layout.H - layout.TOP - layout.BOTTOM);
+        };
+        return (
+          <svg key={layout.id} viewBox={`0 0 ${layout.W} ${layout.H}`} role="img" aria-label={summary} className={layout.className}>
+            {yTicks.map((tick) => (
+              <g key={tick}>
+                <line x1={layout.LEFT} x2={layout.W - layout.RIGHT} y1={yOfLayout(tick)} y2={yOfLayout(tick)} stroke="#e4e6ea" />
+                <text x={layout.LEFT - 10} y={yOfLayout(tick) + layout.font * 0.35} textAnchor="end" fontSize={layout.font} fill="#3f4651">
+                  {yFormat(tick)}
+                </text>
+              </g>
+            ))}
+            {xTickValues.map((tick) => (
+              <text key={tick} x={xOfLayout(tick)} y={layout.H - 16} textAnchor="middle" fontSize={layout.font} fill="#3f4651">
+                {xFormat(tick)}
               </text>
-            </g>
-          );
-        })}
-      </svg>
+            ))}
+            {drawn.map((item) => {
+              const d = item.points
+                .map((point, index) => `${index === 0 ? "M" : "L"}${xOfLayout(point.x).toFixed(1)} ${yOfLayout(point.y).toFixed(1)}`)
+                .join(" ");
+              const last = item.points[item.points.length - 1];
+              return (
+                <g key={item.id}>
+                  <path d={d} fill="none" stroke={item.color} strokeWidth={emphasize ? 3 : 2} strokeDasharray={item.pattern === "dashed" ? "7 5" : undefined} />
+                  <Marker x={xOfLayout(last.x)} y={yOfLayout(last.y)} kind={item.marker} color={item.color} />
+                </g>
+              );
+            })}
+            {annotations.map((note) => (
+              <g key={note.label}>
+                <circle cx={xOfLayout(note.x)} cy={yOfLayout(note.y)} r={emphasize ? 7 : 4} fill="#fff" stroke="#141414" strokeWidth={emphasize ? 2 : 1.25} />
+                <text x={xOfLayout(note.x) + 10} y={yOfLayout(note.y) - 8} fontSize={layout.font} fontWeight={600} fill="#141414">
+                  {note.label}
+                </text>
+              </g>
+            ))}
+          </svg>
+        );
+      })}
       <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-sm">
         {drawn.map((item) => (
           <li key={item.id} className="flex items-center gap-2">

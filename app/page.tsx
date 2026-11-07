@@ -63,7 +63,7 @@ export default function HomePage() {
       <Container className="py-14">
         <h2 className="font-display text-4xl font-semibold">Latest research</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#3f4651]">
-          Materials and currencies are not published. Food is. The essay does not plot an index.
+          Materials and currencies are still absent. Food is open: a world price, a euro-area grocery index, and why the bill does not fall just because the cargo got cheaper.
         </p>
         <div className="mt-8 grid gap-8 md:grid-cols-2">
           {cards.map((article) => {

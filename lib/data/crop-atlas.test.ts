@@ -52,6 +52,13 @@ describe("FAOSTAT crop atlas", () => {
     expect(ukraineOil?.note).toBe("Unofficial figure");
   });
 
+  it("keeps Türkiye and Côte d'Ivoire as Unicode, not mojibake", () => {
+    const names = new Set(cropRows.map((row) => row.area));
+    expect(names.has("Türkiye")).toBe(true);
+    expect(names.has("Côte d'Ivoire")).toBe(true);
+    expect([...names].some((name) => name.includes("Ã"))).toBe(false);
+  });
+
   it("does not include a regional aggregate or the duplicate China code", () => {
     expect(cropRows.some((row) => row.area.includes("World"))).toBe(false);
     expect(cropRows.some((row) => row.area === "China")).toBe(false);
