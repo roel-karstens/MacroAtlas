@@ -3,6 +3,7 @@ import { Barlow, Barlow_Condensed } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { site } from "@/lib/content/registry";
+import { siteUrl } from "@/lib/content/seo";
 import "./globals.css";
 
 const sans = Barlow({
@@ -20,12 +21,19 @@ const display = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: site.name,
     template: `%s · ${site.name}`,
   },
   description: site.description,
   robots: { index: false, follow: false },
+  openGraph: {
+    siteName: site.name,
+    locale: "en_US",
+    type: "website",
+    description: site.description,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

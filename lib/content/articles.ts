@@ -14,6 +14,7 @@ export type Article = {
   topicId: "energy" | "rates-inflation" | "digital-infrastructure" | "food-agriculture";
   title: string;
   deck: string;
+  shortAnswer?: string;
   published: string;
   updated: string;
   imageId?: string;
@@ -28,7 +29,7 @@ export const articles: Article[] = [
     id: "the-hormuz-question",
     slug: "the-hormuz-question",
     topicId: "energy",
-    title: "The Hormuz question",
+    title: "What is actually at stake at Hormuz?",
     deck: "Trace the exposure. Test the assumptions.",
     published: "2026-11-07",
     updated: "2026-11-07",
@@ -89,7 +90,7 @@ export const articles: Article[] = [
     id: "from-barrel-to-margin",
     slug: "from-barrel-to-margin",
     topicId: "energy",
-    title: "From barrel to margin",
+    title: "What does a price change do to operating profit?",
     deck: "Follow a barrel through the chain, then into operating profit.",
     published: "2026-11-07",
     updated: "2026-11-07",
@@ -126,7 +127,7 @@ export const articles: Article[] = [
         paragraphs: [
           "The oil model does not price a company and it does not clear a market. It answers a smaller question: if this many unhedged barrels per day face this price change for this many days, and only this share of the change reaches the margin, what happens to operating profit after a currency translation and an extra cost?",
           "The identity is deliberate. Barrels over the horizon equal barrels per day times days. The dollar effect equals those barrels times the price change times the pass-through. The translated effect equals the dollar effect times reporting-currency units per one dollar. Operating profit changes by the translated effect minus extra costs. Positive barrels mean a net seller. Negative barrels mean a net buyer. A price increase is a positive price change. Extra costs are positive when they reduce profit.",
-          "The price change is yours. It is not read off the Brent chart, even though that chart sits nearby so you can see the scale of past monthly averages. Past averages are not a distribution of future ones, and this page does not draw a probability band around a path. A band would be a claim about odds. There is no odds model here.",
+          "The price change is yours. This edition does not plot the World Bank Pink Sheet Brent column: the license for that column is unconfirmed, and no replacement price series is shown. Past averages are not a distribution of future ones, and this page does not draw a probability band around a path. A band would be a claim about odds. There is no odds model here.",
           "Hedges are outside the identity because the barrel input is already net of them. If you type gross production, you have not described the unhedged position, and the sign will be too large. Taxes, royalties, volume responses, and quality discounts beyond the pass-through factor are also outside. Share prices are outside. The result is an operating-profit change in the currency you named.",
         ],
         links: [{ href: "/models/oil-exposure", label: "Use the oil exposure model" }],
@@ -150,7 +151,7 @@ export const articles: Article[] = [
     id: "when-yields-move",
     slug: "when-yields-move",
     topicId: "rates-inflation",
-    title: "When yields move",
+    title: "What does a yield rise do to a bond?",
     deck: "A bond yield is not a policy rate. Duration is not a promise.",
     published: "2026-11-07",
     updated: "2026-11-07",
@@ -213,7 +214,7 @@ export const articles: Article[] = [
     id: "the-physical-digital-chain",
     slug: "the-physical-digital-chain",
     topicId: "digital-infrastructure",
-    title: "The physical digital chain",
+    title: "What physically limits computing?",
     deck: "Five counts that do not collapse into one progress number.",
     imageId: "digital-hero",
     published: "2026-11-07",
@@ -312,8 +313,10 @@ export const articles: Article[] = [
     id: "why-the-grocery-bill-lags",
     slug: "why-the-grocery-bill-lags",
     topicId: "food-agriculture",
-    title: "Why the grocery bill lags",
+    title: "Why doesn’t my grocery bill fall when world food prices do?",
     deck: "A cheaper cargo is not yet a cheaper loaf.",
+    shortAnswer:
+      "Euro-area food prices, HICP CP011, rose 33.6% from January 2020 to September 2026. In September 2026 the annual rate was 1.1%: slower, not lower. The FAO commodity index is a different basket. The gap is not a measured lag. Snapshot retrieved 7 November 2026.",
     published: "2026-11-07",
     updated: "2026-11-07",
     locationIds: [],
@@ -326,7 +329,7 @@ export const articles: Article[] = [
         paragraphs: [
           "Why does food become more expensive, and why does the bill at the shop not fall in the week a world price does?",
           "A world price is what exporters are paid for a commodity. A grocery bill is what a household pays after that commodity has been grown, moved, milled or packed, and sold. They can move together. They are not the same price. A fall in the first is not a fall in the second. A smaller rise is not a fall at all.",
-          "The charts below keep them apart. The world index stays on its own axis, in its own units. The shop prices are a euro-area consumer index. Nothing here turns one line into the cause of the other.",
+          "The FAO index below is a table of eight named months, not a chart. The shop prices are Eurostat charts on a different base year and a different basket. Nothing here turns one series into the cause of the other.",
         ],
       },
       {
@@ -358,12 +361,12 @@ export const articles: Article[] = [
         heading: "Five questions for any shock",
         paragraphs: [
           "The same path reads a drought, an export ban, a fuel or fertilizer shock, a closed route, or a war. First, where production is concentrated, and in which year. Second, how much of that crop can be exported, which is not the harvest. Third, which route carries it and who imports along that route. Fourth, what stocks, substitutes, or the next planting could absorb. Fifth, what still sits in mills, wages, packaging, and old contracts before the receipt moves. Select a step. The buttons for shocks only open the question they belong to. They are not arrows of grain.",
-          "The map under this section answers only the first two questions, for four FAOSTAT products: wheat, maize, sunflower seed, and crude sunflower oil. Production is not exports. Seed is not oil. Tonnes are not dollars. Crude oil production in the file has 2021 and 2023, not 2024, so that year is not offered. A blank cell stays blank. The Gulf atlas remains the oil corridor: same kind of route question, no grain ships and no AIS.",
+          "Where the tonnes are, and how 2021 compares with 2024, is a separate question with its own page. Production is not exports. Seed is not oil. Tonnes are not dollars. The Gulf atlas remains the oil corridor: same kind of route question, no grain ships and no AIS.",
           "The worked example is the Black Sea grain corridor, inside this frame and not the whole story. The UN pages date the Joint Coordination Centre to 27 July 2022 and say the Initiative was not renewed after 17 July 2023. A caption on the same site says a signing ceremony on 22 July 2022, and another sentence says 27 July, so this page does not choose a signing day. The pages name Odesa, Chornomorsk and Yuzhny/Pivdennyi, and say that while the corridor ran, over 32 million metric tons of grain and foodstuffs went to 45 countries. That UN total is not a FAOSTAT share. A shift in who exports between 2021 and 2024 does not prove replacement, and it does not make the war the cause of the 17.9 percent. Shipping in 2026 is not described. The next drought or ban is read with the same five questions.",
         ],
         links: [
-          { href: "/topics/energy", label: "Energy, the oil chain" },
-          { href: "/atlas", label: "Atlas" },
+          { href: "/topics/food-agriculture/where-wheat-comes-from", label: "Where the world’s wheat comes from" },
+          { href: "/atlas", label: "Atlas, crops and the Gulf" },
           { href: "/models/oil-exposure", label: "Oil exposure" },
         ],
       },
@@ -388,6 +391,73 @@ export const articles: Article[] = [
         links: [
           { href: "/methodology", label: "Methodology" },
           { href: "/sources#fao-food-price-index", label: "FAO rights, as checked" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "where-wheat-comes-from",
+    slug: "where-wheat-comes-from",
+    topicId: "food-agriculture",
+    title: "Where does the world’s wheat come from — and what changed after 2022?",
+    deck: "Reported export tonnes in 2021 and 2024, and why a harvest is not a shipment.",
+    shortAnswer: "",
+    published: "2026-11-07",
+    updated: "2026-11-07",
+    locationIds: [],
+    sourceIds: ["faostat-qcl", "faostat-tcl", "un-black-sea-grain-initiative"],
+    sections: [
+      {
+        id: "maps",
+        kicker: "01",
+        heading: "Two maps: 2021 and 2024",
+        paragraphs: [
+          "The maps colour each country’s share of the sum of reported wheat export tonnes. That sum is not unique world trade. A tonne can be counted again if it is re-exported. The maps do not show who bought from whom, and they do not show import dependency.",
+          "2024 is the latest complete year in this FAOSTAT trade extract, a bulk file dated 23 July 2026 and retrieved on 7 November 2026. 2021 is the comparison year already in the same file. Production in the companion extract is a bulk file dated 23 December 2025. Neither file is a live feed.",
+          "Russia and Ukraine are outlined so the eye can find them. The outline is not a claim about borders, and it is not a measure of occupied territory. Other countries stay in the colour scale. A country with no figure is the pale ground, not white. White, where it appears, is a reported zero. Small states omitted by the 1:110m coastline remain in the total and in the atlas table, even when they have no shape here.",
+          "The same geometry is on the atlas, where you can change the crop, the measure, the year, the frame, and the country. This page holds still on wheat export quantity so the 2021 and 2024 pictures can be read together.",
+        ],
+      },
+      {
+        id: "exporters",
+        kicker: "02",
+        heading: "Who ships, in tonnes",
+        paragraphs: [
+          "The table lists the six largest reported exporters in 2024, with their 2021 figures beside them. Shares are that country’s tonnes divided by the sum of every reported country export in the file for that year. Missing cells are left out of the sum. Zero would be included. A blank is not zero.",
+          "Russia’s 2024 export quantity is flag X. The file’s note says the figure is estimated using a trading-partners database. That is not the same note as Russia’s 2024 wheat production, which is also flag X and is marked “Unofficial figure”.",
+          "In 2024 the six are Russia, Canada, the United States, Ukraine, Australia and France, in that order. In 2021 Australia reported more export tonnes than Russia. The ranking changed. This page does not explain the change. Canada, the United States, Australia and France carry flag A on the 2024 export quantity in this file. Ukraine’s 2024 export quantity is also flag A. Flag A does not repair the territory problem described below.",
+        ],
+      },
+      {
+        id: "harvest",
+        kicker: "03",
+        heading: "Harvest is not export",
+        paragraphs: [
+          "Production and export quantity are different FAOSTAT elements. A large harvest can stay at home. A large export can include grain that was not grown in that country in that year. The bars put the two numbers on one scale for Russia and Ukraine in 2024 only. They are not a balance of trade.",
+          "Read the bars as two questions, not as a remainder. Harvested tonnes answer where the crop was reported. Exported tonnes answer what left in the trade statistics. Subtracting them does not produce domestic use, stocks, or seed. Those series are not in this extract. Sunflower seed and sunflower oil are a further warning of the same kind: the seed is not the oil, and crude sunflower-oil production in this file has 2021 and 2023, not 2024.",
+        ],
+      },
+      {
+        id: "black-sea",
+        kicker: "04",
+        heading: "The Black Sea, 2022–2023",
+        paragraphs: [
+          "The dates below are context for why a reader compares 2021 with 2024. They are not a measured cause of any price, and they are not a FAOSTAT share. This page does not describe shipping in 2026.",
+          "The United Nations pages used here date the Joint Coordination Centre to 27 July 2022 and say the Initiative was not renewed after 17 July 2023. A caption on the same site also says 22 July 2022, so this page does not pick a signing day. While the corridor ran, the pages say, over 32 million metric tons of grain and foodstuffs went to 45 countries from Odesa, Chornomorsk and Yuzhny/Pivdennyi. That UN total is not the FAOSTAT sum on the maps. This edition does not print a peak-month tonnage, because it has not settled one figure for it.",
+        ],
+      },
+      {
+        id: "limits",
+        kicker: "05",
+        heading: "What this cannot tell you",
+        paragraphs: [
+          "It cannot tell you why a share changed. It cannot tell you a price. It cannot tell you bilateral flows or which importer depends on which exporter. Summed reports can include re-exports, so the total is not unique world trade.",
+          "Ukraine’s 2021 figures and its 2024 figures are not a like-for-like territory. This file does not state how FAOSTAT treated occupied areas, so the two years are not evidence that the war caused a harvest, an export, or a grocery price. 2024 is the latest complete wheat year here. 2025 and 2026 are not in the file.",
+        ],
+        links: [
+          { href: "/topics/food-agriculture/why-the-grocery-bill-lags", label: "Why the grocery bill lags" },
+          { href: "/atlas#crops", label: "Sunflower oil, on the same crop map" },
+          { href: "/topics", label: "All questions" },
         ],
       },
     ],

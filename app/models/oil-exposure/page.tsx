@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import { Container, TextLink } from "@/components/editorial";
 import { OilModelPanel } from "@/components/oil-model-panel";
+import { pageMetadata } from "@/lib/content/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Oil exposure",
-  description: "Compute a change in operating profit from an unhedged oil position and a price scenario you choose.",
-};
+  description: "Illustrative operating-profit change from barrels, days, a price you type, pass-through and FX. Default +10 USD is +9 million; +20 USD is +18 million.",
+  path: "/models/oil-exposure",
+});
 
 export default function OilModelPage() {
   return (

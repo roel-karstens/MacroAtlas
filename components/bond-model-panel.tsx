@@ -199,6 +199,9 @@ export function BondModelPanel() {
             <div>
               <dt className="text-sm text-[#3f4651]">Duration price effect, before carry and convexity</dt>
               <dd className="font-display text-5xl leading-none font-semibold">{formatPercentFromDecimal(evaluation.result.durationPriceEffect)}</dd>
+              <p className="mt-2 text-sm text-[#3f4651]">
+                Assumptions beside this figure: starting yield {fields.annualYieldPercent}% (illustrative, not a market print), modified duration {fields.modifiedDuration}, shift {fields.shiftValue} {fields.shiftUnit === "bp" ? "basis points" : "percentage points"}, horizon {fields.horizonYears} year(s), costs {fields.costsBp} bp, convexity {evaluation.result.convexityApplied ? "on" : "off"}. Duration 7 and +100 bp is −7% before carry and convexity. With a 3% yield, one year and no costs, simple carry is +3% and the total-return sketch is −4%.
+              </p>
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>

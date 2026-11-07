@@ -1,18 +1,22 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, PageIntro } from "@/components/editorial";
 import { articlesForTopic } from "@/lib/content/articles";
+import { pageMetadata } from "@/lib/content/seo";
 import { topics } from "@/lib/content/topics";
 
-export const metadata: Metadata = { title: "Topics" };
+export const metadata = pageMetadata({
+  title: "Questions",
+  description: "Questions on oil, bond yields, computing and food. Each one opens with a dated answer. Materials and currencies are not links.",
+  path: "/topics",
+});
 
 export default function TopicsPage() {
   return (
     <Container className="py-12">
       <PageIntro
-        kicker="Topics"
-        title="Open files."
-        deck="Energy is the oil chain. Rates is one yield and a calculator. Digital infrastructure names units and cited anchors. Food separates a world commodity price from the grocery bill. Materials and currencies are not links."
+        kicker="Questions"
+        title="Start with a question."
+        deck="Energy is the oil chain and a calculator. Rates is a yield you type, not a plotted ECB series. Digital infrastructure names units and cited anchors. Food separates an eight-month commodity table from the grocery index, and asks where wheat exports come from. Materials and currencies are not links."
       />
       <div className="mt-12 grid gap-6 md:grid-cols-2">
         {topics.map((topic) => (

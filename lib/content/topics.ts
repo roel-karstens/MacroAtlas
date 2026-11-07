@@ -92,9 +92,9 @@ export const topics: Topic[] = [
       {
         id: "understand",
         kicker: "Understand",
-        heading: "Start from the bond, not the central bank",
+        heading: "What does a yield you type do to a bond price?",
         paragraphs: [
-          "Inflation matters for bonds because it is one reason yields move, not because a policy announcement is itself the market yield. This edition does not publish a consumer-price series and does not convert an inflation guess into a yield. It shows one observed long-term government yield and a calculator for a yield shift you choose.",
+          "Inflation matters for bonds because it is one reason yields move, not because a policy announcement is itself the market yield. This edition does not publish a consumer-price series and does not convert an inflation guess into a yield. The ECB euro-area 10-year series is not plotted. The calculator uses a yield you type. The opening example is 3 percent, labelled as an illustration, not a market print.",
         ],
       },
       {
@@ -228,14 +228,17 @@ export const topics: Topic[] = [
         paragraphs: [
           "The table is the world commodity index, eight months, 2014–2016 = 100. The charts are euro-area shop prices, 2015 = 100, and the annual rates Eurostat publishes. A euro-area index is not a Dutch receipt. The two are not drawn as one line.",
         ],
-        links: [{ href: "/topics/food-agriculture/why-the-grocery-bill-lags", label: "Read why the bill lags" }],
+        links: [
+          { href: "/topics/food-agriculture/why-the-grocery-bill-lags", label: "Why the grocery bill does not fall" },
+          { href: "/topics/food-agriculture/where-wheat-comes-from", label: "Where the world’s wheat comes from" },
+        ],
       },
       {
         id: "mechanisms",
         kicker: "Mechanisms",
         heading: "The path is physical, and it is not a flow diagram",
         paragraphs: [
-          "Read any shock in one order: where it is grown, what can be exported, which route and which importers, what can absorb it, then the bill. A drought, an export ban, an energy-cost shock, a closed route, and a war each open a different question. The map under those questions draws the tonnes for wheat, maize, and sunflower. The buttons themselves are not a dataset. The Black Sea corridor of 2022–2023 is the worked example, not the frame.",
+          "Read any shock in one order: where it is grown, what can be exported, which route and which importers, what can absorb it, then the bill. A drought, an export ban, an energy-cost shock, a closed route, and a war each open a different question. The tonnes for wheat, maize, and sunflower are on the atlas and on the wheat question, not on this hub. The buttons themselves are not a dataset. The Black Sea corridor of 2022–2023 is context for that wheat question, not the frame of the whole topic.",
         ],
         links: [
           { href: "/topics/energy", label: "Energy" },

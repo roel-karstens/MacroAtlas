@@ -1,7 +1,11 @@
-import type { Metadata } from "next";
 import { Container, PageIntro } from "@/components/editorial";
+import { pageMetadata } from "@/lib/content/seo";
 
-export const metadata: Metadata = { title: "Privacy" };
+export const metadata = pageMetadata({
+  title: "Privacy",
+  description: "What this Macro Atlas build stores: browser calculators only if you ask, no newsletter list, no analytics product in the site code.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
@@ -19,9 +23,8 @@ export default function PrivacyPage() {
         <p>
           The newsletter form is not open. This site does not ask for an email address, does not store one, and does not send mail. A future double opt-in would need a dedicated sender and a private consent table. Neither is connected. An unrelated sending domain is not used.
         </p>
-        <p>No analytics product was added. No advertising pixel was added.</p>
         <p>
-          A Supabase project named Macro Atlas, ref worlgpganiczzjwmapjk, exists for a later connection. This build does not hold a publishable key and does not query that project. A service-role key is not part of the website.
+          This build does not query a database. No analytics product and no advertising pixel were added in the site code. Hosting logs, if a host keeps them, are outside this page.
         </p>
       </div>
     </Container>

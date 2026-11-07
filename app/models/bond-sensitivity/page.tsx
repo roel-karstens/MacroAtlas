@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import { Container, TextLink } from "@/components/editorial";
 import { BondModelPanel } from "@/components/bond-model-panel";
+import { pageMetadata } from "@/lib/content/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Bond sensitivity",
-  description: "Approximate the price effect of a bond yield move from duration, optional convexity, carry, and costs.",
-};
+  description: "Illustrative bond sketch. Duration 7 and +100 basis points is −7% before carry and convexity. The 3% start is not a market print.",
+  path: "/models/bond-sensitivity",
+});
 
 export default function BondModelPage() {
   return (

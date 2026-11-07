@@ -34,8 +34,18 @@ export function AtlasMap() {
   const viewport = useRef<HTMLDivElement>(null);
   const drag = useRef<{ px: number; py: number; x: number; y: number } | null>(null);
   const [filters, setFilters] = useState(filtersDefault);
-  const [selectedId, setSelectedId] = useState<string>("hormuz");
+  const [selectedId, setSelectedId] = useState<string | null>("hormuz");
   const [view, setView] = useState({ x: 0, y: 0, k: 1 });
+
+  function choosePlace(id: string) {
+    setSelectedId((current) => (current === id ? null : id));
+  }
+
+  function resetMap() {
+    setView({ x: 0, y: 0, k: 1 });
+    setFilters({ ...filtersDefault });
+    setSelectedId(null);
+  }
 
   useEffect(() => {
     const element = viewport.current;
@@ -95,8 +105,8 @@ export function AtlasMap() {
           <Button type="button" variant="outline" className="h-11 rounded-none px-3" onClick={() => setView((v) => ({ ...v, k: Math.max(1, v.k / 1.25) }))}>
             Zoom out
           </Button>
-          <Button type="button" variant="outline" className="h-11 rounded-none px-3" onClick={() => setView({ x: 0, y: 0, k: 1 })}>
-            Reset view
+          <Button type="button" variant="outline" className="h-11 rounded-none px-3" onClick={resetMap}>
+            Reset map
           </Button>
         </div>
         <div
@@ -181,18 +191,6 @@ export function AtlasMap() {
                       );
                     })
                 : null}
-              <text x="620" y="150" fontSize="13" fill="#8b93a0">
-                Iran
-              </text>
-              <text x="250" y="520" fontSize="13" fill="#8b93a0">
-                Saudi Arabia
-              </text>
-              <text x="430" y="430" fontSize="13" fill="#8b93a0">
-                Qatar
-              </text>
-              <text x="560" y="620" fontSize="13" fill="#8b93a0">
-                UAE
-              </text>
             </svg>
             {visible.map((location) => {
               const point = project(location.lon as number, location.lat as number);
@@ -210,7 +208,7 @@ export function AtlasMap() {
                   }}
                   aria-pressed={selectedNow}
                   aria-label={`${location.name}, ${location.country}`}
-                  onClick={() => setSelectedId(location.id)}
+                  onClick={() => choosePlace(location.id)}
                 >
                   <span
                     className={
@@ -227,7 +225,7 @@ export function AtlasMap() {
           </div>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-[#3f4651]">
-          Self-contained schematic. Coastline from Natural Earth 1:10m land, public domain, clipped to this window on 7 November 2026. Equirectangular, not a navigational chart. The corridor and the Habshan–Fujairah line are schematic. No AIS and no live traffic. Country names are orientation labels.
+          Self-contained schematic. Coastline from Natural Earth 1:10m land, public domain, clipped to this window on 7 November 2026. Equirectangular, not a navigational chart. The corridor and the Habshan–Fujairah line are schematic. No AIS and no live traffic. Orientation, in reading type rather than on the drawing: Iran, Saudi Arabia, Qatar, UAE. Select a place again to clear it. Reset map restores zoom, the four filters, and the selection.
         </p>
         <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#3f4651]">
           <li>Square: terminal</li>
@@ -246,7 +244,7 @@ export function AtlasMap() {
                 type="button"
                 className="flex min-h-11 w-full items-center justify-between gap-3 text-left text-sm underline-offset-4 hover:underline aria-pressed:font-medium"
                 aria-pressed={location.id === selectedId}
-                onClick={() => setSelectedId(location.id)}
+                onClick={() => choosePlace(location.id)}
               >
                 <span>{location.name}</span>
                 <span className="text-[#3f4651]">{location.lat == null ? "Off map" : shapeFor(location)}</span>

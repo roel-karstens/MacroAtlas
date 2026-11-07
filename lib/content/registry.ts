@@ -10,22 +10,23 @@ export const site = {
   availableLocales: ["en"] as const,
   edition: "November 2026",
   description:
-    "Independent macro research connecting physical oil flows and bond-yield scenarios. Educational, not investment advice.",
+    "A guide to the physical economy: where oil, wheat and computing come from, how those prices reach a bill, and calculators you can check. Dated snapshots, not investment advice.",
 };
 
 export const primaryNav = [
-  { href: "/", label: "Home" },
+  { href: "/topics", label: "Questions" },
   { href: "/atlas", label: "Atlas" },
-  { href: "/topics", label: "Topics" },
-  { href: "/models", label: "Models" },
+  { href: "/models", label: "Tools" },
+  { href: "/sources", label: "Sources" },
+  { href: "/about", label: "About" },
 ] as const;
 
 export const footerNav = [
-  { href: "/about", label: "About" },
   { href: "/methodology", label: "Methodology" },
   { href: "/sources", label: "Sources" },
   { href: "/image-credits", label: "Image credits" },
   { href: "/privacy", label: "Privacy" },
+  { href: "/about", label: "About" },
   { href: "/newsletter", label: "Newsletter" },
 ] as const;
 
