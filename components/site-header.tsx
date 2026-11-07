@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { primaryNav } from "@/lib/content/registry";
 
 function isCurrent(pathname: string, href: string) {
@@ -13,11 +13,23 @@ function isCurrent(pathname: string, href: string) {
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function onKey(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      menuButton.current?.focus();
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
-    <header className="border-b border-[#e4e6ea] bg-white">
+    <header className="border-b border-[#d9d3c6] bg-[#f6f3ec]">
       <div className="mx-auto flex max-w-[1120px] items-center justify-between gap-4 px-5 py-4">
-        <Link href="/" className="text-[15px] font-semibold tracking-[0.16em]" aria-label="Macro Atlas, home">
+        <Link href="/" className="font-display text-[22px] font-semibold tracking-[0.14em]" aria-label="Macro Atlas, home">
           MACRO ATLAS
         </Link>
         <nav className="hidden items-center gap-7 text-[15px] md:flex" aria-label="Primary">
@@ -32,23 +44,19 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
-          <Link href="/newsletter" className="inline-flex min-h-11 items-center bg-[#141414] px-3 text-sm text-white hover:bg-[#2a2a2a]">
-            Newsletter
-          </Link>
-          <button
-            type="button"
-            className="inline-flex min-h-11 items-center border border-[#e4e6ea] px-3 text-sm md:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => setOpen((value) => !value)}
-          >
-            {open ? "Close" : "Menu"}
-          </button>
-        </div>
+        <button
+          ref={menuButton}
+          type="button"
+          className="inline-flex min-h-11 items-center border border-[#d9d3c6] px-3 text-sm md:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? "Close" : "Menu"}
+        </button>
       </div>
       {open ? (
-        <nav id="mobile-nav" className="border-t border-[#e4e6ea] px-5 py-3 md:hidden" aria-label="Primary mobile">
+        <nav id="mobile-nav" className="border-t border-[#d9d3c6] px-5 py-3 md:hidden" aria-label="Primary mobile">
           <ul className="flex flex-col">
             {primaryNav.map((item) => (
               <li key={item.href}>

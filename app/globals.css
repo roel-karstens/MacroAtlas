@@ -126,7 +126,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-white text-[#141414];
+    @apply bg-[#f6f3ec] text-[#15191f];
     font-family: var(--font-barlow), "Barlow", sans-serif;
   }
   html {

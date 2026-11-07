@@ -6,6 +6,7 @@ import { ElectricityCharts, InferenceCostChart, TokenMixCalculator } from "@/com
 import { Container, Figure, PageIntro, TextLink } from "@/components/editorial";
 import { imageById } from "@/lib/content/images";
 import { articlesForTopic } from "@/lib/content/articles";
+import { pageMetadata } from "@/lib/content/seo";
 import { topicById, topics } from "@/lib/content/topics";
 import { FoodNotes } from "@/components/food-notes";
 import { FoodChain } from "@/components/food-chain";
@@ -18,7 +19,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ topic: string }> }): Promise<Metadata> {
   const { topic: id } = await params;
   const topic = topicById(id);
-  return { title: topic?.title ?? "Topic" };
+  return pageMetadata({
+    title: topic?.title ?? "Topic",
+    description: topic?.deck ?? "A Macro Atlas topic.",
+    path: `/topics/${id}`,
+  });
 }
 
 export default async function TopicPage({ params }: { params: Promise<{ topic: string }> }) {

@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { worldFeatures } from "@/lib/data/crop-atlas";
+import { ChoroplethMap, type MapFrame } from "@/components/choropleth-map";
 import {
   countrySum,
   cropElements,
   cropItems,
   isOnMap,
-  rowStatus,
   sharePercent,
   sliceRows,
   yearsFor,
@@ -17,60 +16,12 @@ import {
 } from "@/lib/data/crop-atlas";
 import { formatNumber } from "@/lib/format";
 
-const WIDTH = 960;
-const HEIGHT = 460;
-const NORTH = 84;
-const SOUTH = -58;
-
-function project(lon: number, lat: number) {
-  const x = ((lon + 180) / 360) * WIDTH;
-  const y = ((NORTH - lat) / (NORTH - SOUTH)) * HEIGHT;
-  return { x, y };
-}
-
-function frameBox(frame: "world" | "americas" | "europe-africa" | "asia") {
-  const windows = {
-    world: [-180, 180, 84, -58],
-    americas: [-168, -28, 78, -56],
-    "europe-africa": [-28, 62, 72, -36],
-    asia: [55, 180, 75, -12],
-  } as const;
-  const [west, east, north, south] = windows[frame];
-  const a = project(west, north);
-  const b = project(east, south);
-  return `${a.x} ${a.y} ${Math.max(b.x - a.x, 1)} ${Math.max(b.y - a.y, 1)}`;
-}
-
-function pathFor(rings: number[][][]) {
-  return rings
-    .map((ring) =>
-      ring
-        .map((pair, index) => {
-          const point = project(pair[0], pair[1]);
-          return `${index === 0 ? "M" : "L"}${point.x.toFixed(1)} ${point.y.toFixed(1)}`;
-        })
-        .join(" "),
-    )
-    .join(" ");
-}
-
-function fillFor(status: "missing" | "zero" | "reported", share: number | null) {
-  if (status === "missing") return "#f3f4f6";
-  if (status === "zero") return "#ffffff";
-  const value = share ?? 0;
-  if (value >= 15) return "#08306b";
-  if (value >= 8) return "#08519c";
-  if (value >= 3) return "#2171b5";
-  if (value >= 1) return "#6baed6";
-  return "#c6dbef";
-}
-
 export function CropAtlas() {
   const [item, setItem] = useState<CropItem>("wheat");
   const [element, setElement] = useState<CropElement>("production");
   const [year, setYear] = useState(2024);
   const [selectedIso, setSelectedIso] = useState("UKR");
-  const [frame, setFrame] = useState<"world" | "americas" | "europe-africa" | "asia">("world");
+  const [frame, setFrame] = useState<MapFrame>("world");
   const years = yearsFor(item, element);
   const activeYear = years.includes(year) ? year : years[years.length - 1];
   const rows = sliceRows(item, element, activeYear);
@@ -141,40 +92,26 @@ export function CropAtlas() {
           <Choice key={id} pressed={frame === id} onClick={() => setFrame(id)} label={label} />
         ))}
       </div>
-      <div className="mt-3 min-w-0 max-w-full border border-[#e4e6ea]">
-        <svg viewBox={frameBox(frame)} role="img" aria-label={`World map of ${itemMeta.label} ${elementMeta.label} in ${activeYear}. Equirectangular. Not equal-area. The frame buttons move between the whole world, the Americas, Europe and Africa, and Asia.`} className="h-auto w-full">
-          <rect width={WIDTH} height={HEIGHT} fill="#f7f8f9" />
-          {worldFeatures.map((feature) => {
-            const row = byIso.get(feature.iso3);
-            const status = rowStatus(row);
-            const share = sharePercent(row?.value ?? null, total);
-            const active = feature.iso3 === selectedIso;
-            return (
-              <path
-                key={feature.iso3}
-                d={pathFor(feature.rings)}
-                fill={fillFor(status, share)}
-                stroke={active ? "#D55E00" : "#ffffff"}
-                strokeWidth={active ? 3.5 : 0.4}
-                onClick={() => setSelectedIso(feature.iso3)}
-              >
-                <title>
-                  {feature.name}. {status === "missing" ? "No figure" : status === "zero" ? "Zero" : `${formatNumber(row?.value ?? 0, 0)} ${elementMeta.unit}`}
-                </title>
-              </path>
-            );
-          })}
-        </svg>
+      <div className="mt-3 min-w-0 max-w-full border border-[#d9d3c6] bg-white">
+        <ChoroplethMap
+          rows={rows}
+          total={total}
+          frame={frame}
+          selectedIso={selectedIso}
+          onSelect={setSelectedIso}
+          unit={elementMeta.unit}
+          label={`World map of ${itemMeta.label} ${elementMeta.label} in ${activeYear}. Equirectangular. Not equal-area. The frame buttons move between the whole world, the Americas, Europe and Africa, and Asia. A country list below selects precisely.`}
+        />
       </div>
       <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm text-[#3f4651]">
-        <li className="flex items-center gap-2"><span className="inline-block size-3 border border-[#e4e6ea] bg-[#f3f4f6]" /> No figure</li>
-        <li className="flex items-center gap-2"><span className="inline-block size-3 border border-[#c5cad3] bg-white" /> Zero</li>
-        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#c6dbef]" /> Under 1% of the country sum</li>
-        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#6baed6]" /> 1% to under 3%</li>
-        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#2171b5]" /> 3% to under 8%</li>
-        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#08519c]" /> 8% to under 15%</li>
-        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#08306b]" /> 15% or more</li>
-        <li className="flex items-center gap-2"><span className="inline-block size-3 border-2 border-[#D55E00] bg-white" /> Selected country</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 border border-[#d9d3c6] bg-[#efece6]" /> No figure</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 border border-[#d9d3c6] bg-white" /> Zero</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#d9e7f1]" /> Under 1% of the country sum</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#9fc3de]" /> 1% to under 3%</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#4f8bb8]" /> 3% to under 8%</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#1f5582]" /> 8% to under 15%</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 bg-[#0b2a4a]" /> 15% or more</li>
+        <li className="flex items-center gap-2"><span className="inline-block size-3 border-2 border-[#c8461f] bg-white" /> Selected country</li>
       </ul>
       <p className="mt-2 text-sm leading-relaxed text-[#3f4651]">
         Equirectangular frame from 84°N to 58°S. Area is not true. Natural Earth 1:110m, public domain. Boundaries do not imply endorsement. The join uses ISO_A3_EH, or ADM0_A3 when ISO_A3 is −99, which is how France and Norway match. Small states omitted by this scale stay in the total and in the table.

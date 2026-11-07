@@ -233,6 +233,17 @@ export const sources: Source[] = [
       "FAO. 2026. FAOSTAT: Trade — Crops and livestock products. Accessed on 7 November 2026. https://www.fao.org/faostat/en/#data/TCL Licence: CC BY 4.0. Same database terms as the production domain. This licence does not cover the Food Price Index.",
   },
   {
+    id: "un-black-sea-grain-initiative",
+    title: "Black Sea Grain Initiative",
+    publisher: "United Nations",
+    url: "https://www.un.org/en/black-sea-grain-initiative",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Context dates only: the Joint Coordination Centre on 27 July 2022, and the Initiative not renewed after 17 July 2023. The pages report over 32 million metric tons to 45 countries from Odesa, Chornomorsk and Yuzhny/Pivdennyi while the corridor ran. Not a price, not a FAOSTAT share, and not a description of shipping in 2026.",
+    rights:
+      "United Nations public pages, linked on 7 November 2026. https://www.un.org/en/black-sea-grain-initiative",
+  },
+  {
     id: "fao-food-price-index",
     title: "FAO Food Price Index",
     publisher: "Food and Agriculture Organization of the United Nations",

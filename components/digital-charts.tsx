@@ -82,22 +82,8 @@ function AnchorChart({
       ) : null}
       <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${title}. ${geography}. Only reported years are marked.`} className="block w-full" style={{ aspectRatio: `${width} / ${height}` }}>
         {[0, max / 2, max].map((tick) => (
-          <g key={tick}>
-            <line x1={left} x2={width - right} y1={yOf(tick)} y2={yOf(tick)} stroke="#e4e6ea" />
-            <text x={left - 8} y={yOf(tick) + 4} textAnchor="end" fontSize="11" fill="#3f4651">
-              {formatNumber(tick, 0)}
-            </text>
-          </g>
+          <line key={tick} x1={left} x2={width - right} y1={yOf(tick)} y2={yOf(tick)} stroke="#e4e6ea" />
         ))}
-        {years.map((year) => {
-          const estimate = estimates.find((point) => point.year === year);
-          const axis = estimate && estimate.yearLabel !== String(year) ? estimate.yearLabel : String(year);
-          return (
-            <text key={year} x={xOf(year)} y={height - 12} textAnchor="middle" fontSize="11" fill="#3f4651">
-              {axis}
-            </text>
-          );
-        })}
         {lastEstimate
           ? futures.map((point) => {
               const sameYear = futures.filter((item) => item.year === point.year);
@@ -119,9 +105,6 @@ function AnchorChart({
         {estimates.map((point) => (
           <g key={point.id}>
             <circle cx={xOf(point.year)} cy={yOf(point.valueTwh)} r="5" fill="#0072B2" />
-            <text x={xOf(point.year)} y={yOf(point.valueTwh) - 12} textAnchor="middle" fontSize="12" fill="#141414">
-              {formatNumber(point.valueTwh, 0)}
-            </text>
           </g>
         ))}
         {futures.map((point) => {
@@ -136,22 +119,25 @@ function AnchorChart({
                   <line x1={x - 9} x2={x + 9} y1={y} y2={y} stroke="#D55E00" strokeWidth="1.75" />
                   <line x1={x} x2={x} y1={y} y2={y - 12} stroke="#D55E00" strokeWidth="1.5" />
                   <polyline points={`${x - 4},${y - 8} ${x},${y - 14} ${x + 4},${y - 8}`} fill="none" stroke="#D55E00" strokeWidth="1.5" />
-                  <text x={x} y={y - 20} textAnchor="middle" fontSize="12" fill="#141414">
-                    {`>${formatNumber(point.valueTwh, 0)}`}
-                  </text>
                 </>
               ) : (
                 <>
                   <rect x={x - 5} y={y - 5} width="10" height="10" fill="none" stroke="#141414" strokeWidth="1.5" />
-                  <text x={x} y={y - 12} textAnchor="middle" fontSize="12" fill="#141414">
-                    {formatNumber(point.valueTwh, 0)}
-                  </text>
                 </>
               )}
             </g>
           );
         })}
       </svg>
+      <ul className="mt-2 space-y-1 text-[13px] leading-snug">
+        {shown.map((point) => (
+          <li key={point.id}>
+            {point.yearLabel}: {point.precision === "exceeding" ? `>${formatNumber(point.valueTwh, 0)}` : formatNumber(point.valueTwh, 0)} TWh/year
+            {point.scenario ? ` · ${point.scenario}` : ""} · {point.precision}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2 text-[12px] text-[#3f4651]">Axis runs from 0 to {formatNumber(max, 0)} TWh/year. Only the years in the list are marked.</p>
       <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm">
         <li>Blue circle: estimate</li>
         <li>Open square: stated scenario level</li>
@@ -253,12 +239,7 @@ export function InferenceCostChart() {
       </div>
       <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Comparison of reported inference-price endpoints in dollars per million tokens. MMLU at the 64.8 threshold and GPQA above 50 percent are separate tests, not one intelligence scale. Dashed connectors compare the two reported endpoints of each threshold and are not an observed monthly path." className="block w-full" style={{ aspectRatio: `${width} / ${height}` }}>
         {[0.1, 1, 10, 20].filter((tick) => tick >= 0.07 && tick <= 20).map((tick) => (
-          <g key={tick}>
-            <line x1={left} x2={width - right} y1={yOf(tick)} y2={yOf(tick)} stroke="#e4e6ea" />
-            <text x={left - 8} y={yOf(tick) + 4} textAnchor="end" fontSize="11" fill="#3f4651">
-              {tick}
-            </text>
-          </g>
+          <line key={tick} x1={left} x2={width - right} y1={yOf(tick)} y2={yOf(tick)} stroke="#e4e6ea" />
         ))}
         {series.map((spec) => {
           const pair = points.filter((point) => point.series === spec.id);
@@ -285,20 +266,16 @@ export function InferenceCostChart() {
               ) : (
                 <rect x={xOf(point.t) - 5} y={yOf(point.usdPerMillionTokens) - 5} width="10" height="10" fill={spec.color} />
               )}
-              <text
-                x={xOf(point.t) + 10}
-                y={yOf(point.usdPerMillionTokens) + ((point.usdPerMillionTokens >= 1 ? point.series === "mmlu" : point.series === "gpqa") ? (point.usdPerMillionTokens >= 10 ? -16 : -8) : 16)}
-                fontSize="12"
-                fill="#141414"
-              >
-                {point.period} · ${point.usdPerMillionTokens}
-              </text>
             </g>
           );
         })}
-        <text x={left} y={height - 12} fontSize="11" fill="#3f4651">Nov 2022</text>
-        <text x={width - right - 40} y={height - 12} fontSize="11" fill="#3f4651">Dec 2024</text>
       </svg>
+      <p className="mt-2 flex justify-between text-[12px] text-[#3f4651]"><span>Nov 2022</span><span>Dec 2024</span></p>
+      <ul className="mt-2 space-y-1 text-[13px]">
+        {points.map((point) => (
+          <li key={point.id}>{point.period} · {point.threshold} · {point.usdPerMillionTokens} USD per million tokens</li>
+        ))}
+      </ul>
       <ul className="mt-2 flex flex-wrap gap-x-5 text-sm">
         <li>Blue circle: $ per million tokens at the MMLU 64.8 threshold</li>
         <li>Vermilion square: $ per million tokens to exceed 50% on GPQA</li>
@@ -346,7 +323,7 @@ export function TokenMixCalculator() {
     <form className="mt-6 border border-[#e4e6ea] p-4" onSubmit={(event) => event.preventDefault()}>
       <h3 className="text-base font-medium">What the 3:1 blend does</h3>
       <p className="mt-2 text-sm leading-relaxed text-[#3f4651]">
-        Illustrative arithmetic, not a price quote. Stanford describes the Index price as a 3:1 weighted average of input and output token prices. This box reads that as (3 × input + output) / 4. Type your own unit prices. Nothing here is an API transaction or a current market.
+        Illustrative arithmetic, not a price quote. Stanford describes the Index price as a 3:1 weighted average of input and output token prices. This box reads that as (3 × input + output) / 4, a fixed mix of 75% input and 25% output. The boxes open at 1 and 3, which is 1.5. Input 1 and output 7, the worked example in Methodology, is 2.5. Same formula, different inputs. Nothing here is an API transaction or a current market.
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <div>

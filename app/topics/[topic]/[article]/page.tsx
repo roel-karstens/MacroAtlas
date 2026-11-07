@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChainMap } from "@/components/chain-map";
 import { ElectricityCharts, InferenceCostChart, TokenMixCalculator } from "@/components/digital-charts";
-import { CropAtlas } from "@/components/crop-atlas";
 import { FaoExcerptTable } from "@/components/fao-excerpt";
 import { EurostatFoodCharts } from "@/components/food-charts";
 import { FoodNotes } from "@/components/food-notes";
@@ -18,6 +17,9 @@ import { imageById } from "@/lib/content/images";
 import { modelById } from "@/lib/content/models";
 import { sourceById } from "@/lib/content/sources";
 import { wikipediaAdaptation } from "@/lib/content/rights";
+import { pageMetadata } from "@/lib/content/seo";
+import { wheatShortAnswer } from "@/lib/data/wheat-story";
+import { WheatExporterTable, WheatHarvest, WheatMaps, WheatTimeline } from "@/components/wheat-question";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ topic: article.topicId, article: article.slug }));
@@ -30,7 +32,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { topic, article: slug } = await params;
   const article = articleBySlug(topic, slug);
-  return { title: article?.title ?? "Research", description: article?.deck };
+  return pageMetadata({
+    title: article?.title ?? "Research",
+    description: article?.shortAnswer || article?.deck || "A dated Macro Atlas question.",
+    path: `/topics/${topic}/${slug}`,
+  });
 }
 
 export default async function ArticlePage({
@@ -55,7 +61,26 @@ export default async function ArticlePage({
         {article.title}
       </h1>
       <p className="mt-5 max-w-2xl text-xl leading-relaxed text-[#3f4651]">{article.deck}</p>
-      <p className="mt-4 text-sm text-[#3f4651]">Published {article.published}. Macro Atlas editorial desk. No individual analyst credential is claimed.</p>
+      <p className="mt-4 text-sm text-[#3f4651]">Published {article.published}. Macro Atlas editorial desk. No individual analyst credential is claimed. Last content check: {article.updated}. Coverage is the dated extracts named in Sources, not a live feed.</p>
+      {article.shortAnswer || article.id === "where-wheat-comes-from" ? (
+        <aside className="mt-8 max-w-3xl border border-[#d9d3c6] bg-white p-5">
+          <p className="text-xs font-medium tracking-wide text-[#8a5a12]">Short answer</p>
+          <p className="mt-2 text-lg leading-relaxed">
+            {article.id === "where-wheat-comes-from" ? wheatShortAnswer() : article.shortAnswer}
+          </p>
+        </aside>
+      ) : null}
+      <nav className="mt-6 max-w-3xl" aria-label="On this page">
+        <ol className="space-y-1 text-sm">
+          {article.sections.map((section, index) => (
+            <li key={section.id}>
+              <a className="underline-offset-4 hover:underline" href={`#${section.id}`}>
+                {index + 1}. {section.heading}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
       {image ? (
         <div className="mt-8">
           <Figure image={image} priority />
@@ -100,12 +125,11 @@ export default async function ArticlePage({
                   {article.id === "why-the-grocery-bill-lags" && section.id === "level" ? (
                     <FoodLevelSketch />
                   ) : null}
-                  {article.id === "why-the-grocery-bill-lags" && section.id === "path" ? (
-                    <>
-                      <FoodChain />
-                      <CropAtlas />
-                    </>
-                  ) : null}
+                  {article.id === "why-the-grocery-bill-lags" && section.id === "path" ? <FoodChain /> : null}
+                  {article.id === "where-wheat-comes-from" && section.id === "maps" ? <WheatMaps /> : null}
+                  {article.id === "where-wheat-comes-from" && section.id === "exporters" ? <WheatExporterTable /> : null}
+                  {article.id === "where-wheat-comes-from" && section.id === "harvest" ? <WheatHarvest /> : null}
+                  {article.id === "where-wheat-comes-from" && section.id === "black-sea" ? <WheatTimeline /> : null}
                   {section.links ? (
                     <ul className="mt-4 space-y-2 text-sm">
                       {section.links.map((link) => (
@@ -129,7 +153,11 @@ export default async function ArticlePage({
               ? "A disruption does not translate directly into a price forecast. The drawing below has no numbers. The model asks you to type a price."
               : article.id === "the-physical-digital-chain"
                 ? "The charts cite stated electricity anchors and four separate inference-price endpoints. The token-mix box is arithmetic you type. Oil stays on the energy topic. A financing assumption stays on the bond sketch. Neither one is a chip count."
-                : model?.summary}
+                : article.id === "where-wheat-comes-from"
+                  ? "The maps and the table use FAOSTAT tonnes. They do not set a grocery price. The bill question is a different page."
+                  : article.id === "why-the-grocery-bill-lags"
+                    ? "The shop charts are Eurostat. The world index is an eight-month table, not a chart. The wheat map is a separate question."
+                    : model?.summary}
           </p>
           {article.id === "the-hormuz-question" ? (
             <div className="mt-4">

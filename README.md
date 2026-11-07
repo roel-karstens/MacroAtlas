@@ -1,6 +1,6 @@
 # Macro Atlas
 
-A November 2026 research prototype. It connects a Persian Gulf oil chain to scenarios you can calculate, and it includes one government-bond yield series with a sensitivity calculator. It is educational. It is not investment advice, not a forecast, and not a production publication.
+A November 2026 research prototype. It explains oil, wheat and computing with dated snapshots, and it includes a bond calculator for a yield you type. The ECB 10-year series is not included. It is educational. It is not investment advice, not a forecast, and not a production publication.
 
 The name is provisional. No domain or trademark is claimed.
 
@@ -21,7 +21,7 @@ No environment variables are required. The pages render checked-in text, cited a
 
 ## What is in the edition
 
-- Home, atlas, three topics, four essays, two models.
+- Home, an atlas of crops and the Gulf, four topics, six essays, two models.
 - Topics: Energy (oil), Rates & inflation, Digital infrastructure, and Food & agriculture. The food essay charts euro-area shop prices and maps FAOSTAT tonnes. The world price is a short © FAO table, not a chart and not the full monthly file. Materials and currencies are not linked.
 - Atlas: Gulf window, Natural Earth coastline, Wikipedia coordinates, schematic corridor and one schematic pipeline. No capacities, flows, or AIS.
 - Oil model: operating-profit change from horizon, price change, signed unhedged barrels, pass-through, FX, and extra costs.

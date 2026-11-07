@@ -185,8 +185,8 @@ export function OilModelPanel() {
               <span className="ml-2 font-sans text-lg font-normal tracking-normal">{currency}</span>
             </p>
             <p className="mt-3 text-sm text-[#3f4651]">
-              Change in operating profit. Treated as {formatSigned(evaluation.inputs.unhedgedNetBarrelsPerDay, 0)} barrels per day
-              ({fields.position === "producer" ? "net producer" : "net consumer"}).
+              Change in operating profit over the horizon you typed. This is an illustration, not a forecast and not a share price. Treated as {formatSigned(evaluation.inputs.unhedgedNetBarrelsPerDay, 0)} barrels per day
+              ({fields.position === "producer" ? "net producer" : "net consumer"}), pass-through {fields.passThrough}, {fields.reportingCurrencyPerUsd} reporting-currency units per 1 USD, extra costs {fields.extraCostsReporting}. The opening illustration is a producer, 10,000 barrels a day, 90 days, +10 USD, full pass-through, FX 1 and no extra costs: +9,000,000 USD. +20 USD with those other inputs held is +18,000,000 USD.
             </p>
             <dl className="mt-5 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
               <dt className="text-[#3f4651]">Barrels over the horizon</dt>

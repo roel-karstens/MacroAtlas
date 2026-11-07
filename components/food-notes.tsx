@@ -19,7 +19,7 @@ export function FoodNotes() {
           Ukraine’s 2021 figures and its 2023 or 2024 figures are not a like-for-like territory. The bulk file does not state FAOSTAT’s exact treatment of occupied areas. Russia’s wheat production for 2023 and 2024 is flag X, unofficial. Its 2023 wheat export quantity is flag I, imputed. Ukraine’s 2023 crude sunflower oil is flag X, “Unofficial figure”.
         </p>
         <p>
-          The UN’s Black Sea pages date the Joint Coordination Centre to 27 July 2022 and the end of the Initiative to 17 July 2023. A caption also says 22 July 2022, so this edition does not choose a signing day. They report over 32 million metric tons to 45 countries while the corridor ran, from Odesa, Chornomorsk and Yuzhny/Pivdennyi. That is not a FAOSTAT share and not a cause of the 17.9 percent. Shipping in November 2026 is not described.
+          United Nations Black Sea pages, retrieved 7 November 2026: the Joint Coordination Centre was established on 27 July 2022, and the Initiative was not renewed after 17 July 2023. While it ran, over 32 million metric tons of grain and foodstuffs went to 45 countries, from Odesa, Chornomorsk and Yuzhny/Pivdennyi. That total is not a FAOSTAT share and not a cause of the 17.9 percent. Shipping in 2026 is not described. https://www.un.org/en/black-sea-grain-initiative
         </p>
       </div>
     </details>

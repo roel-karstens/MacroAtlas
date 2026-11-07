@@ -33,6 +33,7 @@ describe("content graph", () => {
       "when-yields-move",
       "the-physical-digital-chain",
       "why-the-grocery-bill-lags",
+      "where-wheat-comes-from",
     ]);
     for (const article of articles) {
       expect(countWords(article)).toBeGreaterThan(700);

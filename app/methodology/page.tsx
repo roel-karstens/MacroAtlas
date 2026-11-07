@@ -1,7 +1,11 @@
-import type { Metadata } from "next";
 import { Container, PageIntro, TextLink } from "@/components/editorial";
+import { pageMetadata } from "@/lib/content/seo";
 
-export const metadata: Metadata = { title: "Methodology" };
+export const metadata = pageMetadata({
+  title: "Methodology",
+  description: "How Macro Atlas calculates oil profit, bond sketches, token blends, and what the food and crop figures do and do not claim.",
+  path: "/methodology",
+});
 
 export default function MethodologyPage() {
   return (
@@ -30,13 +34,13 @@ export default function MethodologyPage() {
         <section>
           <h2 className="text-2xl font-medium">Digital infrastructure</h2>
           <p className="mt-3">
-            The chain drawing is a schematic. Dashed links are dependencies, not measured electricity or traffic. Data-center electricity uses only years stated by the IEA Energy and AI report, which states Licence CC BY 4.0, and by the LBNL-2001637 executive summary. The world chart is a Macro Atlas derivation of those stated anchors, not an IEA graphic. The IEA lift-off mark is a lower bound, labeled &gt;1,700 TWh, because the report says exceeding 1,700. The United States chart plots cited LBNL anchors and is not a copy of an LBNL figure or table. Inference prices use four endpoints stated in the Stanford 2025 AI Index, plotted separately. A dashed connector compares the two reported endpoints of one threshold. It is not a monthly price path, and it is not the report figure. MMLU at 64.8 and GPQA above 50% stay separate tests. The token-mix box is arithmetic you type, not a market. Input 1 and output 7 give 2.5. No year is filled in between reported marks.
+            The chain drawing is a schematic. Dashed links are dependencies, not measured electricity or traffic. Data-center electricity uses only years stated by the IEA Energy and AI report, which states Licence CC BY 4.0, and by the LBNL-2001637 executive summary. The world chart is a Macro Atlas derivation of those stated anchors, not an IEA graphic. The IEA lift-off mark is a lower bound, labeled &gt;1,700 TWh, because the report says exceeding 1,700. The United States chart plots cited LBNL anchors and is not a copy of an LBNL figure or table. Inference prices use four endpoints stated in the Stanford 2025 AI Index, plotted separately. A dashed connector compares the two reported endpoints of one threshold. It is not a monthly price path, and it is not the report figure. MMLU at 64.8 and GPQA above 50% stay separate tests. The token-mix box is arithmetic you type, not a market. The formula is a fixed 75% input and 25% output mix, (3 × input + output) / 4. The boxes open at 1 and 3, which is 1.5. Input 1 and output 7 give 2.5. No year is filled in between reported marks.
           </p>
         </section>
         <section>
           <h2 className="text-2xl font-medium">Food</h2>
           <p className="mt-3">
-            The food dossier keeps the FAO nominal commodity index on its own axis and Eurostat’s euro-area food index on another. Values from the FAO file are not rescaled. Eurostat’s annual rates are the published rates, not a formula rerun. A ratio between two Eurostat index months is labelled as ours. Inflation is a percent change. The price level is the index. A peak-date comparison is not a pass-through estimate. Read <TextLink href="/topics/food-agriculture/why-the-grocery-bill-lags">why the grocery bill lags</TextLink>.
+            The food dossier keeps eight FAO nominal index months in a table, not on a chart. Eurostat’s euro-area food index is charted separately. Values from the FAO file are not rescaled. Eurostat’s annual rates are the published rates, not a formula rerun. A ratio between two Eurostat index months is labelled as ours. Say the month: food inflation in this extract is 1.1% in September 2026, not a timeless “now”. Inflation is a percent change. The price level is the index. A peak-date comparison is not a pass-through estimate. Wheat exports are a separate question. Read <TextLink href="/topics/food-agriculture/why-the-grocery-bill-lags">why the grocery bill does not fall</TextLink> and <TextLink href="/topics/food-agriculture/where-wheat-comes-from">where wheat comes from</TextLink>.
           </p>
         </section>
         <section>
@@ -48,7 +52,7 @@ export default function MethodologyPage() {
         <section>
           <h2 className="text-2xl font-medium">Map</h2>
           <p className="mt-3">
-            The atlas is an equirectangular schematic of a Gulf window. Land is Natural Earth 1:10m, public domain, clipped and simplified on 7 November 2026. Place coordinates come from Wikipedia pages retrieved that day and are place or port points, not surveyed berths. The Hormuz corridor and the Habshan–Fujairah line are schematic geometries. The East–West pipeline is described and not drawn. Cable is a reserved mode with no objects. No capacity, flow, or AIS track is published.
+            The atlas page holds two maps. The crop map is Natural Earth 1:110m, public domain, equirectangular from 84°N to 58°S, coloured by share of reported FAOSTAT tonnes. The Gulf window is Natural Earth 1:10m land, public domain, clipped and simplified on 7 November 2026. Place coordinates come from Wikipedia pages retrieved that day and are place or port points, not surveyed berths. The Hormuz corridor and the Habshan–Fujairah line are schematic geometries. The East–West pipeline is described and not drawn. Cable is a reserved mode with no objects. No capacity, flow, or AIS track is published.
           </p>
         </section>
         <section>
