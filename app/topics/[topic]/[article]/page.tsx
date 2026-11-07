@@ -84,7 +84,9 @@ export default async function ArticlePage({
           <p className="mt-2 text-sm leading-relaxed text-[#3f4651]">
             {article.id === "the-hormuz-question"
               ? "A disruption does not translate directly into a price forecast. The drawing below has no numbers. The model asks you to type a price."
-              : model?.summary}
+              : article.id === "the-physical-digital-chain"
+                ? "This essay adds no series and no calculator. Power stays on the energy topic. A financing assumption stays on the bond sketch. Neither one is a chip count."
+                : model?.summary}
           </p>
           {article.id === "the-hormuz-question" ? (
             <div className="mt-4">

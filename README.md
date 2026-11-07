@@ -21,8 +21,8 @@ No environment variables are required. Checked-in snapshots are the data the pag
 
 ## What is in the edition
 
-- Home, atlas, two topics, three essays, two models.
-- Topics: Energy (oil) and Rates & inflation. Other subjects are not linked.
+- Home, atlas, three topics, four essays, two models.
+- Topics: Energy (oil), Rates & inflation, and Digital infrastructure. The digital essay defines units and links official pages. It does not add a series. Materials, food, and currencies are not linked.
 - Atlas: Gulf window, Natural Earth coastline, Wikipedia coordinates, schematic corridor and one schematic pipeline. No capacities, flows, or AIS.
 - Oil model: operating-profit change from horizon, price change, signed unhedged barrels, pass-through, FX, and extra costs.
 - Bond model: modified duration, basis points or percentage points, optional convexity, simple carry, and costs. Duration 7 and +100 basis points is a −7% price effect before carry and convexity.

@@ -9,7 +9,7 @@ export type TopicSection = {
 };
 
 export type Topic = {
-  id: "energy" | "rates-inflation";
+  id: "energy" | "rates-inflation" | "digital-infrastructure";
   title: string;
   navLabel: string;
   kicker: string;
@@ -32,7 +32,10 @@ export const topics: Topic[] = [
         paragraphs: [
           "This topic follows crude and related liquids through production, processing, transport, storage, and use. The worked geography is the Persian Gulf and the Gulf of Oman approach, because that is where the Hormuz passage sits. The question is not “what will Brent do”. It is which count you are looking at, who is unhedged, and which assumptions would make the story fail.",
         ],
-        links: [{ href: "/topics/energy/the-hormuz-question", label: "Read the Hormuz question" }],
+        links: [
+          { href: "/topics/energy/the-hormuz-question", label: "Read the Hormuz question" },
+          { href: "/topics/digital-infrastructure", label: "Server power is a different topic" },
+        ],
       },
       {
         id: "explore",
@@ -136,7 +139,78 @@ export const topics: Topic[] = [
         paragraphs: [
           "Large moves, the wrong convexity units, a Macaulay number used as modified duration, a credit spread ignored, or a policy rate typed in as the yield. Any of those breaks the interpretation even when the arithmetic is internally consistent.",
         ],
-        links: [{ href: "/topics/rates-inflation/when-yields-move#limits", label: "Read the limits" }],
+        links: [
+          { href: "/topics/rates-inflation/when-yields-move#limits", label: "Read the limits" },
+          { href: "/topics/digital-infrastructure", label: "A data center is not this yield" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "digital-infrastructure",
+    title: "Digital infrastructure",
+    navLabel: "Digital infrastructure",
+    kicker: "Chips, power, networks, use, and tests",
+    deck: "A physical chain for computing. Definitions and source limits. No live series in this edition.",
+    sections: [
+      {
+        id: "chips",
+        kicker: "Chips and hardware",
+        heading: "Orders, revenue, wafers, and working chips are different counts",
+        paragraphs: [
+          "ASML’s quarterly materials separate bookings, revenue, and systems delivered. TSMC’s 12-inch-equivalent wafer shipments are an area of wafers, not a count of good chips and not a dollar total. Industry sales, including a three-month moving average, are billings. Memory prices are not in this edition.",
+        ],
+        links: [
+          { href: "/topics/digital-infrastructure/the-physical-digital-chain#chips", label: "Read the hardware section" },
+          { href: "/sources#asml-quarterly", label: "ASML source note" },
+          { href: "/sources#tsmc-quarterly-2026-q3", label: "TSMC source note" },
+        ],
+      },
+      {
+        id: "data-centers",
+        kicker: "Data centers and power",
+        heading: "Capacity is not utilization, and neither is energy",
+        paragraphs: [
+          "Nameplate megawatts are what a site was built to hold. Utilization is the share in use. Energy is power times time, metered or explicitly estimated. The IEA separates estimated historical demand from scenarios. None of those paths is plotted here. The oil topic’s Brent series is not a server-load series.",
+        ],
+        links: [
+          { href: "/topics/energy", label: "Energy, which stays the oil chain" },
+          { href: "/sources#iea-energy-and-ai", label: "IEA Energy and AI" },
+        ],
+      },
+      {
+        id: "networks",
+        kicker: "Networks and connectivity",
+        heading: "People online are not traffic",
+        paragraphs: [
+          "World Bank indicator IT.NET.USER.ZS is the share of people using the internet. It is not bytes and not latency. The country series is not copied. Cloudflare Radar is not used, because its API is non-commercial. No cable is added to the oil map.",
+        ],
+        links: [
+          { href: "/sources#world-bank-internet-users", label: "Internet users indicator" },
+          { href: "/atlas", label: "Atlas, still the Gulf oil map" },
+        ],
+      },
+      {
+        id: "activity",
+        kicker: "Digital activity",
+        heading: "Name the unit before calling it demand",
+        paragraphs: [
+          "Users, requests, tokens, and revenue answer different questions. This edition has no activity series and no live dashboard. A later chart would have to say whether the line is observed, an estimate, or a forecast.",
+        ],
+        links: [{ href: "/methodology", label: "Labels for observed, estimate, and scenario" }],
+      },
+      {
+        id: "capabilities",
+        kicker: "AI capabilities and costs",
+        heading: "A benchmark is a test, a version, a cost, and a latency",
+        paragraphs: [
+          "Epoch’s training-compute figures are estimates of operations for a named run. MLPerf scores a fixed workload at a benchmark version. Stanford’s AI Index and Artificial Analysis’s methodology are compilations and methods, not a single progress percent. This page states no share of the way to a general system and no deadline. A cloud hourly price is meaningful only for an exact configuration, and none is copied. Paying for a multi-year hall is a financing question; the bond sketch is that tool, not a valuation.",
+        ],
+        links: [
+          { href: "/topics/digital-infrastructure/the-physical-digital-chain#capabilities", label: "Read the capabilities section" },
+          { href: "/models/bond-sensitivity", label: "Bond sensitivity, a financing sketch" },
+          { href: "/topics/rates-inflation", label: "Rates and inflation" },
+        ],
       },
     ],
   },

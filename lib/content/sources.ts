@@ -96,6 +96,99 @@ export const sources: Source[] = [
       "EIA information is generally US government work, but this edition does not reproduce EIA statistics because none were extracted. The link is a pointer only.",
   },
   {
+    id: "asml-quarterly",
+    title: "ASML quarterly results",
+    publisher: "ASML",
+    url: "https://investor.asml.com/quarterly-results",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Pointer only. Orders, revenue, and systems delivered are different objects. No quarterly table is copied into this edition.",
+    rights:
+      "Company disclosure. Linked, not republished. This edition does not claim a license to reproduce ASML figures.",
+  },
+  {
+    id: "tsmc-quarterly-2026-q3",
+    title: "TSMC quarterly results, English index for Q3 2026",
+    publisher: "TSMC",
+    url: "https://investor.tsmc.com/english/quarterly-results/2026/q3",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Pointer only. Twelve-inch-equivalent wafer shipments are an area measure, not a count of good chips and not revenue. No table is stored.",
+    rights: "Company disclosure. Linked, not republished.",
+  },
+  {
+    id: "world-bank-internet-users",
+    title: "Individuals using the Internet (% of population)",
+    publisher: "World Bank",
+    url: "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Definition of indicator IT.NET.USER.ZS: people online as a share of population. Not traffic, latency, or data-center load. The series is not copied.",
+    rights:
+      "World Bank open-data terms describe CC BY 4.0 for catalog datasets unless the metadata says otherwise. This edition links the indicator and does not redistribute the country series.",
+  },
+  {
+    id: "iea-energy-and-ai",
+    title: "Energy and AI, energy demand from AI",
+    publisher: "International Energy Agency",
+    url: "https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Pointer only. The report distinguishes estimated historical electricity demand from scenario pathways. Neither is plotted. Capacity in megawatts is not consumption.",
+    rights:
+      "IEA publications have their own terms. This edition does not copy tables or charts from the report.",
+  },
+  {
+    id: "epoch-notable-models",
+    title: "Notable AI models",
+    publisher: "Epoch AI",
+    url: "https://epoch.ai/data/notable-ai-models",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Pointer only. Training-compute figures there are estimates of FLOPs for named runs. They are not filed as observations here, and they are not a capability date.",
+    rights: "Epoch’s dataset terms govern reuse. This edition links the page and does not copy the table.",
+  },
+  {
+    id: "mlperf-inference-datacenter",
+    title: "MLPerf Inference, data center",
+    publisher: "MLCommons",
+    url: "https://mlcommons.org/benchmarks/inference-datacenter/",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Definition of a fixed-workload inference benchmark. A score belongs to a benchmark version and can be throughput, latency, or a power-related result. No result table is stored.",
+    rights: "MLCommons results are not reproduced. The link is a definition of the benchmark.",
+  },
+  {
+    id: "stanford-ai-index",
+    title: "Stanford HAI AI Index",
+    publisher: "Stanford Institute for Human-Centered AI",
+    url: "https://hai.stanford.edu/ai-index",
+    retrieved: "2026-11-07",
+    usedFor: "Pointer to an annual compilation. Not used as a single progress index, and not copied.",
+    rights: "Stanford’s report terms apply. This edition does not reproduce the report.",
+  },
+  {
+    id: "artificial-analysis-methodology",
+    title: "Artificial Analysis, intelligence benchmarking methodology",
+    publisher: "Artificial Analysis",
+    url: "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Pointer to a published methodology. A composite score is not reprinted. Cost and latency are discussed as separate fields, not taken from their tables.",
+    rights:
+      "Reading a public methodology page is not a license to reuse Artificial Analysis tables or leaderboards. None are copied.",
+  },
+  {
+    id: "cloudflare-radar-not-used",
+    title: "Cloudflare Radar",
+    publisher: "Cloudflare",
+    url: "https://radar.cloudflare.com/",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Not used. The Radar API is offered for non-commercial use. That is the wrong default for this edition, so no traffic chart is drawn.",
+    rights: "Not reproduced. Non-commercial API terms are not treated as a right to embed the data.",
+  },
+  {
     id: "barlow-ofl",
     title: "Barlow and Barlow Condensed",
     publisher: "The Barlow Project Authors",

@@ -8,10 +8,11 @@ import { imageById } from "@/lib/content/images";
 import { brentSeries, formatPeriod, latestObservation, yieldSeries } from "@/lib/data/series";
 
 const cards = [
-  articles[0],
-  articles[1],
-  articles[2],
-] as const;
+  "the-hormuz-question",
+  "from-barrel-to-margin",
+  "when-yields-move",
+  "the-physical-digital-chain",
+].map((slug) => articles.find((article) => article.slug === slug)!);
 
 export default function HomePage() {
   const hero = imageById("hero-harbor");
@@ -43,14 +44,18 @@ export default function HomePage() {
       </Container>
 
       <div className="border-y border-[#e4e6ea]">
-        <Container className="grid sm:grid-cols-2">
-          <Link href="/topics/energy" className="flex min-h-16 items-center border-[#e4e6ea] py-4 sm:border-r sm:pr-8">
+        <Container className="grid md:grid-cols-3">
+          <Link href="/topics/energy" className="flex min-h-16 items-center border-[#e4e6ea] py-4 md:border-r md:pr-8">
             <span className="font-medium">Energy</span>
             <span className="ml-3 text-sm text-[#3f4651]">Oil, the Gulf, and a margin</span>
           </Link>
-          <Link href="/topics/rates-inflation" className="flex min-h-16 items-center py-4 sm:pl-8">
+          <Link href="/topics/rates-inflation" className="flex min-h-16 items-center border-[#e4e6ea] py-4 md:border-r md:px-8">
             <span className="font-medium">Rates & inflation</span>
             <span className="ml-3 text-sm text-[#3f4651]">One bond yield, made explicit</span>
+          </Link>
+          <Link href="/topics/digital-infrastructure" className="flex min-h-16 items-center py-4 md:pl-8">
+            <span className="font-medium">Digital infrastructure</span>
+            <span className="ml-3 text-sm text-[#3f4651]">Definitions, no live series</span>
           </Link>
         </Container>
       </div>
@@ -60,14 +65,14 @@ export default function HomePage() {
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#3f4651]">
           Materials, food, and currencies are not published in this edition, so they are not listed here.
         </p>
-        <div className="mt-8 grid gap-8 md:grid-cols-3">
+        <div className="mt-8 grid gap-8 md:grid-cols-2">
           {cards.map((article) => {
             const image = article.imageId ? imageById(article.imageId) : undefined;
             return (
               <article key={article.id} className="flex flex-col border border-[#e4e6ea]">
                 {image ? (
                   <Figure image={image} />
-                ) : (
+                ) : article.topicId === "rates-inflation" ? (
                   <div className="border-b border-[#e4e6ea] p-4">
                     <StaticLine
                       values={yieldSeries.points.map((point) => point.value)}
@@ -75,9 +80,15 @@ export default function HomePage() {
                       caption={`Observed, ${formatPeriod(yieldSeries.points[0].period)}–${formatPeriod(yieldLatest.period)}. ECB. Not a forecast.`}
                     />
                   </div>
+                ) : (
+                  <div className="border-b border-[#e4e6ea] p-4 text-sm leading-relaxed text-[#3f4651]">
+                    No observed series is plotted for this essay. It names the units and the official pages, and it does not invent a current reading.
+                  </div>
                 )}
                 <div className="flex flex-1 flex-col p-4">
-                  <p className="text-xs text-[#3f4651]">{image ? image.label : "Observed series"}</p>
+                  <p className="text-xs text-[#3f4651]">
+                    {image ? image.label : article.topicId === "rates-inflation" ? "Observed series" : "No series plotted"}
+                  </p>
                   <h3 className="mt-2 text-xl font-medium">
                     <Link href={`/topics/${article.topicId}/${article.slug}`} className="underline-offset-4 hover:underline">
                       {article.title}

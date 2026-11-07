@@ -11,7 +11,7 @@ export type ArticleSection = {
 export type Article = {
   id: string;
   slug: string;
-  topicId: "energy" | "rates-inflation";
+  topicId: "energy" | "rates-inflation" | "digital-infrastructure";
   title: string;
   deck: string;
   published: string;
@@ -205,6 +205,103 @@ export const articles: Article[] = [
         links: [
           { href: "/methodology", label: "Methodology and limits" },
           { href: "/topics/energy/the-hormuz-question", label: "The oil question is a different market" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "the-physical-digital-chain",
+    slug: "the-physical-digital-chain",
+    topicId: "digital-infrastructure",
+    title: "The physical digital chain",
+    deck: "Five counts that do not collapse into one progress number.",
+    published: "2026-11-07",
+    updated: "2026-11-07",
+    locationIds: [],
+    sourceIds: [
+      "asml-quarterly",
+      "tsmc-quarterly-2026-q3",
+      "world-bank-internet-users",
+      "iea-energy-and-ai",
+      "epoch-notable-models",
+      "mlperf-inference-datacenter",
+      "stanford-ai-index",
+      "artificial-analysis-methodology",
+      "cloudflare-radar-not-used",
+    ],
+    sections: [
+      {
+        id: "chips",
+        kicker: "01",
+        heading: "Chips and hardware",
+        paragraphs: [
+          "A chip story usually mixes four different objects: bookings, revenue, machines or wafers, and finished chips that work. They move together only by assumption. This edition does not copy a quarterly table, so it does not print a current order number, a sales total, or a shipment count.",
+          "ASML’s quarterly materials separate orders, revenue, and systems that were shipped or recognized as delivered. An order is a claim on a future machine. Revenue is an accounting total. A delivery is a physical system. The investor page for those materials is the quarterly-results index. Reading it is not the same as storing a quarter in this site.",
+          "TSMC reports wafer shipments on a 12-inch-equivalent basis. That is an area of wafers, scaled to a 300 millimetre disk. It is not a count of good chips, and it is not sales in dollars. The English quarterly-results page for the third quarter of 2026 is the pointer used here. No row from it is in the snapshot.",
+          "Trade-association sales, including a three-month moving average of semiconductor billings, are dollars. They are not volumes of chips. Memory contract prices are a further series, and they are not here: this edition has not reviewed a feed it is willing to republish. Silicon, copper, and process chemicals are materials inputs. Materials is not a published topic, so those prices are not invented beside the oil series.",
+        ],
+        links: [
+          { href: "/sources#asml-quarterly", label: "ASML quarterly results, as a source note" },
+          { href: "/sources#tsmc-quarterly-2026-q3", label: "TSMC Q3 2026 results page" },
+        ],
+      },
+      {
+        id: "data-centers",
+        kicker: "02",
+        heading: "Data centers and power",
+        paragraphs: [
+          "Nameplate power, IT load, and electricity consumed are not the same sentence. A hall rated for a round number of megawatts is a capacity: the kit it was built to hold. Utilization is how much of that rating is actually in use. Energy over a period is power times time, and only a meter or an explicit estimate is energy. A capacity figure used as if it were last year’s consumption overstates the electrons.",
+          "The IEA report on energy and AI distinguishes estimated historical demand from scenario pathways. A scenario is a conditional path. An estimate of the past is still an estimate, not a meter reading this site has filed. Neither is plotted. The Brent series on the energy topic is a crude price. It is not a data-center load, and the oil calculator does not price a server hall.",
+          "Cooling water, backup generation, and the grid connection are physical constraints. They belong next to power, not inside a chip-revenue line. This edition does not publish a global megawatt database.",
+        ],
+        links: [
+          { href: "/sources#iea-energy-and-ai", label: "IEA Energy and AI" },
+          { href: "/topics/energy", label: "Energy topic, which is oil, not server load" },
+        ],
+      },
+      {
+        id: "networks",
+        kicker: "03",
+        heading: "Networks and connectivity",
+        paragraphs: [
+          "A network count can be people, traffic, or the quality of a path. Internet users as a percent of population, World Bank indicator IT.NET.USER.ZS, is people. It is not bytes, not latency, and not the load on a data center. The indicator page is linked. The country series is not copied into a chart.",
+          "Traffic needs a definition of what is counted and who operates the vantage point. Cloudflare Radar is a well-known traffic product. Its API is offered on non-commercial terms. A non-commercial feed is the wrong default for pages that may later be reused, so this edition does not draw it.",
+          "Subsea cables and terrestrial fiber are transport edges, in the same family as a pipeline: a mode, a route, a capacity, and a flow, each of which can be blank. No cable is drawn on the Gulf atlas. An electricity cable is still not an oil pipeline, and a data cable is not a power line.",
+        ],
+        links: [
+          { href: "/sources#world-bank-internet-users", label: "World Bank internet users indicator" },
+          { href: "/sources#cloudflare-radar-not-used", label: "Why Radar is not used" },
+          { href: "/atlas", label: "The atlas remains the oil map" },
+        ],
+      },
+      {
+        id: "activity",
+        kicker: "04",
+        heading: "Digital activity",
+        paragraphs: [
+          "Activity is whatever the chosen unit says it is. A user percentage, a request, a token, and a revenue line answer different questions. None of them is a wafer, and none of them is training compute. Collapsing them into “demand for AI” hides the unit.",
+          "This section has no series. There is no live dashboard and no fabricated current KPI. If a later edition files a dated extract, the chart will say observed, estimate, or forecast in the caption, and the file will sit with the other snapshots. Until then the honest graphic is the absence of one.",
+        ],
+        links: [{ href: "/methodology", label: "How observed, estimate, and scenario are labeled" }],
+      },
+      {
+        id: "capabilities",
+        kicker: "05",
+        heading: "AI capabilities and costs",
+        paragraphs: [
+          "A training-compute figure is an estimate of floating-point operations for a named run. Epoch compiles such estimates for notable models. They are not a meter this site has audited, and they are not a date by which a system does something else. This page states no percent of the way to a general system and no deadline.",
+          "MLPerf Inference for the data center scores a fixed workload at a stated benchmark version. The result may be throughput, latency, or a power-related variant. A higher score on one version is not comparable to another version without saying so. It is not a single intelligence index.",
+          "Stanford’s AI Index is an annual compilation across many measures. Artificial Analysis publishes a methodology for how it benchmarks models. A composite score mixes tasks. Cost and latency belong beside the score, for a named model and a named test. This edition does not reprint a leaderboard.",
+          "A cloud price per hour means something only for an exact configuration: which chip, how many, how much memory, which region, and what commitment. A public page can be read. That reading is not a license to resell the vendor’s table. No hourly price is copied here.",
+          "What would weaken the chain: using a scenario terawatt-hour path as if it were history, using wafer area as a chip count, using bookings as shipments, using dollar sales as volumes, or using one benchmark as progress. Financing a multi-year build is a yield question. The bond calculator is that sketch. It is not a valuation of a hall, and the yield it starts from is not a policy rate.",
+        ],
+        links: [
+          { href: "/sources#epoch-notable-models", label: "Epoch notable models" },
+          { href: "/sources#mlperf-inference-datacenter", label: "MLPerf Inference, data center" },
+          { href: "/sources#stanford-ai-index", label: "Stanford AI Index" },
+          { href: "/sources#artificial-analysis-methodology", label: "Artificial Analysis methodology" },
+          { href: "/models/bond-sensitivity", label: "Bond sketch for a financing assumption" },
+          { href: "/topics/rates-inflation", label: "Rates and inflation" },
         ],
       },
     ],

@@ -31,6 +31,7 @@ describe("content graph", () => {
       "the-hormuz-question",
       "from-barrel-to-margin",
       "when-yields-move",
+      "the-physical-digital-chain",
     ]);
     for (const article of articles) {
       expect(countWords(article)).toBeGreaterThan(700);
@@ -71,6 +72,28 @@ describe("content graph", () => {
     const blob = JSON.stringify({ articles, topics });
     expect(blob).not.toMatch(/lorem ipsum/i);
     expect(blob).not.toMatch(/guaranteed return/i);
+    const digital = topicById("digital-infrastructure");
+    expect(digital?.sections.map((section) => section.id)).toEqual([
+      "chips",
+      "data-centers",
+      "networks",
+      "activity",
+      "capabilities",
+    ]);
+    const dossier = articles.find((article) => article.slug === "the-physical-digital-chain");
+    expect(dossier?.imageId).toBeUndefined();
+    expect(JSON.stringify(dossier)).not.toMatch(/Cloudflare Radar API/);
+    expect(dossier?.sourceIds).toContain("cloudflare-radar-not-used");
+    expect(sourceById("asml-quarterly")?.url).toBe("https://investor.asml.com/quarterly-results");
+    expect(sourceById("tsmc-quarterly-2026-q3")?.url).toBe(
+      "https://investor.tsmc.com/english/quarterly-results/2026/q3",
+    );
+    expect(sourceById("world-bank-internet-users")?.url).toBe(
+      "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    );
+    expect(sourceById("iea-energy-and-ai")?.url).toBe(
+      "https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai",
+    );
   });
 
   it("has a page file for every routed surface", () => {

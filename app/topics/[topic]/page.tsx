@@ -34,6 +34,18 @@ export default async function TopicPage({ params }: { params: Promise<{ topic: s
       <div className="mt-6">
         <PageIntro kicker={topic.kicker} title={topic.title} deck={topic.deck} />
       </div>
+      {!topic.sections.some((section) => section.id === "research") && essays.length > 0 ? (
+        <ul className="mt-8 max-w-3xl space-y-3 border-t border-[#e4e6ea] pt-6">
+          {essays.map((article) => (
+            <li key={article.id}>
+              <Link href={`/topics/${topic.id}/${article.slug}`} className="text-lg underline underline-offset-4">
+                {article.title}
+              </Link>
+              <p className="mt-1 text-sm text-[#3f4651]">{article.deck}</p>
+            </li>
+          ))}
+        </ul>
+      ) : null}
       <div className="mt-12 space-y-12">
         {topic.sections.map((section) => (
           <section key={section.id} id={section.id} className="scroll-mt-24 border-t border-[#e4e6ea] pt-8">
