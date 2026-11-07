@@ -22,7 +22,7 @@ No environment variables are required. The pages render checked-in text, cited a
 ## What is in the edition
 
 - Home, atlas, three topics, four essays, two models.
-- Topics: Energy (oil), Rates & inflation, and Digital infrastructure. The digital essay defines units and links official pages. It does not add a series. Materials, food, and currencies are not linked.
+- Topics: Energy (oil), Rates & inflation, Digital infrastructure, and Food & agriculture. The food essay charts euro-area shop prices and maps FAOSTAT tonnes. The world price is a short © FAO table, not a chart and not the full monthly file. Materials and currencies are not linked.
 - Atlas: Gulf window, Natural Earth coastline, Wikipedia coordinates, schematic corridor and one schematic pipeline. No capacities, flows, or AIS.
 - Oil model: operating-profit change from horizon, price change, signed unhedged barrels, pass-through, FX, and extra costs.
 - Bond model: modified duration, basis points or percentage points, optional convexity, simple carry, and costs. Duration 7 and +100 basis points is a −7% price effect before carry and convexity.

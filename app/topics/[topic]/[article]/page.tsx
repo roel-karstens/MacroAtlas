@@ -3,6 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChainMap } from "@/components/chain-map";
 import { ElectricityCharts, InferenceCostChart, TokenMixCalculator } from "@/components/digital-charts";
+import { CropAtlas } from "@/components/crop-atlas";
+import { FaoExcerptTable } from "@/components/fao-excerpt";
+import { EurostatFoodCharts } from "@/components/food-charts";
+import { FoodNotes } from "@/components/food-notes";
+import { FoodChain } from "@/components/food-chain";
+import { FoodComparison } from "@/components/food-comparison";
+import { FoodLevelSketch } from "@/components/food-level-sketch";
 import { Container, Figure, InkLink, TextLink } from "@/components/editorial";
 import { ScenarioFan } from "@/components/scenario-fan";
 import { articleBySlug, articles } from "@/lib/content/articles";
@@ -59,13 +66,13 @@ export default async function ArticlePage({
           <ChainMap />
         </div>
       ) : null}
-      <div className="mt-10 grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
-        <div className="space-y-10">
+      <div className="mt-10 grid min-w-0 items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
+        <div className="min-w-0 space-y-10">
           {article.sections.map((section) => (
             <section key={section.id} id={section.id} className="scroll-mt-24 border-t border-[#e4e6ea] pt-6">
-              <div className="grid grid-cols-[auto_1fr] gap-4">
+              <div className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] gap-4">
                 <p className="font-display text-3xl font-semibold">{section.kicker}</p>
-                <div>
+                <div className="min-w-0">
                   <h2 className="text-2xl font-medium">{section.heading}</h2>
                   {section.paragraphs.map((paragraph) => (
                     <p key={paragraph.slice(0, 48)} className="mt-3 leading-relaxed">
@@ -83,6 +90,22 @@ export default async function ArticlePage({
                       <TokenMixCalculator />
                     </div>
                   ) : null}
+                  {article.id === "why-the-grocery-bill-lags" && section.id === "two-prices" ? (
+                    <>
+                      <FoodComparison />
+                      <FaoExcerptTable />
+                      <EurostatFoodCharts />
+                    </>
+                  ) : null}
+                  {article.id === "why-the-grocery-bill-lags" && section.id === "level" ? (
+                    <FoodLevelSketch />
+                  ) : null}
+                  {article.id === "why-the-grocery-bill-lags" && section.id === "path" ? (
+                    <>
+                      <FoodChain />
+                      <CropAtlas />
+                    </>
+                  ) : null}
                   {section.links ? (
                     <ul className="mt-4 space-y-2 text-sm">
                       {section.links.map((link) => (
@@ -97,7 +120,7 @@ export default async function ArticlePage({
             </section>
           ))}
         </div>
-        <aside className="border border-[#e4e6ea] bg-[#fafafa] p-5 lg:sticky lg:top-6">
+        <aside className="min-w-0 border border-[#e4e6ea] bg-[#fafafa] p-5 lg:sticky lg:top-6">
           <h2 className="text-lg font-medium">
             {article.id === "the-hormuz-question" ? "The working hypothesis" : "Where to test it"}
           </h2>
@@ -148,6 +171,7 @@ export default async function ArticlePage({
           </ul>
         </aside>
       </div>
+      {article.id === "why-the-grocery-bill-lags" ? <FoodNotes /> : null}
     </Container>
   );
 }

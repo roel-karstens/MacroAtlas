@@ -11,8 +11,8 @@ export default function TopicsPage() {
     <Container className="py-12">
       <PageIntro
         kicker="Topics"
-        title="Two open files."
-        deck="Energy is the oil chain. Rates and inflation is one government yield and a calculator. Materials, food, and currencies are not published, so they are not links."
+        title="Open files."
+        deck="Energy is the oil chain. Rates is one yield and a calculator. Digital infrastructure names units and cited anchors. Food separates a world commodity price from the grocery bill. Materials and currencies are not links."
       />
       <div className="mt-12 grid gap-6 md:grid-cols-2">
         {topics.map((topic) => (

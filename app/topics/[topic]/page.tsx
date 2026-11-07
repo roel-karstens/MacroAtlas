@@ -7,6 +7,8 @@ import { Container, Figure, PageIntro, TextLink } from "@/components/editorial";
 import { imageById } from "@/lib/content/images";
 import { articlesForTopic } from "@/lib/content/articles";
 import { topicById, topics } from "@/lib/content/topics";
+import { FoodNotes } from "@/components/food-notes";
+import { FoodChain } from "@/components/food-chain";
 import { SeriesNotice, brentUnavailable, yieldUnavailable } from "@/components/series-notice";
 
 export function generateStaticParams() {
@@ -79,6 +81,11 @@ export default async function TopicPage({ params }: { params: Promise<{ topic: s
                 <ElectricityCharts />
               </div>
             ) : null}
+            {topic.id === "food-agriculture" && section.id === "mechanisms" ? (
+              <div className="mt-6">
+                <FoodChain />
+              </div>
+            ) : null}
             {topic.id === "digital-infrastructure" && section.id === "capabilities" ? (
               <div className="mt-6 max-w-3xl">
                 <InferenceCostChart />
@@ -109,6 +116,7 @@ export default async function TopicPage({ params }: { params: Promise<{ topic: s
           </section>
         ))}
       </div>
+      {topic.id === "food-agriculture" ? <FoodNotes /> : null}
     </Container>
   );
 }

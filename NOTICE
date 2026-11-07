@@ -31,4 +31,15 @@ Separate from that code license:
   contain them. This notice does not erase that history and does not claim those
   licenses are settled.
 
+- FAOSTAT production (QCL) and trade (TCL) in data/food/faostat-crops.json are
+  CC BY 4.0 because FAOSTAT is named in Annex 1 of the database terms. That
+  licence does not cover the Food Price Index.
+- The FAO Food Price Index monthly file is not in this tree. Eight nominal months
+  are copied in lib/data/fao-ffpi-excerpt.ts under the website’s non-commercial
+  copying terms, © FAO, with no endorsement and no CC BY label. They are not charted
+  and not rescaled.
+- Eurostat food figures are prc_hicp_minr, euro area changing composition, CP011,
+  2015=100, plus Eurostat’s annual rates. Source acknowledged. A ratio of two index
+  points, where shown, is a Macro Atlas calculation. Eurostat is not responsible.
+
 Nothing here is a guarantee that every upstream right has been cleared.

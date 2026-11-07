@@ -9,7 +9,7 @@ export type TopicSection = {
 };
 
 export type Topic = {
-  id: "energy" | "rates-inflation" | "digital-infrastructure";
+  id: "energy" | "rates-inflation" | "digital-infrastructure" | "food-agriculture";
   title: string;
   navLabel: string;
   kicker: string;
@@ -209,6 +209,50 @@ export const topics: Topic[] = [
         links: [
           { href: "/topics/digital-infrastructure/the-physical-digital-chain#capabilities", label: "Read the capabilities section" },
           { href: "/models/bond-sensitivity", label: "Bond sensitivity, a financing sketch" },
+          { href: "/topics/rates-inflation", label: "Rates and inflation" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "food-agriculture",
+    title: "Food and agriculture",
+    navLabel: "Food & agriculture",
+    kicker: "From a cargo price to a receipt",
+    deck: "Why food gets more expensive, and why the grocery bill does not fall just because a world price does.",
+    sections: [
+      {
+        id: "observed",
+        kicker: "Observed",
+        heading: "Two prices, two axes",
+        paragraphs: [
+          "The table is the world commodity index, eight months, 2014–2016 = 100. The charts are euro-area shop prices, 2015 = 100, and the annual rates Eurostat publishes. A euro-area index is not a Dutch receipt. The two are not drawn as one line.",
+        ],
+        links: [{ href: "/topics/food-agriculture/why-the-grocery-bill-lags", label: "Read why the bill lags" }],
+      },
+      {
+        id: "mechanisms",
+        kicker: "Mechanisms",
+        heading: "The path is physical, and it is not a flow diagram",
+        paragraphs: [
+          "Read any shock in one order: where it is grown, what can be exported, which route and which importers, what can absorb it, then the bill. A drought, an export ban, an energy-cost shock, a closed route, and a war each open a different question. The map under those questions draws the tonnes for wheat, maize, and sunflower. The buttons themselves are not a dataset. The Black Sea corridor of 2022–2023 is the worked example, not the frame.",
+        ],
+        links: [
+          { href: "/topics/energy", label: "Energy" },
+          { href: "/atlas", label: "Atlas" },
+          { href: "/models/oil-exposure", label: "Oil model" },
+        ],
+      },
+      {
+        id: "implications",
+        kicker: "Limits",
+        heading: "A slower rise can still be a higher bill",
+        paragraphs: [
+          "Inflation is the speed. The level is the price. Easing inflation does not mean the shop got cheaper. There is no pass-through coefficient on this page, and no forecast. The bond sketch is for a yield you type if you want to think about financing inventory. It does not price food.",
+        ],
+        links: [
+          { href: "/topics/food-agriculture/why-the-grocery-bill-lags#level", label: "Try the level sketch" },
+          { href: "/models/bond-sensitivity", label: "Bond sensitivity" },
           { href: "/topics/rates-inflation", label: "Rates and inflation" },
         ],
       },

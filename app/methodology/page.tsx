@@ -34,6 +34,12 @@ export default function MethodologyPage() {
           </p>
         </section>
         <section>
+          <h2 className="text-2xl font-medium">Food</h2>
+          <p className="mt-3">
+            The food dossier keeps the FAO nominal commodity index on its own axis and Eurostat’s euro-area food index on another. Values from the FAO file are not rescaled. Eurostat’s annual rates are the published rates, not a formula rerun. A ratio between two Eurostat index months is labelled as ours. Inflation is a percent change. The price level is the index. A peak-date comparison is not a pass-through estimate. Read <TextLink href="/topics/food-agriculture/why-the-grocery-bill-lags">why the grocery bill lags</TextLink>.
+          </p>
+        </section>
+        <section>
           <h2 className="text-2xl font-medium">Charts</h2>
           <p className="mt-3">
             Model curves are dashed. Electricity estimates and scenario anchors use different marks. Illustrative fans on the home page and on the Hormuz essay have no numeric scale and say so. Axes state units. A table is available on the interactive charts. No uncertainty band is drawn, because this edition does not estimate probabilities. The Pink Sheet Brent column and the ECB 10-year yield are not plotted.

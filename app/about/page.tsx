@@ -22,7 +22,7 @@ export default function AboutPage() {
           Nothing on the site is investment advice or a promise of return. Paid access is not for sale here.
         </p>
         <p>
-          Other languages are not published. There is no Spanish or Chinese edition, and the navigation does not pretend otherwise. Materials, food, and currencies are later subjects only in the sense that they are absent.
+          Other languages are not published. There is no Spanish or Chinese edition, and the navigation does not pretend otherwise. Food and agriculture is a dossier: a world commodity index and the euro-area grocery price are separate charts, not one cause. Materials and currencies are still absent.
         </p>
         <p>
           The database project set aside for a later connection is Supabase project worlgpganiczzjwmapjk, in eu-west-1, named Macro Atlas. This running edition does not query it. Newsletter mail is not sent. Read the <TextLink href="/privacy">privacy note</TextLink> and the <TextLink href="/sources">sources</TextLink>.
