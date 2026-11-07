@@ -3,6 +3,8 @@ export type ImageAsset = {
   src: string;
   alt: string;
   label: string;
+  caption?: string;
+  crop?: "right";
   credit: string;
   license: string;
   placements: string[];
@@ -38,6 +40,18 @@ export const images: ImageAsset[] = [
     credit,
     license: "Original generated illustration for this edition. No third-party stock license.",
     placements: ["From barrel to margin, lead image", "Home, research card"],
+  },
+  {
+    id: "digital-hero",
+    src: "/images/digital-hero.webp",
+    alt: "Conceptual server aisle with an exposed compute module in the foreground and overhead power and cooling infrastructure.",
+    label: "AI illustration",
+    caption: "AI illustration — conceptual data center infrastructure, not a specific facility.",
+    crop: "right",
+    credit:
+      "Generated via GenerateImage on 7 November 2026 for this dossier. Not a photograph, not a specific facility, and no stock photographer is claimed. Provenance record: data/credits/ai-physical-infrastructure-hero.provenance.json. That record is not a stock or Creative Commons license.",
+    license: "Generated illustration for this edition. No third-party stock license.",
+    placements: ["Digital infrastructure topic", "The physical digital chain", "Home research card"],
   },
 ];
 

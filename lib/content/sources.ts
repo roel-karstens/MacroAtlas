@@ -134,9 +134,9 @@ export const sources: Source[] = [
     url: "https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai",
     retrieved: "2026-11-07",
     usedFor:
-      "Pointer only. The report distinguishes estimated historical electricity demand from scenario pathways. Neither is plotted. Capacity in megawatts is not consumption.",
+      "Global data-center electricity anchors stated on the public report page, retrieved 7 November 2026: around 415 TWh in 2024 (estimate); around 945 TWh in 2030 in the base case; around 700, around 970, and exceeding 1,700 TWh in 2035 for headwinds, high efficiency, and lift-off. No intervening years are plotted.",
     rights:
-      "IEA publications have their own terms. This edition does not copy tables or charts from the report.",
+      "IEA publications have their own terms. These are the rounded figures stated in the public prose, cited with attribution. IEA charts are not reproduced, and this edition does not claim a license to redistribute the report.",
   },
   {
     id: "epoch-notable-models",
@@ -164,7 +164,8 @@ export const sources: Source[] = [
     publisher: "Stanford Institute for Human-Centered AI",
     url: "https://hai.stanford.edu/ai-index",
     retrieved: "2026-11-07",
-    usedFor: "Pointer to an annual compilation. Not used as a single progress index, and not copied.",
+    usedFor:
+      "Four published inference-price endpoints from the 2025 AI Index, chapter 1: MMLU 64.8 threshold, 20 USD per million tokens in November 2022 and 0.07 in October 2024 (Gemini-1.5-Flash-8B); GPQA above 50 percent, 15 USD in May 2024 and 0.12 in December 2024 (Phi 4). The price is described as a 3:1 weighted average of input and output token prices. No other points from the figure are digitized.",
     rights: "Stanford’s report terms apply. This edition does not reproduce the report.",
   },
   {
@@ -187,6 +188,17 @@ export const sources: Source[] = [
     usedFor:
       "Not used. The Radar API is offered for non-commercial use. That is the wrong default for this edition, so no traffic chart is drawn.",
     rights: "Not reproduced. Non-commercial API terms are not treated as a right to embed the data.",
+  },
+  {
+    id: "lbnl-us-data-centers-2024",
+    title: "2024 United States Data Center Energy Usage Report",
+    publisher: "Lawrence Berkeley National Laboratory",
+    url: "https://eta-publications.lbl.gov/sites/default/files/2024-12/us_data_center_energy_usage_report_lbnl-2001637_0.pdf",
+    retrieved: "2026-11-07",
+    usedFor:
+      "United States data-center electricity anchors from the executive summary of LBNL-2001637: about 60 TWh across 2014–2016 as one statement, about 76 TWh in 2018, 176 TWh in 2023, and a 2028 scenario range of roughly 325 to 580 TWh. No year between those statements is plotted.",
+    rights:
+      "Public report text, retrieved from the LBNL publications site. The PDF notes a retained US government license in the contractor terms. These summary figures are cited with attribution. This edition does not redistribute the PDF and does not claim a Creative Commons license for it.",
   },
   {
     id: "barlow-ofl",

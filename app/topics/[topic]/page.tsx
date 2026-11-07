@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Container, PageIntro, TextLink } from "@/components/editorial";
+import { ChainMap } from "@/components/chain-map";
+import { ElectricityCharts, InferenceCostChart, TokenMixCalculator } from "@/components/digital-charts";
+import { Container, Figure, PageIntro, TextLink } from "@/components/editorial";
 import { ObservedChart } from "@/components/observed-chart";
+import { imageById } from "@/lib/content/images";
 import { articlesForTopic } from "@/lib/content/articles";
 import { topicById, topics } from "@/lib/content/topics";
 import { brentSeries, formatPeriod, latestObservation, yieldSeries } from "@/lib/data/series";
@@ -34,6 +37,14 @@ export default async function TopicPage({ params }: { params: Promise<{ topic: s
       <div className="mt-6">
         <PageIntro kicker={topic.kicker} title={topic.title} deck={topic.deck} />
       </div>
+      {topic.id === "digital-infrastructure" && imageById("digital-hero") ? (
+        <div className="mt-8">
+          <Figure image={imageById("digital-hero")!} priority />
+          <div className="mt-8">
+            <ChainMap />
+          </div>
+        </div>
+      ) : null}
       {!topic.sections.some((section) => section.id === "research") && essays.length > 0 ? (
         <ul className="mt-8 max-w-3xl space-y-3 border-t border-[#e4e6ea] pt-6">
           {essays.map((article) => (
@@ -76,6 +87,17 @@ export default async function TopicPage({ params }: { params: Promise<{ topic: s
                   digits={2}
                   caption={`Observed. ECB FM.M.U2.EUR.4F.BB.U2_10Y.YLD. Retrieved 7 November 2026. ${formatPeriod(yieldSeries.points[0].period)} to ${formatPeriod(yieldLatest.period)}. Latest value ${yieldLatest.value.toFixed(4)}%. Not the policy rate.`}
                 />
+              </div>
+            ) : null}
+            {topic.id === "digital-infrastructure" && section.id === "data-centers" ? (
+              <div className="mt-6 max-w-3xl">
+                <ElectricityCharts />
+              </div>
+            ) : null}
+            {topic.id === "digital-infrastructure" && section.id === "capabilities" ? (
+              <div className="mt-6 max-w-3xl">
+                <InferenceCostChart />
+                <TokenMixCalculator />
               </div>
             ) : null}
             {section.id === "research" ? (

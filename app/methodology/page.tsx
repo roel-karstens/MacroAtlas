@@ -28,6 +28,12 @@ export default function MethodologyPage() {
           </p>
         </section>
         <section>
+          <h2 className="text-2xl font-medium">Digital infrastructure</h2>
+          <p className="mt-3">
+            The chain drawing is a schematic. Dashed links are dependencies, not measured electricity or traffic. Data-center electricity uses only years stated by the IEA report page and by the LBNL-2001637 executive summary. Inference prices use four endpoints stated in the Stanford 2025 AI Index for two separate thresholds. The token-mix box is arithmetic you type, not a market. No year is filled in between reported marks.
+          </p>
+        </section>
+        <section>
           <h2 className="text-2xl font-medium">Charts</h2>
           <p className="mt-3">
             Solid lines are observed snapshots. Dashed lines are scenarios or model curves. Illustrative fans on the home page and on the Hormuz essay have no numeric scale and say so. Axes state units. A table is available on the interactive charts. No uncertainty band is drawn, because this edition does not estimate probabilities.

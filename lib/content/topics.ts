@@ -151,7 +151,7 @@ export const topics: Topic[] = [
     title: "Digital infrastructure",
     navLabel: "Digital infrastructure",
     kicker: "Chips, power, networks, use, and tests",
-    deck: "A physical chain for computing. Definitions and source limits. No live series in this edition.",
+    deck: "A physical chain for computing. Reported electricity anchors and a fixed-threshold inference price. Not a live feed.",
     sections: [
       {
         id: "chips",
@@ -171,7 +171,7 @@ export const topics: Topic[] = [
         kicker: "Data centers and power",
         heading: "Capacity is not utilization, and neither is energy",
         paragraphs: [
-          "Nameplate megawatts are what a site was built to hold. Utilization is the share in use. Energy is power times time, metered or explicitly estimated. The IEA separates estimated historical demand from scenarios. None of those paths is plotted here. The oil topic’s Brent series is not a server-load series.",
+          "Nameplate megawatts are what a site was built to hold. Utilization is the share in use. Energy is power times time, metered or explicitly estimated. The chart marks only the years LBNL and the IEA state. It does not fill the years between them. The oil topic’s Brent series is not a server-load series.",
         ],
         links: [
           { href: "/topics/energy", label: "Energy, which stays the oil chain" },

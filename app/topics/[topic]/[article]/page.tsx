@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ChainMap } from "@/components/chain-map";
+import { ElectricityCharts, InferenceCostChart, TokenMixCalculator } from "@/components/digital-charts";
 import { Container, Figure, InkLink, TextLink } from "@/components/editorial";
 import { ScenarioFan } from "@/components/scenario-fan";
 import { articleBySlug, articles } from "@/lib/content/articles";
+import { topicById } from "@/lib/content/topics";
 import { imageById } from "@/lib/content/images";
 import { modelById } from "@/lib/content/models";
 import { sourceById } from "@/lib/content/sources";
@@ -38,7 +41,7 @@ export default async function ArticlePage({
       <p className="text-sm text-[#3f4651]">
         <TextLink href="/topics">Topics</TextLink>
         <span> / </span>
-        <TextLink href={`/topics/${article.topicId}`}>{article.topicId === "energy" ? "Energy" : "Rates & inflation"}</TextLink>
+        <TextLink href={`/topics/${article.topicId}`}>{topicById(article.topicId)?.title ?? article.topicId}</TextLink>
       </p>
       <h1 className="mt-6 max-w-4xl font-display text-[3.2rem] leading-[0.92] font-semibold tracking-[-0.03em] md:text-7xl">
         {article.title}
@@ -48,6 +51,11 @@ export default async function ArticlePage({
       {image ? (
         <div className="mt-8">
           <Figure image={image} priority />
+        </div>
+      ) : null}
+      {article.id === "the-physical-digital-chain" ? (
+        <div className="mt-8">
+          <ChainMap />
         </div>
       ) : null}
       <div className="mt-10 grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
@@ -63,6 +71,17 @@ export default async function ArticlePage({
                       {paragraph}
                     </p>
                   ))}
+                  {article.id === "the-physical-digital-chain" && section.id === "data-centers" ? (
+                    <div className="mt-6">
+                      <ElectricityCharts />
+                    </div>
+                  ) : null}
+                  {article.id === "the-physical-digital-chain" && section.id === "capabilities" ? (
+                    <div className="mt-6">
+                      <InferenceCostChart />
+                      <TokenMixCalculator />
+                    </div>
+                  ) : null}
                   {section.links ? (
                     <ul className="mt-4 space-y-2 text-sm">
                       {section.links.map((link) => (

@@ -81,7 +81,12 @@ describe("content graph", () => {
       "capabilities",
     ]);
     const dossier = articles.find((article) => article.slug === "the-physical-digital-chain");
-    expect(dossier?.imageId).toBeUndefined();
+    expect(dossier?.imageId).toBe("digital-hero");
+    const hero = imageById("digital-hero");
+    expect(hero?.caption).toMatch(/conceptual data center infrastructure/);
+    expect(hero?.credit).toMatch(/GenerateImage/);
+    expect(hero?.credit.toLowerCase()).toMatch(/no stock photographer/);
+    expect(hero?.credit.toLowerCase()).not.toMatch(/getty|shutterstock/);
     expect(JSON.stringify(dossier)).not.toMatch(/Cloudflare Radar API/);
     expect(dossier?.sourceIds).toContain("cloudflare-radar-not-used");
     expect(sourceById("asml-quarterly")?.url).toBe("https://investor.asml.com/quarterly-results");

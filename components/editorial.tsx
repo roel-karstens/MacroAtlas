@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { existsSync } from "node:fs";
+import path from "node:path";
 import type { ImageAsset } from "@/lib/content/images";
+import { FramedImage } from "@/components/framed-image";
 import { cn } from "@/lib/utils";
 
 export function Container({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -28,17 +31,18 @@ export function TextLink({ href, children }: { href: string; children: React.Rea
 
 export function Figure({ image, priority = false }: { image: ImageAsset; priority?: boolean }) {
   return (
-    <figure className="relative bg-[#f4f5f6]">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={image.src}
-        alt={image.alt}
-        width={1600}
-        height={900}
-        className="aspect-[16/10] w-full object-cover"
-        fetchPriority={priority ? "high" : "auto"}
-      />
-      <figcaption className="absolute right-3 bottom-3 bg-[#141414] px-2 py-1 text-xs text-white">{image.label}</figcaption>
+    <figure className="bg-[#f4f5f6]">
+      <div className="relative">
+        <FramedImage
+          src={image.src}
+          alt={image.alt}
+          crop={image.crop}
+          priority={priority}
+          available={existsSync(path.join(process.cwd(), "public", image.src.replace(/^\//, "")))}
+        />
+        <figcaption className="absolute right-3 bottom-3 bg-[#141414] px-2 py-1 text-xs text-white">{image.label}</figcaption>
+      </div>
+      {image.caption ? <p className="px-3 py-2 text-sm leading-relaxed text-[#3f4651]">{image.caption}</p> : null}
     </figure>
   );
 }

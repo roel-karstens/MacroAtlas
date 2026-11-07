@@ -215,6 +215,7 @@ export const articles: Article[] = [
     topicId: "digital-infrastructure",
     title: "The physical digital chain",
     deck: "Five counts that do not collapse into one progress number.",
+    imageId: "digital-hero",
     published: "2026-11-07",
     updated: "2026-11-07",
     locationIds: [],
@@ -223,6 +224,7 @@ export const articles: Article[] = [
       "tsmc-quarterly-2026-q3",
       "world-bank-internet-users",
       "iea-energy-and-ai",
+      "lbnl-us-data-centers-2024",
       "epoch-notable-models",
       "mlperf-inference-datacenter",
       "stanford-ai-index",
@@ -251,7 +253,7 @@ export const articles: Article[] = [
         heading: "Data centers and power",
         paragraphs: [
           "Nameplate power, IT load, and electricity consumed are not the same sentence. A hall rated for a round number of megawatts is a capacity: the kit it was built to hold. Utilization is how much of that rating is actually in use. Energy over a period is power times time, and only a meter or an explicit estimate is energy. A capacity figure used as if it were last year’s consumption overstates the electrons.",
-          "The IEA report on energy and AI distinguishes estimated historical demand from scenario pathways. A scenario is a conditional path. An estimate of the past is still an estimate, not a meter reading this site has filed. Neither is plotted. The Brent series on the energy topic is a crude price. It is not a data-center load, and the oil calculator does not price a server hall.",
+          "The IEA report on energy and AI distinguishes estimated historical demand from scenario pathways. A scenario is a conditional path. An estimate of the past is still an estimate, not a meter this site collected. The chart marks only the years those pages state. The Brent series on the energy topic is a crude price. It is not a data-center load, and the oil calculator does not price a server hall.",
           "Cooling water, backup generation, and the grid connection are physical constraints. They belong next to power, not inside a chip-revenue line. This edition does not publish a global megawatt database.",
         ],
         links: [

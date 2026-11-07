@@ -8,7 +8,7 @@ Add a record in `lib/content/topics.ts` only when it has prose, at least one ess
 
 Suggested sections, in this order: understand, explore, track, research, model, challenge. Skip a section rather than filling it with a placeholder. Rates does not get a fake map. The atlas is the oil geography.
 
-Digital infrastructure uses five sections instead: chips, data centers and power, networks, digital activity, and AI capabilities and costs. Do not add a chart there until a dated table is in `data/snapshots` with a rights note. Do not plot orders as deliveries, wafer area as chip counts, dollar sales as volumes, nameplate megawatts as energy, or a benchmark score as a percent of general intelligence. Cloudflare Radar is not a default source. Memory prices and facilities databases stay out until their terms are reviewed.
+Digital infrastructure uses five sections instead: chips, data centers and power, networks, digital activity, and AI capabilities and costs. Charts already in the edition use only stated anchors in `lib/data/digital-series.ts`. Do not add a year the report does not state. Do not plot orders as deliveries, wafer area as chip counts, dollar sales as volumes, nameplate megawatts as energy, or a benchmark score as a percent of general intelligence. Cloudflare Radar is not a default source. Memory prices and facilities databases stay out until their terms are reviewed.
 
 ## An article
 

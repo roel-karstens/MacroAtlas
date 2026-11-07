@@ -1,0 +1,16 @@
+{
+  "asset": "ai-physical-infrastructure-hero.webp",
+  "generated_date": "2026-11-07",
+  "timezone": "Europe/Amsterdam",
+  "generation_tool": "GenerateImage",
+  "classification": "AI-generated conceptual illustration",
+  "source_tool_output": "/cursor/stores/user/grok-bot/agents/80545ede-25de-4a67-9c80-5a2a3f076d91/assets/66f0201a28063ce2fbff6892c9a81232ccfd97e9c83b6bb8099f4ea6278beadb.jpg",
+  "dimensions": [
+    1280,
+    720
+  ],
+  "caption": "AI illustration \u2014 conceptual data center infrastructure, not a specific facility.",
+  "alt": "Conceptual server aisle with an exposed compute module in the foreground and overhead power and cooling infrastructure.",
+  "provenance_note": "Generated image, not documentary stock photography. No actual facility, geographic location or stock photographer claimed.",
+  "crop_guidance": "Use center crop for mobile; foreground compute module may be cropped. No text overlay required."
+}
