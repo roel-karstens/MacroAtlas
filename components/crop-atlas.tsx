@@ -104,6 +104,26 @@ export function CropAtlas() {
         ))}
       </div>
       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#3f4651]">
+        The first view is the whole world, so a country is small on a phone. Use Europe and Africa, Asia, or the Americas for a closer frame, or choose the country from the list. The shapes are a guide, not a precise tap target.
+      </p>
+      <label className="mt-3 block max-w-md text-sm font-medium">
+        Country
+        <select
+          className="mt-1 h-11 w-full border border-[#c5cad3] bg-white px-3 text-base"
+          value={rows.some((row) => row.iso3 === selectedIso) ? selectedIso : ""}
+          onChange={(event) => setSelectedIso(event.target.value)}
+        >
+          <option value="" disabled>
+            Choose a country
+          </option>
+          {ranked.map((row) => (
+            <option key={row.iso3} value={row.iso3}>
+              {row.area}
+            </option>
+          ))}
+        </select>
+      </label>
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#3f4651]">
         {itemMeta.productNote} {elementMeta.label} in {elementMeta.unit}, {activeYear}.{" "}
         {item === "sunflower-oil" && element === "production"
           ? "Crude sunflower oil production in this file stops at 2023. 2024 is not shown because it is absent, not because it is zero."
@@ -177,7 +197,9 @@ export function CropAtlas() {
           </ul>
           <CountryNote row={selected} elementLabel={elementMeta.label} unit={elementMeta.unit} total={total} valueRow={element === "export-value" ? undefined : valueRow} />
         </div>
-        <div className="max-h-80 overflow-auto border border-[#e4e6ea]">
+        <details className="border border-[#e4e6ea] p-3">
+          <summary className="min-h-11 cursor-pointer text-sm font-medium">All countries in this file</summary>
+          <div className="mt-3 max-h-80 overflow-auto border border-[#e4e6ea]">
           <table className="w-full text-left text-sm">
             <caption className="sr-only">{itemMeta.label} {elementMeta.label} {activeYear}, every country in the file</caption>
             <thead className="sticky top-0 bg-white">
@@ -205,7 +227,8 @@ export function CropAtlas() {
               ))}
             </tbody>
           </table>
-        </div>
+          </div>
+        </details>
       </div>
       <div className="mt-4 max-w-3xl space-y-3 text-sm leading-relaxed text-[#3f4651]">
         <p>

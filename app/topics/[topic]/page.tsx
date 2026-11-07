@@ -7,13 +7,8 @@ import { Container, Figure, PageIntro, TextLink } from "@/components/editorial";
 import { imageById } from "@/lib/content/images";
 import { articlesForTopic } from "@/lib/content/articles";
 import { topicById, topics } from "@/lib/content/topics";
-import { CropAtlas } from "@/components/crop-atlas";
-import { FaoExcerptTable } from "@/components/fao-excerpt";
-import { EurostatFoodCharts } from "@/components/food-charts";
 import { FoodNotes } from "@/components/food-notes";
 import { FoodChain } from "@/components/food-chain";
-import { FoodComparison } from "@/components/food-comparison";
-import { FoodLevelSketch } from "@/components/food-level-sketch";
 import { SeriesNotice, brentUnavailable, yieldUnavailable } from "@/components/series-notice";
 
 export function generateStaticParams() {
@@ -86,22 +81,9 @@ export default async function TopicPage({ params }: { params: Promise<{ topic: s
                 <ElectricityCharts />
               </div>
             ) : null}
-            {topic.id === "food-agriculture" && section.id === "observed" ? (
-              <div className="mt-6">
-                <FoodComparison />
-                <FaoExcerptTable />
-                <EurostatFoodCharts />
-              </div>
-            ) : null}
             {topic.id === "food-agriculture" && section.id === "mechanisms" ? (
               <div className="mt-6">
                 <FoodChain />
-                <CropAtlas />
-              </div>
-            ) : null}
-            {topic.id === "food-agriculture" && section.id === "implications" ? (
-              <div className="mt-6 max-w-3xl">
-                <FoodLevelSketch />
               </div>
             ) : null}
             {topic.id === "digital-infrastructure" && section.id === "capabilities" ? (
