@@ -42,6 +42,7 @@ describe("inference cost endpoints", () => {
 
   it("applies the stated 3:1 input-to-output blend", () => {
     expect(blendedTokenPrice(3, 7)).toBe(4);
+    expect(blendedTokenPrice(1, 7)).toBe(2.5);
     expect(blendedTokenPrice(0, 0)).toBe(0);
   });
 });

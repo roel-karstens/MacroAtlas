@@ -10,7 +10,7 @@ export type SupabasePublicStatus = {
 
 /**
  * Public configuration only. Never reads a service-role key.
- * Pages keep using checked-in snapshots either way, so a missing key cannot blank the edition.
+ * Pages keep using checked-in content either way, so a missing key cannot blank the edition.
  */
 export function getSupabasePublicStatus(
   env: Record<string, string | undefined> = process.env,
@@ -42,7 +42,7 @@ export function getSupabasePublicStatus(
     projectRef: APPROVED_SUPABASE_PROJECT_REF,
     remote: "key-present-but-unread",
     reasons: [
-      "A publishable key is present for the approved project. This edition still renders checked-in snapshots and does not query the database.",
+      "A publishable key is present for the approved project. This edition still renders its checked-in pages and does not query the database.",
     ],
   };
 }

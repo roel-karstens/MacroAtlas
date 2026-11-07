@@ -24,19 +24,19 @@ export default function MethodologyPage() {
             Duration price effect = − modified duration × Δy, with Δy in decimal. 100 basis points and 1 percentage point are both 0.01. Duration 7 and +100 basis points is a −7% price effect before carry and convexity. Convexity, when you turn it on, adds ½ × convexity × (Δy)². A convexity of 60 at that same shift adds 0.30 percentage points. Carry is the annual yield times the horizon in years, simple, not compounded. The total-return sketch subtracts costs entered in basis points of return. Twenty basis points is 0.002, not 0.20.
           </p>
           <p className="mt-3">
-            The form asks for modified duration. It does not convert Macaulay duration. The starting yield is not the central-bank policy rate. The observed series is the ECB euro area 10-year government benchmark bond yield, monthly, percent per annum.
+            The form asks for modified duration. It does not convert Macaulay duration. The starting yield is not the central-bank policy rate. Duration 8 and the same +100 basis points is a −8% price effect before carry and convexity. The ECB euro area 10-year series is not included.
           </p>
         </section>
         <section>
           <h2 className="text-2xl font-medium">Digital infrastructure</h2>
           <p className="mt-3">
-            The chain drawing is a schematic. Dashed links are dependencies, not measured electricity or traffic. Data-center electricity uses only years stated by the IEA report page and by the LBNL-2001637 executive summary. The IEA lift-off mark is a lower bound, labeled &gt;1,700 TWh, because the report says exceeding 1,700. Inference prices use four endpoints stated in the Stanford 2025 AI Index. A dashed connector there compares the two reported endpoints of one threshold. It is not a monthly price path. MMLU at 64.8 and GPQA above 50% stay separate tests. The token-mix box is arithmetic you type, not a market. No year is filled in between reported marks.
+            The chain drawing is a schematic. Dashed links are dependencies, not measured electricity or traffic. Data-center electricity uses only years stated by the IEA Energy and AI report, which states Licence CC BY 4.0, and by the LBNL-2001637 executive summary. The world chart is a Macro Atlas derivation of those stated anchors, not an IEA graphic. The IEA lift-off mark is a lower bound, labeled &gt;1,700 TWh, because the report says exceeding 1,700. The United States chart plots cited LBNL anchors and is not a copy of an LBNL figure or table. Inference prices use four endpoints stated in the Stanford 2025 AI Index, plotted separately. A dashed connector compares the two reported endpoints of one threshold. It is not a monthly price path, and it is not the report figure. MMLU at 64.8 and GPQA above 50% stay separate tests. The token-mix box is arithmetic you type, not a market. Input 1 and output 7 give 2.5. No year is filled in between reported marks.
           </p>
         </section>
         <section>
           <h2 className="text-2xl font-medium">Charts</h2>
           <p className="mt-3">
-            Solid lines are observed snapshots. Dashed lines are scenarios or model curves. Illustrative fans on the home page and on the Hormuz essay have no numeric scale and say so. Axes state units. A table is available on the interactive charts. No uncertainty band is drawn, because this edition does not estimate probabilities.
+            Model curves are dashed. Electricity estimates and scenario anchors use different marks. Illustrative fans on the home page and on the Hormuz essay have no numeric scale and say so. Axes state units. A table is available on the interactive charts. No uncertainty band is drawn, because this edition does not estimate probabilities. The Pink Sheet Brent column and the ECB 10-year yield are not plotted.
           </p>
         </section>
         <section>
@@ -48,7 +48,7 @@ export default function MethodologyPage() {
         <section>
           <h2 className="text-2xl font-medium">Stale on purpose</h2>
           <p className="mt-3">
-            Brent runs through October 2026 in a workbook marked updated on 3 November 2026, retrieved here on 7 November 2026. The yield series ends in October 2026, same retrieval day. Neither chart is live. If a figure is not in <TextLink href="/sources">Sources</TextLink>, it is not a claim of this edition.
+            Brent and the euro area 10-year yield are omitted because their redistribution terms are not settled. Older commits may still contain those files. This edition does not. If a figure is not in <TextLink href="/sources">Sources</TextLink>, it is not a claim of this edition.
           </p>
         </section>
         <section>

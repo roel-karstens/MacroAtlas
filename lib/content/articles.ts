@@ -74,11 +74,11 @@ export const articles: Article[] = [
           "Bypass comes first. Wikipedia, retrieved 7 November 2026, describes the East–West pipeline, also called the Petroline, as running about 1,201 kilometres from the Abqaiq area to Yanbu on the Red Sea, so that some Saudi exports need not pass the strait. The same day’s reading of the Habshan–Fujairah article describes that line as running from the Habshan field to Fujairah on the Gulf of Oman. If those routes, and any others, had spare capacity large enough to move the barrels at risk, a closure of the sea passage would not be a loss of supply. This edition does not state those capacities and does not estimate the spare. A reader who has a sourced residual can type that residual as barrels per day. The model will not invent it, and it will not solve a network.",
           "Stocks and demand come next. Inventories can be drawn. Buyers can use less. Either one can offset a lost flow for a while. Neither is estimated here. Substitution is the same kind of gap: another grade, another product, or a draw on a different region is invisible in a single Brent scenario.",
           "Delay is not the same thing as loss. A slower transit, a queue, or a longer route can raise costs and still deliver the barrel. Treating every interrupted voyage as a destroyed barrel overstates the volume shock. The extra-cost input is there for the first case. The price input is not a substitute for a volume you have not established.",
-          "The Brent series on the energy topic is context, not the missing volume. It is the World Bank Pink Sheet monthly average for UK Brent 38° API, nominal dollars per barrel, from January 2010 through October 2026. The workbook is marked updated on 3 November 2026, and this copy was retrieved on 7 November 2026. The October 2026 average in the file is 125 dollars per barrel. That is a published monthly average. It is not a live spot print, it is not a Hormuz volume, and this text does not assign it a single cause. The scenario fan on this page is a drawing with no numeric scale. It is not that series and not a forecast.",
+          "The Brent series is not in this edition. The Pink Sheet workbook column cites Bloomberg, EIG, OPEC and the World Bank, and the license for that column is unconfirmed, so no monthly prices are shown and none are invented. It is not a Hormuz volume. The scenario fan on this page is a drawing with no numeric scale. It is not a price series and not a forecast.",
           "The arithmetic of the model can be right while the scenario is wrong. That is acceptable. What is not acceptable is a chart that pretends a ship count has already chosen the price.",
         ],
         links: [
-          { href: "/topics/energy#track", label: "See the Brent snapshot" },
+          { href: "/topics/energy#track", label: "See why the Brent series is absent" },
           { href: "/sources#world-bank-pink-sheet", label: "Read the Brent source note" },
           { href: "/methodology", label: "Read the methodology" },
         ],
@@ -164,11 +164,11 @@ export const articles: Article[] = [
         heading: "A yield is not a policy rate",
         paragraphs: [
           "The price of a plain bond is the discounted value of coupons and principal. The yield is the discount rate that sets that present value equal to the market price. A central bank’s policy rate is a different instrument: an administered rate on reserves or on a short operation. The two can move together, and they often do not match. Using the policy rate as if it were the yield on a ten-year bond will get the carrying income and the price sensitivity wrong at the same time.",
-          "The observed series in this edition is the euro area 10-year government benchmark bond yield from the ECB Data Portal, series FM.M.U2.EUR.4F.BB.U2_10Y.YLD. The metadata calls it a benchmark bond yield, euro area changing composition, in percent per annum. This copy was retrieved on 7 November 2026 and runs monthly from January 2014 through October 2026. Every row came back with observation status A. The October 2026 value is 4.173827 percent. That is the latest month in the snapshot. It is not a live yield, and it is not the deposit facility rate. The policy rate is not plotted, because plotting it on the same chart would invite exactly the confusion this page is trying to avoid.",
-          "The model does not start from that October print. It starts from a round example, 3 percent, so a reader can see the arithmetic before touching a dated observation. There is a control to copy the snapshot’s latest yield into the assumption. After that copy, the number is still an assumption. You can edit it. The chart of history stays a separate solid line. Scenario paths are dashed.",
+          "This edition does not include the euro area 10-year series FM.M.U2.EUR.4F.BB.U2_10Y.YLD. Its recorded source is ECB/FINANCIAL PROVIDERS, and the third-party exception is not closed, so the monthly history is not shown and no replacement yield is invented. The official series is a government benchmark bond yield, not the policy rate. The policy rate is not plotted, because plotting it beside a market yield would invite exactly the confusion this page is trying to avoid.",
+          "The model starts from a round example, 3 percent, so the arithmetic is visible without a dated market print. There is no control that copies an official observation into the form. You can edit the example. Scenario paths on the model are dashed. They are not market history.",
         ],
         links: [
-          { href: "/topics/rates-inflation#track", label: "See the yield snapshot" },
+          { href: "/topics/rates-inflation#track", label: "See why the yield series is absent" },
           { href: "/sources#ecb-ea-10y", label: "Read the ECB source note" },
         ],
       },
@@ -200,7 +200,7 @@ export const articles: Article[] = [
         heading: "What the approximation leaves out",
         paragraphs: [
           "The formula is local. Large yield moves, even with the convexity term, are a sketch. Credit spreads are not in it. A benchmark yield and a corporate yield are not the same object, and this edition has no spread series. Currency is not in it. Taxes are not in it. Calls, defaults, and prepayment are not in it. Inflation enters only if you have already decided what it means for the yield you type. The model will not turn an inflation scenario into a yield for you.",
-          "Nothing here is a recommendation to own or to sell a bond, and nothing is a forecast of the ECB. The October 2026 observation can sit next to the calculator so the dated level is visible. It does not select the scenario. If you want a downside case, type the shift. The chart will recompute. If you clear the form, the 7-year, 100-basis-point case is one control away, and it should still read minus 7 percent on the duration line before carry and convexity.",
+          "Nothing here is a recommendation to own or to sell a bond, and nothing is a forecast of the ECB. No official yield is copied into the calculator. If you want a downside case, type the shift. The chart will recompute. If you clear the form, the 7-year, 100-basis-point case is one control away, and it should still read minus 7 percent on the duration line before carry and convexity. Duration 8 with the same 100 basis point rise is minus 8 percent on that same line.",
         ],
         links: [
           { href: "/methodology", label: "Methodology and limits" },

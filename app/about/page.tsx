@@ -13,7 +13,7 @@ export default function AboutPage() {
       />
       <div className="mt-10 max-w-3xl space-y-4 leading-relaxed">
         <p>
-          The edition connects a physical oil chain in the Persian Gulf to scenarios you can calculate, and it does the same, more narrowly, for a government bond yield. A third topic, digital infrastructure, names the units for chips, power, networks, activity, and model tests. It does not add a chart. Essays, the atlas, and the models share one set of identifiers.
+          The edition connects a physical oil chain in the Persian Gulf to scenarios you can calculate, and it does the same, more narrowly, for a government bond yield you type. A third topic, digital infrastructure, names the units for chips, power, networks, activity, and model tests. It includes charts of cited electricity anchors, a separate plot of four inference-price endpoints, and a token-mix calculator. It does not add a copied monthly market series. Essays, the atlas, and the models share one set of identifiers. The Apache-2.0 license covers original code only. Third-party text, data, and the font have their own terms, listed in <TextLink href="/sources">Sources</TextLink>.
         </p>
         <p>
           No analyst is named, because no personal credential is being offered. There is no client list, no assets under management, no track record, and no testimonial. Financial interests are not disclosed as positions because this prototype does not operate as an advisory book and does not invent one.

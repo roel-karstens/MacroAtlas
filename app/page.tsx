@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { Container, Figure, InkLink } from "@/components/editorial";
-import { ObservedChart } from "@/components/observed-chart";
 import { ScenarioFan } from "@/components/scenario-fan";
-import { StaticLine } from "@/components/static-line";
 import { articles } from "@/lib/content/articles";
 import { imageById } from "@/lib/content/images";
-import { brentSeries, formatPeriod, latestObservation, yieldSeries } from "@/lib/data/series";
+import { SeriesNotice, brentUnavailable, yieldUnavailable } from "@/components/series-notice";
 
 const cards = [
   "the-hormuz-question",
@@ -16,8 +14,6 @@ const cards = [
 
 export default function HomePage() {
   const hero = imageById("hero-harbor");
-  const brentLatest = latestObservation(brentSeries);
-  const yieldLatest = latestObservation(yieldSeries);
   if (!hero) return null;
 
   return (
@@ -73,12 +69,8 @@ export default function HomePage() {
                 {image ? (
                   <Figure image={image} />
                 ) : article.topicId === "rates-inflation" ? (
-                  <div className="border-b border-[#e4e6ea] p-4">
-                    <StaticLine
-                      values={yieldSeries.points.map((point) => point.value)}
-                      label="Euro area 10-year yield"
-                      caption={`Observed, ${formatPeriod(yieldSeries.points[0].period)}–${formatPeriod(yieldLatest.period)}. ECB. Not a forecast.`}
-                    />
+                  <div className="border-b border-[#e4e6ea] p-4 text-sm leading-relaxed text-[#3f4651]">
+                    The euro area 10-year yield series is not included. The recorded source is ECB/FINANCIAL PROVIDERS, and the third-party exception is not closed. No replacement yield is shown.
                   </div>
                 ) : (
                   <div className="border-b border-[#e4e6ea] p-4 text-sm leading-relaxed text-[#3f4651]">
@@ -87,7 +79,7 @@ export default function HomePage() {
                 )}
                 <div className="flex flex-1 flex-col p-4">
                   <p className="text-xs text-[#3f4651]">
-                    {image ? image.label : article.topicId === "rates-inflation" ? "Observed series" : "No series plotted"}
+                    {image ? image.label : "Series not included"}
                   </p>
                   <h3 className="mt-2 text-xl font-medium">
                     <Link href={`/topics/${article.topicId}/${article.slug}`} className="underline-offset-4 hover:underline">
@@ -103,20 +95,8 @@ export default function HomePage() {
       </Container>
 
       <Container className="grid gap-12 border-t border-[#e4e6ea] py-14 lg:grid-cols-2">
-        <ObservedChart
-          title="Brent crude"
-          unit="USD per barrel, nominal monthly average"
-          points={brentSeries.points.map((point) => ({ period: point.period, value: point.value }))}
-          digits={1}
-          caption={`World Bank Pink Sheet, UK Brent 38° API. Workbook updated 3 November 2026, retrieved 7 November 2026. Latest month in this snapshot: ${formatPeriod(brentLatest.period)}, ${brentLatest.value}. Not a live spot price.`}
-        />
-        <ObservedChart
-          title="Euro area 10-year yield"
-          unit="Percent per annum"
-          points={yieldSeries.points.map((point) => ({ period: point.period, value: point.value }))}
-          digits={2}
-          caption={`ECB series FM.M.U2.EUR.4F.BB.U2_10Y.YLD, government benchmark bond yield. Retrieved 7 November 2026. Latest month: ${formatPeriod(yieldLatest.period)}, ${yieldLatest.value.toFixed(3)}%. Not the policy rate and not live.`}
-        />
+        <SeriesNotice {...brentUnavailable} />
+        <SeriesNotice {...yieldUnavailable} />
       </Container>
 
       <Container className="pb-4">

@@ -42,8 +42,8 @@ Register it in `lib/content/models.ts` and link it from the topic.
 
 ## Data
 
-Snapshots live in `data/snapshots`. Pin the first and last observations in `lib/data/series.test.ts` when you replace a file. Record the retrieval date. Do not call the chart live.
+Do not add the Pink Sheet Brent column or ECB series `FM.M.U2.EUR.4F.BB.U2_10Y.YLD` back into `data/`, `supabase/seed.sql`, or a chart until those redistribution terms are actually settled. Do not invent replacement prices. Record a retrieval date for any later series. Do not call a chart live.
 
 ## Database
 
-Schema and seed for project `worlgpganiczzjwmapjk` live in `supabase/`. Apply them only to that project. The app renders the checked-in files until a deliberate read path is added. Public env names are `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`. The service-role key is server-only and is not a `NEXT_PUBLIC_` variable.
+Schema and seed for project `worlgpganiczzjwmapjk` live in `supabase/`. Apply them only to that project. The app does not query the project. It renders checked-in pages until a deliberate read path is added. Public env names are `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`. The service-role key is server-only and is not a `NEXT_PUBLIC_` variable.

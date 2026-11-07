@@ -1,0 +1,34 @@
+Macro Atlas
+Copyright holders of original code: see the git history.
+
+The Apache License, Version 2.0, in LICENSE applies to original Macro Atlas code.
+It does not grant rights in third-party material that this repository quotes,
+plots, paraphrases, or loads as a font.
+
+Separate from that code license:
+
+- Place descriptions adapted from Wikipedia are CC BY-SA 4.0
+  (https://creativecommons.org/licenses/by-sa/4.0/). They were paraphrased and
+  shortened on 7 November 2026. Coordinates are taken from the linked articles.
+  Capacities, flows, and bulk article text are not copied.
+- The data-center electricity chart for the world is derived from stated anchors
+  in IEA, Energy and AI (10 April 2025, Licence CC BY 4.0,
+  https://www.iea.org/reports/energy-and-ai). IEA charts are not reproduced.
+  Attribution: IEA 2025; Energy and AI, https://www.iea.org/reports/energy-and-ai,
+  License: CC BY 4.0. This is a work derived by Macro Atlas from IEA material and
+  Macro Atlas is solely liable and responsible for this derived work. The derived
+  work is not endorsed by the IEA or its Member countries in any manner.
+  IEA logos, photographs, and standalone datasets are not included.
+- United States electricity anchors are cited figures from LBNL-2001637. The PDF
+  is not included. The chart is not a copy of an LBNL figure, table, or database.
+- Four Stanford HAI 2025 AI Index inference-price endpoints are plotted
+  separately. The report figure and the Epoch and Artificial Analysis databases
+  are not included. No license for that report is claimed here.
+- Natural Earth 1:10m land is used as public-domain map data under Natural Earth’s
+  terms. Barlow is used under the SIL Open Font License 1.1 in licenses/barlow-OFL.txt.
+- The World Bank Pink Sheet Brent column and ECB series
+  FM.M.U2.EUR.4F.BB.U2_10Y.YLD are not in this tree. Older git history may still
+  contain them. This notice does not erase that history and does not claim those
+  licenses are settled.
+
+Nothing here is a guarantee that every upstream right has been cleared.

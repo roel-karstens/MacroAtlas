@@ -18,7 +18,7 @@ export default function OilModelPage() {
         What if the barrel moves?
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[#3f4651]">
-        Set the horizon, the price change, and the unhedged barrels. The result is a change in operating profit, not a share price.
+        Set the horizon, the price change, and the unhedged barrels. The result is a change in operating profit, not a share price. The defaults are an illustration: 10,000 barrels a day, 90 days, and +10 USD per barrel. Change only the price to +20 and, with full pass-through and books in dollars, the result is 18 million USD.
       </p>
       <div className="mt-10">
         <OilModelPanel />

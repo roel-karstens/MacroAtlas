@@ -4,11 +4,10 @@ import { notFound } from "next/navigation";
 import { ChainMap } from "@/components/chain-map";
 import { ElectricityCharts, InferenceCostChart, TokenMixCalculator } from "@/components/digital-charts";
 import { Container, Figure, PageIntro, TextLink } from "@/components/editorial";
-import { ObservedChart } from "@/components/observed-chart";
 import { imageById } from "@/lib/content/images";
 import { articlesForTopic } from "@/lib/content/articles";
 import { topicById, topics } from "@/lib/content/topics";
-import { brentSeries, formatPeriod, latestObservation, yieldSeries } from "@/lib/data/series";
+import { SeriesNotice, brentUnavailable, yieldUnavailable } from "@/components/series-notice";
 
 export function generateStaticParams() {
   return topics.map((topic) => ({ topic: topic.id }));
@@ -25,8 +24,6 @@ export default async function TopicPage({ params }: { params: Promise<{ topic: s
   const topic = topicById(id);
   if (!topic) notFound();
   const essays = articlesForTopic(topic.id);
-  const brentLatest = latestObservation(brentSeries);
-  const yieldLatest = latestObservation(yieldSeries);
 
   return (
     <Container className="py-12">
@@ -69,24 +66,12 @@ export default async function TopicPage({ params }: { params: Promise<{ topic: s
             ))}
             {section.id === "track" && topic.id === "energy" ? (
               <div className="mt-6 max-w-3xl">
-                <ObservedChart
-                  title="Brent crude"
-                  unit="USD per barrel"
-                  points={brentSeries.points.map((point) => ({ period: point.period, value: point.value }))}
-                  digits={1}
-                  caption={`Observed monthly average. World Bank Pink Sheet. Retrieved 7 November 2026. ${formatPeriod(brentSeries.points[0].period)} to ${formatPeriod(brentLatest.period)}. Latest value ${brentLatest.value}.`}
-                />
+                <SeriesNotice {...brentUnavailable} />
               </div>
             ) : null}
             {section.id === "track" && topic.id === "rates-inflation" ? (
               <div className="mt-6 max-w-3xl">
-                <ObservedChart
-                  title="Euro area 10-year government benchmark yield"
-                  unit="Percent per annum"
-                  points={yieldSeries.points.map((point) => ({ period: point.period, value: point.value }))}
-                  digits={2}
-                  caption={`Observed. ECB FM.M.U2.EUR.4F.BB.U2_10Y.YLD. Retrieved 7 November 2026. ${formatPeriod(yieldSeries.points[0].period)} to ${formatPeriod(yieldLatest.period)}. Latest value ${yieldLatest.value.toFixed(4)}%. Not the policy rate.`}
-                />
+                <SeriesNotice {...yieldUnavailable} />
               </div>
             ) : null}
             {topic.id === "digital-infrastructure" && section.id === "data-centers" ? (

@@ -30,7 +30,7 @@ export default function ImageCreditsPage() {
           Headlines use Barlow Condensed. Text uses Barlow. Both are the Barlow family, copyright 2017 The Barlow Project Authors, licensed under the SIL Open Font License 1.1. The license text is in licenses/barlow-OFL.txt. next/font downloads the files at build time. The fonts are not sold separately.
         </p>
         <p className="mt-3 leading-relaxed">
-          The map coastline is not a photograph. It is Natural Earth land data, public domain. Credit is also on the atlas and in Sources.
+          The map coastline is not a photograph. It is Natural Earth land data, public domain under Natural Earth’s terms. Credit is also on the atlas and in Sources. The font license and that map data are not the Apache-2.0 license of the code.
         </p>
         <p className="mt-3 leading-relaxed">Charts are drawn in the page from code. They are not image files.</p>
       </section>

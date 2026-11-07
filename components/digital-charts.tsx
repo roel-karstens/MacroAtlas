@@ -12,6 +12,7 @@ import {
   type ElectricityPoint,
 } from "@/lib/data/digital-series";
 import { formatNumber } from "@/lib/format";
+import { ieaEnergyAndAi } from "@/lib/content/rights";
 
 function AnchorChart({
   title,
@@ -207,8 +208,8 @@ export function ElectricityCharts() {
         points={points}
         caption={
           place === "world"
-            ? "IEA Energy and AI, public report page, retrieved 7 November 2026. 2024 is an estimate of about 415 TWh. 2030 and the 700 and 970 marks in 2035 are stated scenario levels. Dashed joins are not annual history. Lift-off is stated as exceeding 1,700 TWh: the arrow marks that lower bound and the label is >1,700, not a measured 1,700. No band. A redistribution license for the IEA report was not identified."
-            : "LBNL-2001637 executive summary, 2024 United States Data Center Energy Usage Report, retrieved 7 November 2026. 2014–2016 is one statement, about 60 TWh, not three annual readings. 2018 is about 76 TWh. 2023 is 176 TWh. 2028 is a scenario range, roughly 325 to 580 TWh. Years between the marks are not in this chart."
+            ? `${ieaEnergyAndAi.attribution}. Chapter: ${ieaEnergyAndAi.pageUrl}. 2024 is an estimate of about 415 TWh. 2030 base is about 945 TWh. The 700 and 970 marks in 2035 are stated scenario levels. Dashed joins are not annual history. Lift-off is stated as exceeding 1,700 TWh: the arrow marks that lower bound and the label is >1,700, not a measured 1,700. No IEA graphic is reproduced. ${ieaEnergyAndAi.derivativeDisclaimer}`
+            : "LBNL-2001637 executive summary, 2024 United States Data Center Energy Usage Report, retrieved 7 November 2026. 2014–2016 is one statement, about 60 TWh, not three annual readings. 2018 is about 76 TWh. 2023 is 176 TWh. 2028 is a scenario range, roughly 325 to 580 TWh. Years between the marks are not in this chart. This is a plot of those cited anchors, not a copy of an LBNL figure, table, or database."
         }
       />
     </div>
@@ -304,7 +305,7 @@ export function InferenceCostChart() {
         <li>Dashed connector: comparison of the two reported endpoints for that one threshold. Not an observed monthly price path.</li>
       </ul>
       <figcaption className="mt-2 text-sm leading-relaxed text-[#3f4651]">
-        Stanford HAI, 2025 AI Index, chapter 1, retrieved 7 November 2026. Four published endpoints only. The dashed connectors compare those endpoints. They are not a monthly series, and the two thresholds are not one intelligence scale. The price is the Index’s 3:1 weighted average of input and output token prices, in $ per million tokens, not a paid invoice. A reuse license for the report was not confirmed, so the figure is not reproduced. Epoch and Artificial Analysis databases named by Stanford are not copied. The vertical axis is logarithmic. No forecast.
+        Stanford HAI, 2025 AI Index, chapter 1, retrieved 7 November 2026. Four published endpoints only, plotted separately. Blue circles are the MMLU 64.8 threshold: 20 USD per million tokens in November 2022 and 0.07 in October 2024. Vermilion squares are GPQA above 50 percent: 15 in May 2024 and 0.12 in December 2024. The dashed connectors compare those two endpoints of one threshold. They are not a monthly series, and the two thresholds are not one intelligence scale. The price is the Index’s 3:1 weighted average of input and output token prices, not a paid invoice. The report figure is not reproduced. Epoch and Artificial Analysis databases named by Stanford are not copied. No license for the report is claimed. The vertical axis is logarithmic. No forecast.
       </figcaption>
       <div id={tableId} hidden={!showTable} className="mt-4 overflow-auto border border-[#e4e6ea]">
         <table className="w-full text-left text-sm">

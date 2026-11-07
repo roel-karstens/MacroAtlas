@@ -1,27 +1,26 @@
+import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { availableRanges, brentSeries, latestObservation, sliceSeries, yieldSeries } from "@/lib/data/series";
 
-describe("verified snapshots", () => {
-  it("keeps the Pink Sheet Brent excerpt pinned to the file we retrieved", () => {
-    expect(brentSeries.points[0]).toEqual({ period: "2010-01", value: 76.4 });
-    expect(brentSeries.points.find((point) => point.period === "2020-04")?.value).toBe(23.3);
-    expect(latestObservation(brentSeries)).toEqual({ period: "2026-10", value: 125 });
-    expect(brentSeries.points.every((point) => Number.isFinite(point.value))).toBe(true);
-    expect(brentSeries.status).toBe("observed");
-  });
-
-  it("keeps the ECB 10-year yield pinned, including the October 2026 observation", () => {
-    expect(yieldSeries.points[0]?.period).toBe("2014-01");
-    expect(latestObservation(yieldSeries).period).toBe("2026-10");
-    expect(latestObservation(yieldSeries).value).toBeCloseTo(4.173827, 6);
-    expect(yieldSeries.points.every((point) => point.obsStatus === "A")).toBe(true);
-    expect(yieldSeries.seriesKey).toBe("FM.M.U2.EUR.4F.BB.U2_10Y.YLD");
-  });
-
-  it("offers ranges only when the snapshot actually covers them", () => {
-    expect(availableRanges(brentSeries)).toEqual(["5y", "10y", "all"]);
-    expect(sliceSeries(brentSeries, "5y")).toHaveLength(60);
-    expect(sliceSeries(brentSeries, "5y")[0]?.period).toBe("2021-11");
-    expect(sliceSeries(brentSeries, "all")).toHaveLength(brentSeries.points.length);
+describe("omitted market series", () => {
+  it("does not keep the Pink Sheet or ECB history in the current tree", () => {
+    expect(existsSync("data/snapshots/brent-monthly.json")).toBe(false);
+    expect(existsSync("data/snapshots/ea-10y-yield-monthly.json")).toBe(false);
+    const seed = readFileSync("supabase/seed.sql", "utf8");
+    expect(seed).not.toMatch(/insert into public\.observations/i);
+    expect(seed).not.toContain("4.173827");
+    expect(seed).not.toContain("125.0");
+    const pages = [
+      "app/page.tsx",
+      "app/topics/[topic]/page.tsx",
+      "app/models/bond-sensitivity/page.tsx",
+      "components/bond-model-panel.tsx",
+      "lib/content/articles.ts",
+      "lib/content/sources.ts",
+    ];
+    for (const file of pages) {
+      const source = readFileSync(file, "utf8");
+      expect(source, file).not.toContain("4.173827");
+      expect(source, file).not.toContain("Copy October 2026 snapshot");
+    }
   });
 });

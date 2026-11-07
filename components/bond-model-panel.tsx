@@ -75,7 +75,7 @@ function Field({
   );
 }
 
-export function BondModelPanel({ latest }: { latest: { period: string; value: number } }) {
+export function BondModelPanel() {
   const [fields, setFields] = useState<BondFormFields>(defaultBondForm);
   const snap = bondStore.useSnap();
   const saved = snap.value;
@@ -121,7 +121,7 @@ export function BondModelPanel({ latest }: { latest: { period: string; value: nu
         onSubmit={(event) => event.preventDefault()}
       >
         <p className="border border-[#e4e6ea] p-4 text-sm leading-relaxed">
-          The starting yield is a bond-market yield you type. It is not the central-bank policy rate. The October 2026 euro area 10-year snapshot is {latest.value.toFixed(4)}% and is not the default.
+          The starting yield is a bond-market yield you type. It is not the central-bank policy rate, and it is not copied from an official series. The default, 3 percent, is an illustration.
         </p>
         <div className="grid gap-4 sm:grid-cols-3">
           <Field id="horizon" label="Horizon (years)" hint="0.25 is one quarter. Carry is yield × years." error={errors.horizonYears} value={fields.horizonYears} onChange={(value) => update("horizonYears", value)} />
@@ -184,14 +184,6 @@ export function BondModelPanel({ latest }: { latest: { period: string; value: nu
             }
           >
             Textbook case
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            className="h-11 rounded-none px-4"
-            onClick={() => update("annualYieldPercent", String(latest.value))}
-          >
-            Copy October 2026 snapshot
           </Button>
         </div>
         <label className="flex min-h-11 items-start gap-2 text-sm">

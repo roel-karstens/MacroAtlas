@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container, PageIntro } from "@/components/editorial";
 import { sources } from "@/lib/content/sources";
+import { codeLicense } from "@/lib/content/rights";
 import { getSupabasePublicStatus } from "@/lib/supabase/status";
 
 export const metadata: Metadata = { title: "Sources" };
@@ -13,8 +14,9 @@ export default function SourcesPage() {
       <PageIntro
         kicker="Sources"
         title="Every number has a retrieval date."
-        deck="The running site reads checked-in snapshots. It does not call a market feed. Rights that were not settled are written as unsettled."
+        deck="Rights that were not settled are written as unsettled. The site does not call a market feed."
       />
+      <p className="mt-6 max-w-3xl text-sm leading-relaxed text-[#3f4651]">{codeLicense.note}</p>
       <p className="mt-6 max-w-3xl text-sm leading-relaxed text-[#3f4651]">
         Supabase project {database.projectRef} is the only approved database target. Status: {database.remote.replaceAll("-", " ")}. {database.reasons.join(" ")}
       </p>

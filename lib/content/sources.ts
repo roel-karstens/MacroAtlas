@@ -1,3 +1,5 @@
+import { ieaEnergyAndAi, wikipediaAdaptation } from "@/lib/content/rights";
+
 export type Source = {
   id: string;
   title: string;
@@ -16,9 +18,9 @@ export const sources: Source[] = [
     url: "https://www.worldbank.org/en/research/commodity-markets",
     retrieved: "2026-11-07",
     usedFor:
-      "Nominal monthly Crude oil, Brent (UK Brent 38° API, USD per barrel), January 2010 through October 2026. The workbook itself is marked updated on 3 November 2026. October 2026 in that file is 125.",
+      "Not included. The monthly Pink Sheet workbook is the official Brent file. This edition stores no Brent values.",
     rights:
-      "File used: the November 2026 monthly historical workbook linked from the Commodity Markets page (CMO-Historical-Data-Monthly.xlsx). This edition copies one column, not the workbook. World Bank open-data summary terms describe a CC BY 4.0 license for Data Catalog datasets unless metadata says otherwise. This Pink Sheet file is distributed from the research page, and that CC BY statement was not confirmed for it. Site terms reviewed the same day ask for attribution and describe non-catalog materials as informational, with commercial republication requiring consent. Macro Atlas does not resell the series. For reuse, use the official workbook.",
+      "The Brent column cites Bloomberg, EIG, OPEC and the World Bank. The license for that column is unconfirmed. General World Bank catalog terms are not treated as permission for the workbook. No monthly prices are copied, and no replacement series is invented. Use the official workbook.",
   },
   {
     id: "ecb-ea-10y",
@@ -27,9 +29,9 @@ export const sources: Source[] = [
     url: "https://data-api.ecb.europa.eu/service/data/FM/M.U2.EUR.4F.BB.U2_10Y.YLD?format=csvdata&startPeriod=2014-01",
     retrieved: "2026-11-07",
     usedFor:
-      "Series FM.M.U2.EUR.4F.BB.U2_10Y.YLD, monthly, percent per annum (unit PCPA). Metadata title: “Euro Area 10 Years Government Benchmark Bond - Yield”, euro area changing composition, provided by the ECB. January 2014 through October 2026, 154 observations, each with observation status A. October 2026 is 4.173827 percent. This is a bond yield, not the policy rate.",
+      "Not included. Series FM.M.U2.EUR.4F.BB.U2_10Y.YLD is a euro area government benchmark bond yield, not the policy rate. No observations are stored.",
     rights:
-      "Retrieved from the public ECB Data Portal API. The ECB disclaimer and copyright page fetched the same day did not return a short machine-readable reproduction clause in the static HTML. This edition attributes the series to the ECB, does not imply ECB endorsement, and does not claim a resolved license for commercial redistribution. Use the ECB Data Portal for the authoritative series.",
+      "The recorded source is ECB/FINANCIAL PROVIDERS, and the third-party exception is not closed. This edition does not republish the monthly history and does not invent a replacement. Use the ECB Data Portal for the authoritative series.",
   },
   {
     id: "natural-earth",
@@ -50,8 +52,7 @@ export const sources: Source[] = [
     retrieved: "2026-11-07",
     usedFor:
       "Coordinates and short place descriptions for Ras Tanura, Abqaiq, Kharg Island, Sirri Island, Habshan, Al Dhannah, Ras Laffan Industrial City, the Port of Fujairah, and Al Başrah Oil Terminal. Coordinates come from the MediaWiki coordinates property on those pages.",
-    rights:
-      "Wikipedia text is licensed CC BY-SA 4.0. This edition paraphrases short geographic descriptions and links each article. It does not copy article text in bulk. Coordinates are facts taken from those pages. Place pages are not used as sources for oil volumes or pipeline capacities.",
+    rights: `Wikipedia contributors, CC BY-SA 4.0 (${wikipediaAdaptation.licenseUrl}). ${wikipediaAdaptation.changeNote} Place pages are not used as sources for oil volumes or pipeline capacities.`,
   },
   {
     id: "wikipedia-hormuz",
@@ -61,8 +62,7 @@ export const sources: Source[] = [
     retrieved: "2026-11-07",
     usedFor:
       "Geography only: the strait joins the Persian Gulf and the Gulf of Oman, between Iran and the Musandam peninsula, about 167 km long, with a width described as narrowing to about 39 km. Reference coordinate 26.6° N, 56.5° E. Volume shares and current-events claims on that page are not used.",
-    rights:
-      "CC BY-SA 4.0 for Wikipedia text. Paraphrase plus link. Not used as a source of oil volumes.",
+    rights: `Wikipedia contributors, CC BY-SA 4.0 (${wikipediaAdaptation.licenseUrl}). ${wikipediaAdaptation.changeNote} Not used as a source of oil volumes.`,
   },
   {
     id: "wikipedia-adcop",
@@ -72,7 +72,7 @@ export const sources: Source[] = [
     retrieved: "2026-11-07",
     usedFor:
       "Existence and endpoints of ADCOP: Habshan onshore field to Fujairah on the Gulf of Oman. No capacity figure is taken from the page.",
-    rights: "CC BY-SA 4.0. Paraphrase plus link. Capacity numbers, if present elsewhere on the page, are not reproduced.",
+    rights: `Wikipedia contributors, CC BY-SA 4.0 (${wikipediaAdaptation.licenseUrl}). ${wikipediaAdaptation.changeNote} Capacity numbers, if present on the page, are not reproduced.`,
   },
   {
     id: "wikipedia-east-west",
@@ -82,7 +82,7 @@ export const sources: Source[] = [
     retrieved: "2026-11-07",
     usedFor:
       "Route description: about 1,201 km from the Abqaiq area to Yanbu on the Red Sea, built so some Saudi exports need not pass the strait. The length is Wikipedia’s figure. No capacity is stated in this edition, and the route is not drawn.",
-    rights: "CC BY-SA 4.0. Paraphrase plus link.",
+    rights: `Wikipedia contributors, CC BY-SA 4.0 (${wikipediaAdaptation.licenseUrl}). ${wikipediaAdaptation.changeNote}`,
   },
   {
     id: "eia-chokepoints-unquoted",
@@ -135,8 +135,7 @@ export const sources: Source[] = [
     retrieved: "2026-11-07",
     usedFor:
       "Global data-center electricity anchors stated on the public report page, retrieved 7 November 2026: around 415 TWh in 2024 (estimate); around 945 TWh in 2030 in the base case; around 700 and around 970 TWh in 2035 for headwinds and high efficiency. Lift-off is stated as exceeding 1,700 TWh and is plotted as that lower bound, labeled >1,700, not as a measured 1,700. No intervening years are plotted.",
-    rights:
-      "IEA publications have their own terms. These are the rounded figures stated in the public prose, cited with attribution. IEA charts are not reproduced, and this edition does not claim a license to redistribute the report.",
+    rights: `${ieaEnergyAndAi.attribution}. The report page states Licence CC BY 4.0 (${ieaEnergyAndAi.licenseUrl}). Additional IEA terms: ${ieaEnergyAndAi.termsUrl}. The chart uses stated anchors from the report prose, including the lift-off lower bound above 1,700 TWh. It does not reproduce an IEA graphic, logo, photograph, or standalone dataset. ${ieaEnergyAndAi.derivativeDisclaimer}`,
   },
   {
     id: "epoch-notable-models",
@@ -167,7 +166,7 @@ export const sources: Source[] = [
     usedFor:
       "Four published inference-price endpoints from the 2025 AI Index, chapter 1: MMLU 64.8 threshold, 20 USD per million tokens in November 2022 and 0.07 in October 2024 (Gemini-1.5-Flash-8B); GPQA above 50 percent, 15 USD in May 2024 and 0.12 in December 2024 (Phi 4). The price is described as a 3:1 weighted average of input and output token prices. No other points from the figure are digitized.",
     rights:
-      "A reuse license for the 2025 AI Index was not confirmed on retrieval. Only four stated endpoints are cited, in $ per million tokens, for two separate thresholds. The report figure is not reproduced. Epoch and Artificial Analysis databases named by Stanford are not copied.",
+      "Four stated endpoints are plotted separately, in $ per million tokens, for two thresholds. The report figure is not reproduced, and the Epoch and Artificial Analysis databases named by Stanford are not copied. Plotting those cited endpoints is not presented as a settled license. No reuse right beyond this citation is claimed.",
   },
   {
     id: "artificial-analysis-methodology",
@@ -199,7 +198,7 @@ export const sources: Source[] = [
     usedFor:
       "United States data-center electricity anchors from the executive summary of LBNL-2001637: about 60 TWh across 2014–2016 as one statement, about 76 TWh in 2018, 176 TWh in 2023, and a 2028 scenario range of roughly 325 to 580 TWh. No year between those statements is plotted.",
     rights:
-      "Public report text, retrieved from the LBNL publications site. The PDF notes a retained US government license in the contractor terms. These summary figures are cited with attribution. This edition does not redistribute the PDF and does not claim a Creative Commons license for it.",
+      "Public report text, retrieved from the LBNL publications site. The PDF notes a retained US government license in the contractor terms. These summary figures are cited with attribution. The chart and its anchor list are this edition’s plot of those cited figures. They are not a copy of an LBNL figure, table, or database. This edition does not redistribute the PDF and does not claim a Creative Commons license for it.",
   },
   {
     id: "barlow-ofl",

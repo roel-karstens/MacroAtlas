@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Container, TextLink } from "@/components/editorial";
 import { BondModelPanel } from "@/components/bond-model-panel";
-import { formatPeriod, latestObservation, yieldSeries } from "@/lib/data/series";
 
 export const metadata: Metadata = {
   title: "Bond sensitivity",
@@ -9,8 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default function BondModelPage() {
-  const latest = latestObservation(yieldSeries);
-
   return (
     <Container className="py-12">
       <p className="text-sm text-[#3f4651]">
@@ -21,10 +18,10 @@ export default function BondModelPage() {
         What if yields move?
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[#3f4651]">
-        Explore bond sensitivity. Make every assumption visible. The latest observed euro area 10-year yield in this snapshot is {latest.value.toFixed(4)}% for {formatPeriod(latest.period)}. The form starts at 3% so the example is not mistaken for that print.
+        Explore bond sensitivity. Make every assumption visible. The form starts at an illustrative 3 percent. It does not copy an official yield.
       </p>
       <div className="mt-10">
-        <BondModelPanel latest={{ period: latest.period, value: latest.value }} />
+        <BondModelPanel />
       </div>
       <section className="mt-12 max-w-3xl border-t border-[#e4e6ea] pt-8">
         <h2 className="font-display text-4xl font-semibold">03 · Methodology and limits</h2>

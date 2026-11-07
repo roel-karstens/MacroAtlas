@@ -15,9 +15,9 @@ npm run start
 
 The server listens on port **43123**. `npm run dev` is available for local editing. In some proxied environments the dev hot-reload socket fails and the page paints without attaching event handlers; `npm run start` after a build does not have that problem.
 
-`npm run typecheck` and `npm run lint` are available. `npm test` covers the model formulas, content links, snapshot pins, and the disabled newsletter.
+`npm run typecheck` and `npm run lint` are available. `npm test` covers the model formulas, content links, the absence of the Brent and ECB series, and the disabled newsletter.
 
-No environment variables are required. Checked-in snapshots are the data the pages render.
+No environment variables are required. The pages render checked-in text, cited anchors, and calculations you type.
 
 ## What is in the edition
 
@@ -30,10 +30,14 @@ No environment variables are required. Checked-in snapshots are the data the pag
 
 ## Data, retrieved 7 November 2026
 
-- Brent, World Bank Pink Sheet monthly workbook updated 3 November 2026. Excerpt January 2010–October 2026. October 2026 average in that file: 125 USD per barrel. Rights are not treated as a confirmed CC BY license for this workbook. See Sources.
-- Euro area 10-year government benchmark bond yield, ECB series `FM.M.U2.EUR.4F.BB.U2_10Y.YLD`, January 2014–October 2026. October 2026: 4.173827 percent. Not the policy rate. Commercial redistribution is not claimed.
-- Natural Earth 1:10m land, public domain.
-- Place descriptions paraphrased from Wikipedia, CC BY-SA, with links. Wikipedia is not used for oil volumes.
+- Brent from the World Bank Pink Sheet is not included. The workbook column cites Bloomberg, EIG, OPEC and the World Bank, and its license is unconfirmed.
+- The ECB series `FM.M.U2.EUR.4F.BB.U2_10Y.YLD` is not included. Its recorded source is ECB/FINANCIAL PROVIDERS, and the third-party exception is not closed.
+- IEA Energy and AI, published 10 April 2025, states Licence CC BY 4.0. The world electricity chart is a derived plot of stated anchors, including a lift-off bound above 1,700 TWh. See Sources for the attribution and derivative disclaimer.
+- LBNL-2001637 summary anchors are cited. The PDF is not included.
+- Four Stanford 2025 AI Index endpoints are plotted separately. The report figure is not included, and no license for that report is claimed.
+- Natural Earth 1:10m land, public domain under Natural Earth’s terms.
+- Place descriptions paraphrased from Wikipedia, CC BY-SA 4.0, with links and a change note. Wikipedia is not used for oil volumes.
+- Apache-2.0 in `LICENSE` covers original code. It does not cover the items above or the Barlow font. See `NOTICE`.
 
 ## Not connected
 

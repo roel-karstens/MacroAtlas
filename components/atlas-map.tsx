@@ -5,6 +5,7 @@ import Link from "next/link";
 import gulf from "@/data/geo/gulf-land.json";
 import { Button } from "@/components/ui/button";
 import { connections, connectionsFor, locations, type Location } from "@/lib/content/geography";
+import { wikipediaAdaptation } from "@/lib/content/rights";
 import { entityVisible, MAP_HEIGHT, MAP_WIDTH, project, type MapFilterKey } from "@/lib/map/project";
 
 const filtersDefault: Record<MapFilterKey, boolean> = {
@@ -279,6 +280,13 @@ export function AtlasMap() {
               <a className="underline underline-offset-4" href={selected.sourceUrl}>
                 Coordinate source
               </a>
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-[#3f4651]">
+              Wikipedia contributors.{" "}
+              <a className="underline underline-offset-4" href={wikipediaAdaptation.licenseUrl}>
+                {wikipediaAdaptation.licenseName}
+              </a>
+              . {wikipediaAdaptation.changeNote}
             </p>
             {connectionsFor(selected.id).length > 0 ? (
               <ul className="mt-4 space-y-3 text-sm">

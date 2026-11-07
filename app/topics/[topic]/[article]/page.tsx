@@ -10,6 +10,7 @@ import { topicById } from "@/lib/content/topics";
 import { imageById } from "@/lib/content/images";
 import { modelById } from "@/lib/content/models";
 import { sourceById } from "@/lib/content/sources";
+import { wikipediaAdaptation } from "@/lib/content/rights";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ topic: article.topicId, article: article.slug }));
@@ -104,7 +105,7 @@ export default async function ArticlePage({
             {article.id === "the-hormuz-question"
               ? "A disruption does not translate directly into a price forecast. The drawing below has no numbers. The model asks you to type a price."
               : article.id === "the-physical-digital-chain"
-                ? "This essay adds no series and no calculator. Power stays on the energy topic. A financing assumption stays on the bond sketch. Neither one is a chip count."
+                ? "The charts cite stated electricity anchors and four separate inference-price endpoints. The token-mix box is arithmetic you type. Oil stays on the energy topic. A financing assumption stays on the bond sketch. Neither one is a chip count."
                 : model?.summary}
           </p>
           {article.id === "the-hormuz-question" ? (
@@ -121,6 +122,15 @@ export default async function ArticlePage({
                 </InkLink>
               </div>
             </div>
+          ) : null}
+          {article.sourceIds.some((id) => id.startsWith("wikipedia-")) ? (
+            <p className="mt-6 text-sm leading-relaxed text-[#3f4651]">
+              Wikipedia contributors, retrieved 7 November 2026.{" "}
+              <a className="underline underline-offset-4" href={wikipediaAdaptation.licenseUrl}>
+                {wikipediaAdaptation.licenseName}
+              </a>
+              . {wikipediaAdaptation.changeNote}
+            </p>
           ) : null}
           <h3 className="mt-6 text-sm font-medium">Sources in this essay</h3>
           <ul className="mt-2 space-y-2 text-sm">

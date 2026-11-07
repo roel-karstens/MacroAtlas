@@ -18,7 +18,7 @@ export default function ModelsPage() {
       />
       <p className="mt-6 max-w-3xl text-sm leading-relaxed text-[#3f4651]">
         Database status: {database.remote.replaceAll("-", " ")}. Approved project ref {database.projectRef}.{" "}
-        {database.reasons.join(" ")} The pages below use the checked-in formulas and snapshots.
+        {database.reasons.join(" ")} The pages below use the checked-in formulas. They do not read a Brent or euro area yield series.
       </p>
       <div className="mt-10 grid gap-6 md:grid-cols-2">
         {models.map((model) => (

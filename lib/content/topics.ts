@@ -51,7 +51,7 @@ export const topics: Topic[] = [
         kicker: "Track",
         heading: "One observed benchmark",
         paragraphs: [
-          "The series below is the World Bank Pink Sheet monthly average for Brent, nominal dollars per barrel, January 2010 through October 2026. It is context for the size of past moves. It is not a Hormuz volume and not an input to the model unless you choose to type a number yourself.",
+          "The Pink Sheet Brent column is not plotted. The workbook cites Bloomberg, EIG, OPEC and the World Bank, and the license for that column is unconfirmed. No replacement price series is shown. The oil model does not read a price from a chart. You type the change.",
         ],
       },
       {
@@ -111,7 +111,7 @@ export const topics: Topic[] = [
         kicker: "Track",
         heading: "The benchmark yield we actually retrieved",
         paragraphs: [
-          "January 2014 through October 2026. The latest month in the snapshot is October 2026. The line is solid because it is observed. It is not a forecast, and the axis label says the unit.",
+          "The ECB euro area 10-year benchmark yield is not plotted. The series source is ECB/FINANCIAL PROVIDERS, and the third-party exception is not closed. No replacement yield is shown. The calculator uses an illustrative starting yield of 3 percent, not a market print.",
         ],
       },
       {
