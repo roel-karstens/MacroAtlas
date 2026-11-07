@@ -134,7 +134,7 @@ export const sources: Source[] = [
     url: "https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai",
     retrieved: "2026-11-07",
     usedFor:
-      "Global data-center electricity anchors stated on the public report page, retrieved 7 November 2026: around 415 TWh in 2024 (estimate); around 945 TWh in 2030 in the base case; around 700, around 970, and exceeding 1,700 TWh in 2035 for headwinds, high efficiency, and lift-off. No intervening years are plotted.",
+      "Global data-center electricity anchors stated on the public report page, retrieved 7 November 2026: around 415 TWh in 2024 (estimate); around 945 TWh in 2030 in the base case; around 700 and around 970 TWh in 2035 for headwinds and high efficiency. Lift-off is stated as exceeding 1,700 TWh and is plotted as that lower bound, labeled >1,700, not as a measured 1,700. No intervening years are plotted.",
     rights:
       "IEA publications have their own terms. These are the rounded figures stated in the public prose, cited with attribution. IEA charts are not reproduced, and this edition does not claim a license to redistribute the report.",
   },
@@ -166,7 +166,8 @@ export const sources: Source[] = [
     retrieved: "2026-11-07",
     usedFor:
       "Four published inference-price endpoints from the 2025 AI Index, chapter 1: MMLU 64.8 threshold, 20 USD per million tokens in November 2022 and 0.07 in October 2024 (Gemini-1.5-Flash-8B); GPQA above 50 percent, 15 USD in May 2024 and 0.12 in December 2024 (Phi 4). The price is described as a 3:1 weighted average of input and output token prices. No other points from the figure are digitized.",
-    rights: "Stanford’s report terms apply. This edition does not reproduce the report.",
+    rights:
+      "A reuse license for the 2025 AI Index was not confirmed on retrieval. Only four stated endpoints are cited, in $ per million tokens, for two separate thresholds. The report figure is not reproduced. Epoch and Artificial Analysis databases named by Stanford are not copied.",
   },
   {
     id: "artificial-analysis-methodology",
@@ -216,7 +217,7 @@ export const sources: Source[] = [
     publisher: "Macro Atlas",
     url: "/image-credits",
     retrieved: "2026-11-07",
-    usedFor: "Three labeled illustrations: harbor, coastal tanker, and open-water tanker. Not photographs and not records of a place or voyage.",
+    usedFor: "Labeled illustrations: harbor, coastal tanker, open-water tanker, and a conceptual server aisle. Not photographs and not records of a place, voyage, or facility.",
     rights:
       "Original generated images made for this edition. No stock license and no photographer are claimed. Do not treat them as news photography.",
   },

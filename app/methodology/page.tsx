@@ -30,7 +30,7 @@ export default function MethodologyPage() {
         <section>
           <h2 className="text-2xl font-medium">Digital infrastructure</h2>
           <p className="mt-3">
-            The chain drawing is a schematic. Dashed links are dependencies, not measured electricity or traffic. Data-center electricity uses only years stated by the IEA report page and by the LBNL-2001637 executive summary. Inference prices use four endpoints stated in the Stanford 2025 AI Index for two separate thresholds. The token-mix box is arithmetic you type, not a market. No year is filled in between reported marks.
+            The chain drawing is a schematic. Dashed links are dependencies, not measured electricity or traffic. Data-center electricity uses only years stated by the IEA report page and by the LBNL-2001637 executive summary. The IEA lift-off mark is a lower bound, labeled &gt;1,700 TWh, because the report says exceeding 1,700. Inference prices use four endpoints stated in the Stanford 2025 AI Index. A dashed connector there compares the two reported endpoints of one threshold. It is not a monthly price path. MMLU at 64.8 and GPQA above 50% stay separate tests. The token-mix box is arithmetic you type, not a market. No year is filled in between reported marks.
           </p>
         </section>
         <section>

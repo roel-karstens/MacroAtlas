@@ -130,18 +130,34 @@ function AnchorChart({
           const y = yOf(point.valueTwh);
           return (
             <g key={`${point.id}-mark`}>
-              <rect x={x - 5} y={y - 5} width="10" height="10" fill="none" stroke="#141414" strokeWidth="1.5" />
-              <text x={x} y={y - 12} textAnchor="middle" fontSize="12" fill="#141414">
-                {formatNumber(point.valueTwh, 0)}
-              </text>
+              {point.precision === "exceeding" ? (
+                <>
+                  <line x1={x - 9} x2={x + 9} y1={y} y2={y} stroke="#D55E00" strokeWidth="1.75" />
+                  <line x1={x} x2={x} y1={y} y2={y - 12} stroke="#D55E00" strokeWidth="1.5" />
+                  <polyline points={`${x - 4},${y - 8} ${x},${y - 14} ${x + 4},${y - 8}`} fill="none" stroke="#D55E00" strokeWidth="1.5" />
+                  <text x={x} y={y - 20} textAnchor="middle" fontSize="12" fill="#141414">
+                    {`>${formatNumber(point.valueTwh, 0)}`}
+                  </text>
+                </>
+              ) : (
+                <>
+                  <rect x={x - 5} y={y - 5} width="10" height="10" fill="none" stroke="#141414" strokeWidth="1.5" />
+                  <text x={x} y={y - 12} textAnchor="middle" fontSize="12" fill="#141414">
+                    {formatNumber(point.valueTwh, 0)}
+                  </text>
+                </>
+              )}
             </g>
           );
         })}
       </svg>
       <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm">
         <li>Blue circle: estimate</li>
-        <li>Open square: scenario anchor</li>
-        <li>Dashed line: join between those two marks only</li>
+        <li>Open square: stated scenario level</li>
+        {shown.some((point) => point.precision === "exceeding") ? (
+          <li>Up arrow: lower bound. Lift-off is stated as exceeding 1,700 TWh, so the mark sits on that bound and is labeled &gt;1,700.</li>
+        ) : null}
+        <li>Dashed line: join from the last estimate to a scenario mark only</li>
       </ul>
       <figcaption className="mt-2 text-sm leading-relaxed text-[#3f4651]">{caption}</figcaption>
       <div id={tableId} hidden={!showTable} className="mt-4 overflow-auto border border-[#e4e6ea]">
@@ -159,7 +175,7 @@ function AnchorChart({
             {shown.map((point) => (
               <tr key={point.id} className="border-b border-[#e4e6ea]">
                 <th scope="row" className="px-3 py-2 font-normal">{point.yearLabel}</th>
-                <td className="px-3 py-2 tabular-nums">{point.valueTwh}</td>
+                <td className="px-3 py-2 tabular-nums">{point.precision === "exceeding" ? `>${formatNumber(point.valueTwh, 0)}` : point.valueTwh}</td>
                 <td className="px-3 py-2">{point.precision}</td>
                 <td className="px-3 py-2">{point.status}{point.scenario ? ` · ${point.scenario}` : ""}</td>
               </tr>
@@ -191,7 +207,7 @@ export function ElectricityCharts() {
         points={points}
         caption={
           place === "world"
-            ? "IEA Energy and AI, public report page, retrieved 7 November 2026. 2024 is an estimate of about 415 TWh. 2030 and 2035 marks are scenario anchors. The dashed joins are not annual history. Lift-off is the report’s “exceeding 1,700 TWh” mark, drawn at 1,700. No band."
+            ? "IEA Energy and AI, public report page, retrieved 7 November 2026. 2024 is an estimate of about 415 TWh. 2030 and the 700 and 970 marks in 2035 are stated scenario levels. Dashed joins are not annual history. Lift-off is stated as exceeding 1,700 TWh: the arrow marks that lower bound and the label is >1,700, not a measured 1,700. No band. A redistribution license for the IEA report was not identified."
             : "LBNL-2001637 executive summary, 2024 United States Data Center Energy Usage Report, retrieved 7 November 2026. 2014–2016 is one statement, about 60 TWh, not three annual readings. 2018 is about 76 TWh. 2023 is 176 TWh. 2028 is a scenario range, roughly 325 to 580 TWh. Years between the marks are not in this chart."
         }
       />
@@ -215,7 +231,7 @@ export function InferenceCostChart() {
   const height = 340;
   const left = 56;
   const right = 118;
-  const top = 24;
+  const top = 36;
   const bottom = 40;
   const log = (value: number) => Math.log10(value);
   const min = Math.min(...points.map((point) => log(point.usdPerMillionTokens)));
@@ -228,13 +244,13 @@ export function InferenceCostChart() {
       <div className="mb-3 flex items-end justify-between gap-3">
         <div>
           <h3 className="text-base font-medium">Inference price at a fixed threshold</h3>
-          <p className="text-sm text-[#3f4651]">USD per million tokens, log scale. Two benchmarks, not one score.</p>
+          <p className="text-sm text-[#3f4651]">$ per million tokens, log scale. MMLU at the 64.8 threshold and GPQA above 50% are separate tests, not one intelligence scale.</p>
         </div>
         <Button type="button" variant="outline" className="h-11 rounded-none px-3" aria-expanded={showTable} aria-controls={tableId} onClick={() => setShowTable((value) => !value)}>
           {showTable ? "Hide table" : "Show table"}
         </Button>
       </div>
-      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Inference price endpoints published by the Stanford 2025 AI Index for two fixed thresholds." className="block w-full" style={{ aspectRatio: `${width} / ${height}` }}>
+      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Comparison of reported inference-price endpoints in dollars per million tokens. MMLU at the 64.8 threshold and GPQA above 50 percent are separate tests, not one intelligence scale. Dashed connectors compare the two reported endpoints of each threshold and are not an observed monthly path." className="block w-full" style={{ aspectRatio: `${width} / ${height}` }}>
         {[0.1, 1, 10, 20].filter((tick) => tick >= 0.07 && tick <= 20).map((tick) => (
           <g key={tick}>
             <line x1={left} x2={width - right} y1={yOf(tick)} y2={yOf(tick)} stroke="#e4e6ea" />
@@ -255,6 +271,7 @@ export function InferenceCostChart() {
               y2={yOf(pair[1].usdPerMillionTokens)}
               stroke={spec.color}
               strokeWidth="2"
+              strokeDasharray="6 4"
             />
           );
         })}
@@ -269,11 +286,11 @@ export function InferenceCostChart() {
               )}
               <text
                 x={xOf(point.t) + 10}
-                y={yOf(point.usdPerMillionTokens) + ((point.usdPerMillionTokens >= 1 ? point.series === "mmlu" : point.series === "gpqa") ? -8 : 16)}
+                y={yOf(point.usdPerMillionTokens) + ((point.usdPerMillionTokens >= 1 ? point.series === "mmlu" : point.series === "gpqa") ? (point.usdPerMillionTokens >= 10 ? -16 : -8) : 16)}
                 fontSize="12"
                 fill="#141414"
               >
-                {point.period} · {point.usdPerMillionTokens}
+                {point.period} · ${point.usdPerMillionTokens}
               </text>
             </g>
           );
@@ -282,11 +299,12 @@ export function InferenceCostChart() {
         <text x={width - right - 40} y={height - 12} fontSize="11" fill="#3f4651">Dec 2024</text>
       </svg>
       <ul className="mt-2 flex flex-wrap gap-x-5 text-sm">
-        <li>Blue circle: MMLU 64.8 threshold</li>
-        <li>Vermilion square: GPQA above 50%</li>
+        <li>Blue circle: $ per million tokens at the MMLU 64.8 threshold</li>
+        <li>Vermilion square: $ per million tokens to exceed 50% on GPQA</li>
+        <li>Dashed connector: comparison of the two reported endpoints for that one threshold. Not an observed monthly price path.</li>
       </ul>
       <figcaption className="mt-2 text-sm leading-relaxed text-[#3f4651]">
-        Stanford HAI, 2025 AI Index, chapter 1, retrieved 7 November 2026. Four published endpoints only. Each line joins the two stated endpoints of one threshold. It is not a monthly path. The price is the Index’s 3:1 weighted average of input and output token prices, not a paid invoice. The underlying price rows are credited by Stanford to Epoch and Artificial Analysis; those databases are not copied here. The vertical axis is logarithmic. No forecast and no general-intelligence percent.
+        Stanford HAI, 2025 AI Index, chapter 1, retrieved 7 November 2026. Four published endpoints only. The dashed connectors compare those endpoints. They are not a monthly series, and the two thresholds are not one intelligence scale. The price is the Index’s 3:1 weighted average of input and output token prices, in $ per million tokens, not a paid invoice. A reuse license for the report was not confirmed, so the figure is not reproduced. Epoch and Artificial Analysis databases named by Stanford are not copied. The vertical axis is logarithmic. No forecast.
       </figcaption>
       <div id={tableId} hidden={!showTable} className="mt-4 overflow-auto border border-[#e4e6ea]">
         <table className="w-full text-left text-sm">
