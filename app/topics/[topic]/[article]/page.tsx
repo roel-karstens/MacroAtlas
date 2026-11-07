@@ -3,6 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChainMap } from "@/components/chain-map";
 import { ElectricityCharts, InferenceCostChart, TokenMixCalculator } from "@/components/digital-charts";
+import { CropAtlas } from "@/components/crop-atlas";
+import { EurostatFoodCharts, FaoPriceChart } from "@/components/food-charts";
+import { FoodChain } from "@/components/food-chain";
+import { FoodComparison } from "@/components/food-comparison";
+import { FoodLevelSketch } from "@/components/food-level-sketch";
 import { Container, Figure, InkLink, TextLink } from "@/components/editorial";
 import { ScenarioFan } from "@/components/scenario-fan";
 import { articleBySlug, articles } from "@/lib/content/articles";
@@ -82,6 +87,22 @@ export default async function ArticlePage({
                       <InferenceCostChart />
                       <TokenMixCalculator />
                     </div>
+                  ) : null}
+                  {article.id === "why-the-grocery-bill-lags" && section.id === "two-prices" ? (
+                    <>
+                      <FoodComparison />
+                      <FaoPriceChart />
+                      <EurostatFoodCharts />
+                    </>
+                  ) : null}
+                  {article.id === "why-the-grocery-bill-lags" && section.id === "level" ? (
+                    <FoodLevelSketch />
+                  ) : null}
+                  {article.id === "why-the-grocery-bill-lags" && section.id === "path" ? (
+                    <>
+                      <FoodChain />
+                      <CropAtlas />
+                    </>
                   ) : null}
                   {section.links ? (
                     <ul className="mt-4 space-y-2 text-sm">

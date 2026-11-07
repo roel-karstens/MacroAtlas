@@ -40,7 +40,7 @@ export default function HomePage() {
       </Container>
 
       <div className="border-y border-[#e4e6ea]">
-        <Container className="grid md:grid-cols-3">
+        <Container className="grid md:grid-cols-2 xl:grid-cols-4">
           <Link href="/topics/energy" className="flex min-h-16 items-center border-[#e4e6ea] py-4 md:border-r md:pr-8">
             <span className="font-medium">Energy</span>
             <span className="ml-3 text-sm text-[#3f4651]">Oil, the Gulf, and a margin</span>
@@ -49,9 +49,13 @@ export default function HomePage() {
             <span className="font-medium">Rates & inflation</span>
             <span className="ml-3 text-sm text-[#3f4651]">One bond yield, made explicit</span>
           </Link>
-          <Link href="/topics/digital-infrastructure" className="flex min-h-16 items-center py-4 md:pl-8">
+          <Link href="/topics/digital-infrastructure" className="flex min-h-16 items-center border-[#e4e6ea] py-4 md:border-r md:px-8">
             <span className="font-medium">Digital infrastructure</span>
             <span className="ml-3 text-sm text-[#3f4651]">Definitions, no live series</span>
+          </Link>
+          <Link href="/topics/food-agriculture" className="flex min-h-16 items-center py-4 md:pl-8">
+            <span className="font-medium">Food & agriculture</span>
+            <span className="ml-3 text-sm text-[#3f4651]">Cargo price, then the bill</span>
           </Link>
         </Container>
       </div>
@@ -59,7 +63,7 @@ export default function HomePage() {
       <Container className="py-14">
         <h2 className="font-display text-4xl font-semibold">Latest research</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#3f4651]">
-          Materials, food, and currencies are not published in this edition, so they are not listed here.
+          Materials and currencies are not published. Food is. The essay does not plot an index.
         </p>
         <div className="mt-8 grid gap-8 md:grid-cols-2">
           {cards.map((article) => {
@@ -68,6 +72,10 @@ export default function HomePage() {
               <article key={article.id} className="flex flex-col border border-[#e4e6ea]">
                 {image ? (
                   <Figure image={image} />
+                ) : article.topicId === "food-agriculture" ? (
+                  <div className="border-b border-[#e4e6ea] p-4 text-sm leading-relaxed text-[#3f4651]">
+                    A world commodity index and the euro-area shop price are different objects, drawn on separate axes.
+                  </div>
                 ) : article.topicId === "rates-inflation" ? (
                   <div className="border-b border-[#e4e6ea] p-4 text-sm leading-relaxed text-[#3f4651]">
                     The euro area 10-year yield series is not included. The recorded source is ECB/FINANCIAL PROVIDERS, and the third-party exception is not closed. No replacement yield is shown.
@@ -79,7 +87,7 @@ export default function HomePage() {
                 )}
                 <div className="flex flex-1 flex-col p-4">
                   <p className="text-xs text-[#3f4651]">
-                    {image ? image.label : "Series not included"}
+                    {image ? image.label : article.topicId === "food-agriculture" ? "Separate price objects" : "Series not included"}
                   </p>
                   <h3 className="mt-2 text-xl font-medium">
                     <Link href={`/topics/${article.topicId}/${article.slug}`} className="underline-offset-4 hover:underline">

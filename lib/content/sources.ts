@@ -211,6 +211,50 @@ export const sources: Source[] = [
       "SIL Open Font License 1.1. Copyright 2017 The Barlow Project Authors. The license text shipped with the family is in licenses/barlow-OFL.txt. The fonts are not sold by themselves.",
   },
   {
+    id: "faostat-qcl",
+    title: "FAOSTAT crops and livestock production",
+    publisher: "Food and Agriculture Organization of the United Nations",
+    url: "https://www.fao.org/faostat/en/#data/QCL",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Country production in tonnes for wheat, maize, sunflower seed, and crude sunflower oil, years 2021, 2023, and 2024 where the bulk file has them. Crude sunflower oil production stops at 2023. FAOSTAT is named in Annex 1 of the statistical-database terms. This is not the Food Price Index.",
+    rights:
+      "FAO. 2025. FAOSTAT: Crops and livestock products. Accessed on 7 November 2026. https://www.fao.org/faostat/en/#data/QCL Licence: CC BY 4.0. Database terms also say not to imply FAO endorsement, not to misrepresent the figures, and not to use the dataset to promote a commercial product. Macro Atlas is a non-commercial research edition. No endorsement is implied.",
+  },
+  {
+    id: "faostat-tcl",
+    title: "FAOSTAT trade in crops and livestock products",
+    publisher: "Food and Agriculture Organization of the United Nations",
+    url: "https://www.fao.org/faostat/en/#data/TCL",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Export quantity in tonnes and export value in thousand US dollars, for the same four products, 2021, 2023, and 2024. Quantity and value are separate. Reporter-based figures can carry estimate or external flags.",
+    rights:
+      "FAO. 2026. FAOSTAT: Trade — Crops and livestock products. Accessed on 7 November 2026. https://www.fao.org/faostat/en/#data/TCL Licence: CC BY 4.0. Same database terms as the production domain. This licence does not cover the Food Price Index.",
+  },
+  {
+    id: "fao-food-price-index",
+    title: "FAO Food Price Index",
+    publisher: "Food and Agriculture Organization of the United Nations",
+    url: "https://www.fao.org/worldfoodsituation/foodpricesindex/en/",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Nominal monthly index, 2014–2016 = 100, CSV retrieved 7 November 2026. The chart uses those values unchanged, January 2020–October 2026 by default. Five groups: cereals, vegetable oils, dairy, meat, sugar. Newest meat months mix projected and observed prices. Not a consumer price.",
+    rights:
+      "Checked 7 November 2026 against https://www.fao.org/contact-us/terms/en/ and https://www.fao.org/contact-us/terms/db-terms-of-use/en/. The Food Price Index page states no licence. Database terms describe CC BY 4.0 for datasets in corporate statistical databases unless a page says otherwise. Annex 1 lists examples, including FPMA, FAOSTAT and AMIS, and does not name this index file. This edition does not claim CC BY 4.0 for it. Website terms allow other content to be copied for non-commercial products if FAO is acknowledged as source and copyright holder and endorsement is not implied, and they say adaptation rights should be requested. The chart is a preview of the unmodified nominal values. © FAO. Whether that replot is an adaptation is not settled. No endorsement.",
+  },
+  {
+    id: "eurostat-hicp-food",
+    title: "Eurostat harmonised index of consumer prices, food",
+    publisher: "Eurostat",
+    url: "https://doi.org/10.2908/PRC_HICP_MINR",
+    retrieved: "2026-11-07",
+    usedFor:
+      "Euro area (changing composition, EA21 from 2026), food CP011, index 2015=100 and Eurostat’s annual rate of change. Dataset prc_hicp_minr, updated 4 November 2026. Last food month in the extract: September 2026. All-items annual rate is shown only as a separate basket. Not EU-27 and not a national receipt.",
+    rights:
+      "Eurostat’s copyright notice (https://ec.europa.eu/eurostat/help/copyright-notice), read 7 November 2026, authorises reuse of its statistical data if the source is acknowledged. Modifications must be stated, with a disclaimer that Eurostat is not responsible. The index points and annual rates drawn are Eurostat’s figures. The percent rise between January 2020 and September 2026 is a Macro Atlas ratio of two of those points. Eurostat is not responsible for that ratio. Source: Eurostat, prc_hicp_minr, https://doi.org/10.2908/PRC_HICP_MINR, accessed 7 November 2026.",
+  },
+  {
     id: "generated-illustrations",
     title: "Generated illustrations for this edition",
     publisher: "Macro Atlas",

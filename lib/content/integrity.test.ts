@@ -32,6 +32,7 @@ describe("content graph", () => {
       "from-barrel-to-margin",
       "when-yields-move",
       "the-physical-digital-chain",
+      "why-the-grocery-bill-lags",
     ]);
     for (const article of articles) {
       expect(countWords(article)).toBeGreaterThan(700);
@@ -89,6 +90,17 @@ describe("content graph", () => {
     expect(hero?.credit.toLowerCase()).not.toMatch(/getty|shutterstock/);
     expect(JSON.stringify(dossier)).not.toMatch(/Cloudflare Radar API/);
     expect(dossier?.sourceIds).toContain("cloudflare-radar-not-used");
+    const food = topicById("food-agriculture");
+    expect(food?.sections.map((section) => section.id)).toEqual(["observed", "mechanisms", "implications"]);
+    const grocery = articles.find((article) => article.slug === "why-the-grocery-bill-lags");
+    expect(grocery?.topicId).toBe("food-agriculture");
+    expect(grocery?.sourceIds).toEqual([
+      "fao-food-price-index",
+      "eurostat-hicp-food",
+      "faostat-qcl",
+      "faostat-tcl",
+    ]);
+    expect(JSON.stringify(grocery)).not.toMatch(/CC BY 4\.0 for the file|Licence: CC-BY-4\.0/);
     expect(sourceById("asml-quarterly")?.url).toBe("https://investor.asml.com/quarterly-results");
     expect(sourceById("tsmc-quarterly-2026-q3")?.url).toBe(
       "https://investor.tsmc.com/english/quarterly-results/2026/q3",

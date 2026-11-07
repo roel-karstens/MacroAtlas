@@ -11,7 +11,7 @@ export type ArticleSection = {
 export type Article = {
   id: string;
   slug: string;
-  topicId: "energy" | "rates-inflation" | "digital-infrastructure";
+  topicId: "energy" | "rates-inflation" | "digital-infrastructure" | "food-agriculture";
   title: string;
   deck: string;
   published: string;
@@ -304,6 +304,90 @@ export const articles: Article[] = [
           { href: "/sources#artificial-analysis-methodology", label: "Artificial Analysis methodology" },
           { href: "/models/bond-sensitivity", label: "Bond sketch for a financing assumption" },
           { href: "/topics/rates-inflation", label: "Rates and inflation" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "why-the-grocery-bill-lags",
+    slug: "why-the-grocery-bill-lags",
+    topicId: "food-agriculture",
+    title: "Why the grocery bill lags",
+    deck: "A cheaper cargo is not yet a cheaper loaf.",
+    published: "2026-11-07",
+    updated: "2026-11-07",
+    locationIds: [],
+    sourceIds: ["fao-food-price-index", "eurostat-hicp-food", "faostat-qcl", "faostat-tcl"],
+    sections: [
+      {
+        id: "question",
+        kicker: "01",
+        heading: "The question",
+        paragraphs: [
+          "Why does food become more expensive, and why does the bill at the shop not fall in the week a world price does?",
+          "A world price is what exporters are paid for a commodity. A grocery bill is what a household pays after that commodity has been grown, moved, milled or packed, and sold. They can move together. They are not the same price. A fall in the first is not a fall in the second. A smaller rise is not a fall at all.",
+          "The charts below keep them apart. The world index stays on its own axis, in its own units. The shop prices are a euro-area consumer index. Nothing here turns one line into the cause of the other.",
+        ],
+      },
+      {
+        id: "two-prices",
+        kicker: "02",
+        heading: "Two prices, not one chart",
+        paragraphs: [
+          "The FAO Food Price Index is a nominal index of international food-commodity prices. It averages five groups — cereals, vegetable oils, dairy, meat, and sugar — using their average export shares in 2014–2016. The base on the file is 2014–2016 = 100. In the file retrieved 7 November 2026, the index is 102.5 in January 2020 and 160.2 in March 2022, the high point from 2020 through October 2026. October 2026, the last month in that file, is 133.9. The groups do not move as one: from 2020, vegetable oils peak in March 2022, cereals in May, dairy in June, sugar only in September 2023, and meat as late as May 2026. FAO says the newest meat months mix projected and observed prices, so meat and the headline can still be revised. The values drawn are the file’s own numbers. They are not rescaled.",
+          "The shop side is Eurostat’s food index, code CP011, not the wider “food and non-alcoholic beverages” aggregate. The geography is the euro area’s changing composition: EA21 from 2026, not a fixed list of countries and not the EU-27. The index is 2015 = 100. It is not a Dutch receipt. In this extract the level is 107.2 in January 2020 and 143.22 in September 2026, the last food month. Dividing those two Eurostat points gives a rise of about 33.6 percent. That division is ours. Eurostat is not responsible for it. There is no October 2026 food observation in the file. The dataset was updated on 4 November 2026.",
+        ],
+        links: [
+          { href: "/sources#fao-food-price-index", label: "FAO Food Price Index, source note" },
+          { href: "/sources#eurostat-hicp-food", label: "Eurostat food prices, source note" },
+        ],
+      },
+      {
+        id: "level",
+        kicker: "03",
+        heading: "Slower inflation, higher bill",
+        paragraphs: [
+          "Inflation is a rate of change. The price level is where the index stands. Eurostat’s own annual rate for euro-area food peaks at 17.9 percent in March 2023. All-items inflation in the same euro area peaks earlier, at 10.6 percent in October 2022. The world commodity index peaked in March 2022. Three peaks, three objects. The dates can be put in a sentence. They are not an estimate of how many months a cargo price takes to reach a shelf.",
+          "By September 2026 the food inflation rate is 1.1 percent. That is a slow rise, not a fall. The level is still 143.22, above January 2020. Since January 2019, one food month in this extract has a negative rate: April 2021, minus 0.1 percent. The sketch underneath is the same idea with numbers you can edit. It is not the Eurostat index. A bill falls only when the change itself is negative.",
+        ],
+        links: [{ href: "/topics/rates-inflation/when-yields-move", label: "A yield is not a policy rate, either" }],
+      },
+      {
+        id: "path",
+        kicker: "04",
+        heading: "Five questions for any shock",
+        paragraphs: [
+          "The same path reads a drought, an export ban, a fuel or fertilizer shock, a closed route, or a war. First, where production is concentrated, and in which year. Second, how much of that crop can be exported, which is not the harvest. Third, which route carries it and who imports along that route. Fourth, what stocks, substitutes, or the next planting could absorb. Fifth, what still sits in mills, wages, packaging, and old contracts before the receipt moves. Select a step. The buttons for shocks only open the question they belong to. They are not arrows of grain.",
+          "The map under this section answers only the first two questions, for four FAOSTAT products: wheat, maize, sunflower seed, and crude sunflower oil. Production is not exports. Seed is not oil. Tonnes are not dollars. Crude oil production in the file has 2021 and 2023, not 2024, so that year is not offered. A blank cell stays blank. The Gulf atlas remains the oil corridor: same kind of route question, no grain ships and no AIS.",
+          "The worked example is the Black Sea grain corridor, inside this frame and not the whole story. The UN pages date the Joint Coordination Centre to 27 July 2022 and say the Initiative was not renewed after 17 July 2023. A caption on the same site says a signing ceremony on 22 July 2022, and another sentence says 27 July, so this page does not choose a signing day. The pages name Odesa, Chornomorsk and Yuzhny/Pivdennyi, and say that while the corridor ran, over 32 million metric tons of grain and foodstuffs went to 45 countries. That UN total is not a FAOSTAT share. A shift in who exports between 2021 and 2024 does not prove replacement, and it does not make the war the cause of the 17.9 percent. Shipping in 2026 is not described. The next drought or ban is read with the same five questions.",
+        ],
+        links: [
+          { href: "/topics/energy", label: "Energy, the oil chain" },
+          { href: "/atlas", label: "Atlas" },
+          { href: "/models/oil-exposure", label: "Oil exposure" },
+        ],
+      },
+      {
+        id: "lag",
+        kicker: "05",
+        heading: "Why a fall can be late",
+        paragraphs: [
+          "Someone along the chain may already have bought. A retailer may be inside a contract. Inventory bought at the old price is still on the shelf. Financing that inventory is a yield question: the bond sketch shows how a yield you type changes a holding. It is not a food forecast and not the policy rate.",
+          "The lag is not one number. This page refuses a pass-through coefficient, because none has been estimated here. If fuel, wages, or packaging rise while the commodity falls, the receipt can still go up. The commodity index will not show that. It does not contain the wage.",
+        ],
+        links: [{ href: "/models/bond-sensitivity", label: "Bond sensitivity" }],
+      },
+      {
+        id: "limits",
+        kicker: "06",
+        heading: "What you can say afterward",
+        paragraphs: [
+          "You can say that the world price and the shop price are different objects, in different baskets and different places. You can say that a smaller positive change leaves the price level higher. You can name the steps where a move can stall: harvest, energy, stocks, trade, transport, processing, and contracts. You can point at the oil model and the bond model as tools for a cost you type, not as the cause of a loaf.",
+          "You cannot say how many cents of a wheat move reached a particular shop, or that food will be cheaper next season. That would be a coefficient or a forecast. Neither is estimated here. You also cannot treat the FAO file as CC BY 4.0. The index page states no licence, and this file is not one of the examples in the database-terms annex. The chart is a preview of the unmodified nominal values, with © FAO and no endorsement. Whether a replot counts as an adaptation, which FAO’s website terms say needs permission, is not settled.",
+        ],
+        links: [
+          { href: "/methodology", label: "Methodology" },
+          { href: "/sources#fao-food-price-index", label: "FAO rights, as checked" },
         ],
       },
     ],
