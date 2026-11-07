@@ -241,7 +241,7 @@ export const sources: Source[] = [
     usedFor:
       "Context dates only: the Joint Coordination Centre on 27 July 2022, and the Initiative not renewed after 17 July 2023. The pages report over 32 million metric tons to 45 countries from Odesa, Chornomorsk and Yuzhny/Pivdennyi while the corridor ran. Not a price, not a FAOSTAT share, and not a description of shipping in 2026.",
     rights:
-      "United Nations public pages, linked and paraphrased on 7 November 2026. A caption also says 22 July 2022, so this edition does not choose a signing day. No peak-month tonnage is copied, because this edition has not settled a single UN figure for it.",
+      "United Nations public pages, linked on 7 November 2026. https://www.un.org/en/black-sea-grain-initiative",
   },
   {
     id: "fao-food-price-index",

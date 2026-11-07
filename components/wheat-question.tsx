@@ -138,8 +138,8 @@ export function WheatHarvest() {
 export function WheatTimeline() {
   const events = [
     ["24 Feb 2022", "Full-scale invasion of Ukraine. Context for the maps, not a measured cause of a price."],
-    ["27 Jul 2022", "UN: the Joint Coordination Centre is established in Istanbul. This page does not choose between the 22 July and 27 July signing wordings."],
-    ["17 Jul 2023", "UN: the Initiative is not renewed. While it ran, over 32 million metric tons of grain and foodstuffs went to 45 countries, from Odesa, Chornomorsk and Yuzhny/Pivdennyi."],
+    ["27 Jul 2022", "United Nations: the Joint Coordination Centre is established in Istanbul."],
+    ["17 Jul 2023", "United Nations: the Initiative is not renewed. While it ran, over 32 million metric tons of grain and foodstuffs went to 45 countries, from Odesa, Chornomorsk and Yuzhny/Pivdennyi. Context for the maps, not a measured cause of a price."],
   ];
   return (
     <ol className="mt-4 space-y-4 border border-[#d9d3c6] bg-white p-4">

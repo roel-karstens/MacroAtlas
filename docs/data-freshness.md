@@ -9,4 +9,4 @@ This edition is a dated snapshot. Do not describe a figure as current unless the
 - The FAO Food Price Index stays an eight-month table. Do not restore the monthly file or replot it.
 - Do not restore Pink Sheet Brent or the ECB 10-year series.
 - When a number on the homepage changes, change the sentence in the same commit. Do not bump an article `updated` date if the prose and figures are unchanged.
-- Black Sea dates are context. Do not add a peak-month tonnage that this edition has not settled, and do not describe 2026 shipping.
+- Black Sea context uses the United Nations pages retrieved 7 November 2026: Joint Coordination Centre established 27 July 2022; Initiative not renewed after 17 July 2023; over 32 million metric tons to 45 countries while it ran. Do not describe shipping in 2026.

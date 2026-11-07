@@ -36,6 +36,23 @@ describe("question-led guide", () => {
     expect(page).not.toContain("CropAtlas");
   });
 
+  it("does not narrate an unsettled signing day or peak tonnage to readers", () => {
+    const files = [
+      "components/wheat-question.tsx",
+      "components/food-notes.tsx",
+      "lib/content/articles.ts",
+      "lib/content/sources.ts",
+    ].map((path) => readFileSync(path, "utf8"));
+    const blob = files.join("\n");
+    expect(blob).not.toMatch(/signing day|22 July|27 July signing|has not settled|peak-month|peak month/i);
+    expect(blob).toMatch(/27 July 2022/);
+    expect(blob).toMatch(/17 July 2023/);
+    expect(blob).toMatch(/over 32 million metric tons/);
+    const bond = readFileSync("components/bond-model-panel.tsx", "utf8");
+    expect(bond).toMatch(/Opening illustration/);
+    expect(bond).toMatch(/This example stays fixed when the boxes change/);
+  });
+
   it("resets the Gulf map as a whole and closes the menu on Escape", () => {
     const map = readFileSync("components/atlas-map.tsx", "utf8");
     const header = readFileSync("components/site-header.tsx", "utf8");

@@ -200,7 +200,7 @@ export function BondModelPanel() {
               <dt className="text-sm text-[#3f4651]">Duration price effect, before carry and convexity</dt>
               <dd className="font-display text-5xl leading-none font-semibold">{formatPercentFromDecimal(evaluation.result.durationPriceEffect)}</dd>
               <p className="mt-2 text-sm text-[#3f4651]">
-                Assumptions beside this figure: starting yield {fields.annualYieldPercent}% (illustrative, not a market print), modified duration {fields.modifiedDuration}, shift {fields.shiftValue} {fields.shiftUnit === "bp" ? "basis points" : "percentage points"}, horizon {fields.horizonYears} year(s), costs {fields.costsBp} bp, convexity {evaluation.result.convexityApplied ? "on" : "off"}. Duration 7 and +100 bp is −7% before carry and convexity. With a 3% yield, one year and no costs, simple carry is +3% and the total-return sketch is −4%.
+                Assumptions beside this figure: starting yield {fields.annualYieldPercent}% (not a market print), modified duration {fields.modifiedDuration}, shift {fields.shiftValue} {fields.shiftUnit === "bp" ? "basis points" : "percentage points"}, horizon {fields.horizonYears} year(s), costs {fields.costsBp} bp, convexity {evaluation.result.convexityApplied ? "on" : "off"}.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -222,8 +222,14 @@ export function BondModelPanel() {
               </div>
             </div>
             <p className="text-sm leading-relaxed text-[#3f4651]">
-              Carry {formatPercentFromDecimal(evaluation.result.carry)} + price effect {formatPercentFromDecimal(evaluation.result.priceEffect)} − costs {formatPercentFromDecimal(evaluation.inputs.costs)} = {formatPercentFromDecimal(evaluation.result.totalReturn)}. Simple carry is annual yield times years. It is not compounded.
+              Carry {formatPercentFromDecimal(evaluation.result.carry)} + price effect {formatPercentFromDecimal(evaluation.result.priceEffect)} − costs {formatPercentFromDecimal(evaluation.inputs.costs)} = {formatPercentFromDecimal(evaluation.result.totalReturn)}. Simple carry is annual yield times years. It is not compounded. This line follows the boxes above.
             </p>
+            <div className="border border-[#d9d3c6] bg-[#f6f3ec] p-3">
+              <p className="text-xs font-medium tracking-wide text-[#8a5a12]">Opening illustration</p>
+              <p className="mt-1 text-sm leading-relaxed text-[#3f4651]">
+                Duration 7 and +100 basis points is −7% before carry and convexity. With a 3% yield, a one-year horizon and no costs, simple carry is +3% and the total-return sketch is −4%. This example stays fixed when the boxes change.
+              </p>
+            </div>
             {evaluation.result.warnings.length > 0 ? (
               <ul className="list-disc space-y-1 pl-5 text-sm text-[#3f4651]">
                 {evaluation.result.warnings.map((warning) => (
